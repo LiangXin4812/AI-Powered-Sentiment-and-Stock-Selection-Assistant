@@ -1,0 +1,99 @@
+# SGX Daily Signal Report, every trading day after the close.
+#
+# 18:30 Singapore time = 10:30 UTC, Monday to Friday. On an SGX public holiday
+# run-all finds no daily price bar and exits without doing anything.
+# Credentials come only from the repository's Actions secrets:
+#   SUPABASE_URL   the project database (required)
+#   GROQ_API_KEY   Task 5 summaries and the Task 7 AI text (required)
+#   HF_TOKEN       optional, faster FinBERT download
+#   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, REPORT_TO   optional e-mail
+# Each run commits reports/<date>/ and reports/README.md (the index) to the
+# repository and keeps the same files as a downloadable run artifact.
+name: Daily SGX signal report
+
+on:
+  schedule:
+    - cron: "30 10 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      no_llm:
+        description: "Template text only (no AI call)"
+        type: boolean
+        default: false
+      force:
+        description: "Run even if no SGX price bar is found for today"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      TZ: Asia/Singapore
+      SGX_PROJECT_ROOT: ${{ github.workspace }}
+      HF_HOME: ${{ github.workspace }}/cache/huggingface
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.lock
+
+      - name: Cache FinBERT
+        uses: actions/cache@v4
+        with:
+          path: cache/huggingface
+          key: finbert-v1
+
+      - name: Install
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends libreoffice-writer
+          pip install -r requirements.lock
+          pip install torch==2.6.0+cpu --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Tasks 1-7 for today
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          REPORT_TO: ${{ secrets.REPORT_TO }}
+        run: |
+          python -m sgx_capstone run-all \
+            ${{ inputs.no_llm && '--no-llm' || '' }} ${{ inputs.force && '--force' || '' }}
+
+      - name: Commit the report
+        run: |
+          if [ -d reports ] && [ -n "$(git status --porcelain reports)" ]; then
+            git config user.name "sgx-report-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add reports
+            git commit -m "Daily signal report $(date +%Y-%m-%d)"
+            git push
+          else
+            echo "No new report (not a trading day, or the run stopped before the report)."
+          fi
+
+      - name: Keep the files as a run artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-${{ github.run_id }}
+          path: |
+            reports/
+            outputs/report/
+          if-no-files-found: ignore

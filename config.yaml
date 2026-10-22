@@ -1,0 +1,167 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# SGX AI-Powered Sentiment & Stock Selection Assistant
+# Reviewed behavioral configuration for the selected runtime.
+# Task 1–4 feed settings live under settings/; learned values stay in models/.
+#
+# Rules for this file:
+#   1. A number that changes behaviour belongs here, not in a notebook cell.
+#   2. Every value carries a comment saying WHERE IT CAME FROM. A threshold
+#      without a provenance line is a guess, and a guess in production is a
+#      finding against the project.
+#   3. Values that are LEARNED (model weights, label thresholds fitted on data)
+#      stay in the .pkl artefacts. This file holds DECISIONS, not estimates.
+#   4. Nothing here is secret. API keys stay in Colab secrets / environment.
+#
+# Loaded by the CONFIG cell, which validates it, injects the legacy global
+# names the task cells already use, and records a SHA of the loaded values so
+# any output can be traced back to the exact configuration that produced it.
+# ═══════════════════════════════════════════════════════════════════════════
+
+config_version: "1.0"
+updated: "2026-09-27"
+owner: "Liang Xin (A0221401E)"
+
+runtime:
+  # Reviewed Task 1–4 JSON files supplied with notebook 10. Use database only
+  # when reproducing the original app_config values in an existing database.
+  settings_source: files
+
+ingestion:
+  finbert:
+    model_id: ProsusAI/finbert
+    max_length: 512
+
+# ── Where things live ──────────────────────────────────────────────────────
+# ${project_root} is substituted by the loader, so the Drive path appears once.
+paths:
+  project_root:    /app
+  t5_artifacts:    ${project_root}/models/task5_artifacts_{t5_model_version}.pkl
+  t6_artifacts:    ${project_root}/models/task6_artifacts_v1.pkl
+  t6_rank_model:   ${project_root}/models/task6_rank_model_v1.pkl
+  feature_cache:   ${project_root}/cache/t6_feature_rows.pkl
+  outputs_dir:     ${project_root}/outputs
+  research_dir:    ${project_root}/outputs/research
+  reports_dir:     ${project_root}/outputs/reports
+  config_snapshots: ${project_root}/outputs/config_snapshots
+  t5_prompt_yaml:  ${project_root}/prompts/task5_prompt.yaml
+  t7_prompt_yaml:  ${project_root}/prompts/task7_prompts.yaml
+
+# ── LLM layer ──────────────────────────────────────────────────────────────
+# One place for the provider, the model and every generation parameter. The
+# prompts themselves live in the YAML files under prompts/ — never in code.
+llm:
+  provider:         groq
+  endpoint:         https://api.groq.com/openai/v1/chat/completions
+  model:            openai/gpt-oss-20b   # switch the model here, nowhere else
+  temperature:      0.2      # low, for reproducible structured JSON
+  timeout_s:        60
+  max_retries:      5
+  backoff_base_s:   3        # 429 waits: 3, 6, 12, 24, 48s (Groq free tier 30/min)
+  backoff_factor:   2
+  strip_code_fences: true    # models sometimes wrap JSON in ```json ... ```
+  # Per-task token budgets. T5 returns a full XAI object, T7 only the sections.
+  max_tokens:
+    t5: 4000
+    t7: 1200
+  # The prompt file each task reads, and the version recorded with every row.
+  prompt:
+    t5_key: task5_xai        # top-level key inside task5_prompt.yaml
+    t7_key: prompt_a         # top-level key inside task7_prompts.yaml
+  # How much context goes into the T5 prompt. These were literals ([:6], [:10])
+  # inside build_llm_prompt; they change what the model sees, so they are config.
+  t5_limits:
+    features:         6    # top rule-based features by weight
+    shap_consensus:   5    # SHAP features both models agree on
+    contradictions:   5
+    company_news:     10
+    political_news:   3
+
+# ── Task 5: evidence layer ─────────────────────────────────────────────────
+t5:
+  model_version:        v6     # which task5_artifacts_*.pkl is live.
+                               # v6 kept after the R9 hold-out comparison
+                               # (v7 held 11/21 signs — rejected 22 Sep).
+  rule_layer_version:   rl_v8  # rl_v8 = event rules need above-normal article
+                               # counts (adopted 19 Sep after the R8 replay).
+  max_confidence:       0.85   # ceiling on the evidence-strength number.
+                               # NOT a probability — see report section 2.3.
+  net_score_threshold:  0.35   # |net score| below this reads "neutral".
+                               # Set so a single rule cannot carry a call.
+  market_wide_scale:    0.25   # discount on rules that are the same for all 15
+                               # stocks (MW1). Without it, market-wide evidence
+                               # dominated every stock's reading.
+  market_wide_features:        # which features are market-wide (MW1 / MW5)
+    - n_political
+    - political_direction
+    - vix
+    - yield_spread
+    - pc_vol_ratio
+    - regime_encoded
+  event_scale:          0.5    # corporate-event rules contribute at half weight
+  event_trail_days:     20     # [EV1] trailing window for "normal" article count
+  event_excess_min:     1.0    # today's count must exceed the mean by this much
+  event_min_history:    5      # minimum trailing days before EV1 can fire
+  bullish_events:       [upgrade, earnings, dividend, ma]   # ma = merger/acquisition
+  bearish_events:       [warning, downgrade, layoff]
+  llm_confidence_tolerance: 0.20   # guardrail: reject LLM output whose
+                                   # confidence deviates from the rule baseline
+                                   # by more than this (Layer 4 validation)
+
+# ── Task 6: model layer ────────────────────────────────────────────────────
+# forward_horizon, return_threshold, scaler and label encoder are LEARNED and
+# come from the pkl. The loader checks the pkl against expected_* and warns on
+# a mismatch instead of silently disagreeing with this file.
+t6:
+  expected_forward_horizon: 3
+  champion_margin:      0.03   # a challenger must beat the champion's F1 by
+                               # this much before it is promoted. Without it,
+                               # four swaps happened in four weeks on windows
+                               # sharing 75% of their data (R3).
+  calib_splits:         4      # TimeSeriesSplit folds for out-of-fold
+                               # calibration (the fix for the 19 Sep leak).
+  retrain_lookback_days: 28    # window of matured live predictions used to
+                               # score champion vs challengers
+  fallback_champion:    XGBoost   # only used if the champion log is empty
+  preflight_required:   true    # refuse to forecast if the production pkl
+                                # holds prefit (leaky) calibrators
+
+# ── Task 7: report layer ───────────────────────────────────────────────────
+t7:
+  prompt_version_fallback: fb_v4   # renderer version used when the LLM fails
+  suppress_edge:        -0.05  # withhold a stock's model view when its own
+                               # 30-day edge over its naive rule is below this
+  track_record_window_days: 30
+  attention_min_t6_prob: 0.55
+  attention_archetypes: [lag, contradicted, model_only]
+  low_information_archetypes: [quiet, dormant, move_complete, noise, price_unavailable]
+  price_history_start:  "2019-01-01"   # long-history section (R6)
+  period_sessions:      5      # Daily Signal Report: "the period" = the last
+                               # five sessions, so a reader sees the week, not one day
+  # Learned class boundaries are read from the pinned T5 and T6 artifacts.
+  disclaimer: >-
+    This report is generated by an automated statistical system without human
+    analyst review, from historical signal patterns. It is not financial
+    advice, a recommendation, or an offer to deal in any security. Model
+    outputs are probabilistic and have limited accuracy; past patterns do not
+    predict future outcomes. Consult a licensed financial adviser before
+    making investment decisions.
+
+# ── Research / validation defaults (R11, R12) ──────────────────────────────
+research:
+  horizon:              3
+  min_fit_dates:        20
+  min_cal_dates:        6
+  cal_dates:            10
+  price_history_pad_days: 400   # extra history so 60-day momentum is real
+  cost_pct:             0.30    # one-way trading cost assumption, %
+  # Acceptance bar for the R12 forward test. Frozen 26 Sep 2026 — changing any
+  # of these while the test runs invalidates it. See R12_config.json.
+  forward_test:
+    min_dates:          15
+    min_ic_t:           2.0
+    min_spread_pct:     0.30
+    n_side:             3       # top/bottom N of 15 for prefer / avoid
+
+report:
+  window_start: "2026-08-17"  # Original evidence-era analysis window
+  recorded_calibration_incident_date: "2026-09-19"  # Historical incident, not deployment certification

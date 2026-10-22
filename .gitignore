@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+raw_data/
+data/
+cache/
+outputs/report/
+outputs/sample_report/
+outputs/research_review/
+outputs/figures/
+outputs/config_snapshots/
+outputs/date_check/

@@ -1,0 +1,149 @@
+ticker,date,reproduced,net_stored,net_offline,weekly_used,factor,direction,source,weight,decisive
+A17U.SI,2026-09-17,True,-0.057,-0.057,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+A17U.SI,2026-09-17,True,-0.057,-0.057,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+A17U.SI,2026-09-17,True,-0.057,-0.057,bearish,Positive company news sentiment,bullish,task1_news,0.181,False
+A17U.SI,2026-09-17,True,-0.057,-0.057,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+A17U.SI,2026-09-17,True,-0.057,-0.057,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+BN4.SI,2026-09-17,True,0.089,0.089,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+BN4.SI,2026-09-17,True,0.089,0.089,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+BN4.SI,2026-09-17,True,0.089,0.089,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+BN4.SI,2026-09-17,True,0.089,0.089,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+BSL.SI,2026-09-17,True,-0.057,-0.057,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+BSL.SI,2026-09-17,True,-0.057,-0.057,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+BSL.SI,2026-09-17,True,-0.057,-0.057,bearish,Positive company news sentiment,bullish,task1_news,0.181,False
+BSL.SI,2026-09-17,True,-0.057,-0.057,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+BSL.SI,2026-09-17,True,-0.057,-0.057,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+C38U.SI,2026-09-17,True,0.089,0.089,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+C38U.SI,2026-09-17,True,0.089,0.089,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+C38U.SI,2026-09-17,True,0.089,0.089,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+C38U.SI,2026-09-17,True,0.089,0.089,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+C52.SI,2026-09-17,True,-0.279,-0.28,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+C52.SI,2026-09-17,True,-0.279,-0.28,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+C52.SI,2026-09-17,True,-0.279,-0.28,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+C52.SI,2026-09-17,True,-0.279,-0.28,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+C52.SI,2026-09-17,True,-0.279,-0.28,bearish,Price below Bollinger lower band,bearish,task2_technical,0.041,False
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Elevated political news volume,bearish,task1_political,0.242,True
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Positive company news sentiment,bullish,task1_news,0.181,False
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,False
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Options market bearish positioning,bearish,task4_options,0.1,True
+D05.SI,2026-09-17,True,0.256,0.257,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+F34.SI,2026-09-17,True,-0.071,-0.071,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+F34.SI,2026-09-17,True,-0.071,-0.071,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+F34.SI,2026-09-17,True,-0.071,-0.071,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+F34.SI,2026-09-17,True,-0.071,-0.071,neutral,Price above VWAP,bullish,task2_technical,0.021,False
+ME8U.SI,2026-09-17,True,-0.308,-0.309,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+ME8U.SI,2026-09-17,True,-0.308,-0.309,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+ME8U.SI,2026-09-17,True,-0.308,-0.309,neutral,Negative company news sentiment,bearish,task1_news,0.216,False
+ME8U.SI,2026-09-17,True,-0.308,-0.309,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+N2IU.SI,2026-09-17,True,-0.034,-0.035,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+N2IU.SI,2026-09-17,True,-0.034,-0.035,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+N2IU.SI,2026-09-17,True,-0.034,-0.035,bearish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+N2IU.SI,2026-09-17,True,-0.034,-0.035,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+N2IU.SI,2026-09-17,True,-0.034,-0.035,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Elevated political news volume,bearish,task1_political,0.242,True
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,False
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Options market bearish positioning,bearish,task4_options,0.1,True
+O39.SI,2026-09-17,True,0.279,0.279,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+S63.SI,2026-09-17,True,0.293,0.293,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+S63.SI,2026-09-17,True,0.293,0.293,neutral,Elevated political news volume,bearish,task1_political,0.242,True
+S63.SI,2026-09-17,True,0.293,0.293,neutral,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+S63.SI,2026-09-17,True,0.293,0.293,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+S63.SI,2026-09-17,True,0.293,0.293,neutral,Options market bearish positioning,bearish,task4_options,0.1,True
+S68.SI,2026-09-17,True,0.426,0.426,neutral,RSI oversold — potential bounce,bullish,task2_technical,0.378,True
+S68.SI,2026-09-17,True,0.426,0.426,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+S68.SI,2026-09-17,True,0.426,0.426,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+S68.SI,2026-09-17,True,0.426,0.426,neutral,Positive company news sentiment,bullish,task1_news,0.181,True
+S68.SI,2026-09-17,True,0.426,0.426,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+S68.SI,2026-09-17,True,0.426,0.426,neutral,Price below Bollinger lower band,bearish,task2_technical,0.041,False
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Elevated political news volume,bearish,task1_political,0.242,True
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,False
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Options market bearish positioning,bearish,task4_options,0.1,True
+U11.SI,2026-09-17,True,0.279,0.279,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+U96.SI,2026-09-17,True,0.133,0.133,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+U96.SI,2026-09-17,True,0.133,0.133,neutral,Elevated political news volume,bearish,task1_political,0.242,True
+U96.SI,2026-09-17,True,0.133,0.133,neutral,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+U96.SI,2026-09-17,True,0.133,0.133,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+U96.SI,2026-09-17,True,0.133,0.133,neutral,Price above VWAP,bullish,task2_technical,0.021,False
+Z74.SI,2026-09-17,True,-0.071,-0.071,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+Z74.SI,2026-09-17,True,-0.071,-0.071,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+Z74.SI,2026-09-17,True,-0.071,-0.071,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+Z74.SI,2026-09-17,True,-0.071,-0.071,neutral,Price above VWAP,bullish,task2_technical,0.021,False
+A17U.SI,2026-09-18,True,-0.057,-0.057,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+A17U.SI,2026-09-18,True,-0.057,-0.057,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+A17U.SI,2026-09-18,True,-0.057,-0.057,bearish,Positive company news sentiment,bullish,task1_news,0.181,False
+A17U.SI,2026-09-18,True,-0.057,-0.057,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+A17U.SI,2026-09-18,True,-0.057,-0.057,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+BN4.SI,2026-09-18,True,0.089,0.089,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+BN4.SI,2026-09-18,True,0.089,0.089,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+BN4.SI,2026-09-18,True,0.089,0.089,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+BN4.SI,2026-09-18,True,0.089,0.089,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+BSL.SI,2026-09-18,True,-0.057,-0.057,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+BSL.SI,2026-09-18,True,-0.057,-0.057,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+BSL.SI,2026-09-18,True,-0.057,-0.057,bearish,Positive company news sentiment,bullish,task1_news,0.181,False
+BSL.SI,2026-09-18,True,-0.057,-0.057,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+BSL.SI,2026-09-18,True,-0.057,-0.057,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+C38U.SI,2026-09-18,True,0.089,0.089,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+C38U.SI,2026-09-18,True,0.089,0.089,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+C38U.SI,2026-09-18,True,0.089,0.089,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+C38U.SI,2026-09-18,True,0.089,0.089,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+C52.SI,2026-09-18,True,-0.279,-0.28,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+C52.SI,2026-09-18,True,-0.279,-0.28,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+C52.SI,2026-09-18,True,-0.279,-0.28,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+C52.SI,2026-09-18,True,-0.279,-0.28,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+C52.SI,2026-09-18,True,-0.279,-0.28,bearish,Price below Bollinger lower band,bearish,task2_technical,0.041,False
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Elevated political news volume,bearish,task1_political,0.242,True
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Positive company news sentiment,bullish,task1_news,0.181,False
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,False
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Options market bearish positioning,bearish,task4_options,0.1,True
+D05.SI,2026-09-18,True,0.256,0.257,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+F34.SI,2026-09-18,True,-0.071,-0.071,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+F34.SI,2026-09-18,True,-0.071,-0.071,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+F34.SI,2026-09-18,True,-0.071,-0.071,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+F34.SI,2026-09-18,True,-0.071,-0.071,neutral,Price above VWAP,bullish,task2_technical,0.021,False
+ME8U.SI,2026-09-18,True,-0.308,-0.309,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+ME8U.SI,2026-09-18,True,-0.308,-0.309,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+ME8U.SI,2026-09-18,True,-0.308,-0.309,neutral,Negative company news sentiment,bearish,task1_news,0.216,False
+ME8U.SI,2026-09-18,True,-0.308,-0.309,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+N2IU.SI,2026-09-18,True,-0.034,-0.035,bearish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+N2IU.SI,2026-09-18,True,-0.034,-0.035,bearish,Elevated political news volume,bearish,task1_political,0.242,False
+N2IU.SI,2026-09-18,True,-0.034,-0.035,bearish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+N2IU.SI,2026-09-18,True,-0.034,-0.035,bearish,Weekly timeframe confirms bearish,bearish,task2_technical,0.146,False
+N2IU.SI,2026-09-18,True,-0.034,-0.035,bearish,Options market bearish positioning,bearish,task4_options,0.1,False
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Elevated political news volume,bearish,task1_political,0.242,False
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,True
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Positive company news sentiment,bullish,task1_news,0.181,True
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,True
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Options market bearish positioning,bearish,task4_options,0.1,False
+O39.SI,2026-09-18,True,0.46,0.46,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+S63.SI,2026-09-18,True,0.293,0.293,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+S63.SI,2026-09-18,True,0.293,0.293,neutral,Elevated political news volume,bearish,task1_political,0.242,True
+S63.SI,2026-09-18,True,0.293,0.293,neutral,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+S63.SI,2026-09-18,True,0.293,0.293,neutral,Positive company news sentiment,bullish,task1_news,0.181,False
+S63.SI,2026-09-18,True,0.293,0.293,neutral,Options market bearish positioning,bearish,task4_options,0.1,True
+S68.SI,2026-09-18,True,0.467,0.467,neutral,RSI oversold — potential bounce,bullish,task2_technical,0.378,True
+S68.SI,2026-09-18,True,0.467,0.467,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+S68.SI,2026-09-18,True,0.467,0.467,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+S68.SI,2026-09-18,True,0.467,0.467,neutral,Positive company news sentiment,bullish,task1_news,0.181,True
+S68.SI,2026-09-18,True,0.467,0.467,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Elevated political news volume,bearish,task1_political,0.242,True
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Weekly timeframe confirms bullish,bullish,task2_technical,0.146,False
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Options market bearish positioning,bearish,task4_options,0.1,True
+U11.SI,2026-09-18,True,0.279,0.279,bullish,Price above VWAP,bullish,task2_technical,0.021,False
+U96.SI,2026-09-18,True,0.133,0.133,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,False
+U96.SI,2026-09-18,True,0.133,0.133,neutral,Elevated political news volume,bearish,task1_political,0.242,True
+U96.SI,2026-09-18,True,0.133,0.133,neutral,Unusual bullish corporate event activity (1),bullish,task1_news,0.204,False
+U96.SI,2026-09-18,True,0.133,0.133,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+U96.SI,2026-09-18,True,0.133,0.133,neutral,Price above VWAP,bullish,task2_technical,0.021,False
+Z74.SI,2026-09-18,True,-0.133,-0.133,neutral,Positive geopolitical backdrop,bullish,task1_political,0.25,True
+Z74.SI,2026-09-18,True,-0.133,-0.133,neutral,Elevated political news volume,bearish,task1_political,0.242,False
+Z74.SI,2026-09-18,True,-0.133,-0.133,neutral,Options market bearish positioning,bearish,task4_options,0.1,False
+Z74.SI,2026-09-18,True,-0.133,-0.133,neutral,Price below Bollinger lower band,bearish,task2_technical,0.041,False

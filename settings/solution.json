@@ -1,0 +1,90 @@
+{
+  "news": {
+    "max_articles": 50,
+    "lookback_days": 30,
+    "min_articles_warning": 3,
+    "lexrank_sentences": 5,
+    "finbert_threshold": 0.5
+  },
+  "technical": {
+    "history_days": 90,
+    "rsi_period": 14,
+    "rsi_overbought": 70,
+    "rsi_oversold": 30,
+    "macd_fast": 12,
+    "macd_slow": 26,
+    "macd_signal": 9,
+    "bb_period": 20,
+    "bb_std": 2,
+    "atr_period": 14,
+    "volume_sma": 20,
+    "weekly_rsi_high": 60,
+    "weekly_rsi_low": 40
+  },
+  "macro_regime": {
+    "high_rate_threshold": 3.0,
+    "high_cpi_threshold": 2.5,
+    "low_rate_threshold": 2.0,
+    "low_cpi_threshold": 1.5,
+    "vix_risk_off": 30,
+    "vix_risk_on": 15,
+    "yield_inverted": -0.2
+  },
+  "options": {
+    "primary_ticker": "EWS",
+    "reference_ticker": "SPY",
+    "pc_volume_bullish_below": 0.7,
+    "pc_volume_bearish_above": 1.3,
+    "pc_oi_bullish_below": 0.7,
+    "pc_oi_bearish_above": 1.3,
+    "unusual_activity_multiple": 3.0
+  },
+  "event_keywords": {
+    "warning": [
+      "profit warning",
+      "loss",
+      "write-down",
+      "impairment",
+      "downgrade"
+    ],
+    "earnings": [
+      "profit",
+      "earnings",
+      "eps",
+      "revenue",
+      "results",
+      "quarterly",
+      "annual report",
+      "q1",
+      "q2",
+      "q3",
+      "q4"
+    ],
+    "dividend": [
+      "dividend",
+      "dps",
+      "distribution",
+      "payout"
+    ],
+    "ma": [
+      "acquisition",
+      "merger",
+      "takeover",
+      "divest",
+      "stake"
+    ],
+    "management": [
+      "ceo",
+      "cfo",
+      "director",
+      "appoint",
+      "resign"
+    ],
+    "upgrade": [
+      "upgrade",
+      "overweight",
+      "buy rating",
+      "price target"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "purpose": "Packaging parity, not a predictive performance test",
+  "source_sha256": "4958744861df8eac0abe6d251f047a236d6f745ba693413442cbc2daaa8b5aa3",
+  "serving_sha256": "7e0900a4d327bebf14e128996bb19019f1d73c24b21b364e3ea9683188538749",
+  "excluded_fields": [
+    "lstm_model",
+    "lstm_scaler",
+    "lstm_config",
+    "lstm_metrics",
+    "lstm_window",
+    "lstm_train_details"
+  ],
+  "parity": {
+    "LogReg": {
+      "rows": 855,
+      "max_probability_difference": 0.0
+    },
+    "RandomF": {
+      "rows": 855,
+      "max_probability_difference": 0.0
+    },
+    "XGBoost": {
+      "rows": 855,
+      "max_probability_difference": 0.0
+    }
+  }
+}

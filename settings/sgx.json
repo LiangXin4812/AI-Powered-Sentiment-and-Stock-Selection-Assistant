@@ -1,0 +1,112 @@
+{
+  "market": {
+    "name": "SGX",
+    "country": "Singapore",
+    "currency": "SGD",
+    "ticker_suffix": ".SI"
+  },
+  "tickers": {
+    "D05.SI": {
+      "name": "DBS Group",
+      "sector": "Banking"
+    },
+    "O39.SI": {
+      "name": "OCBC Bank",
+      "sector": "Banking"
+    },
+    "U11.SI": {
+      "name": "UOB",
+      "sector": "Banking"
+    },
+    "C38U.SI": {
+      "name": "CapitaLand Integrated Commercial Trust",
+      "sector": "REIT"
+    },
+    "N2IU.SI": {
+      "name": "Mapletree Pan Asia Commercial Trust",
+      "sector": "REIT"
+    },
+    "A17U.SI": {
+      "name": "Ascendas REIT",
+      "sector": "REIT"
+    },
+    "ME8U.SI": {
+      "name": "Mapletree Industrial Trust",
+      "sector": "REIT"
+    },
+    "Z74.SI": {
+      "name": "Singtel",
+      "sector": "Telecommunications"
+    },
+    "BN4.SI": {
+      "name": "Keppel Corp",
+      "sector": "Industrials"
+    },
+    "S63.SI": {
+      "name": "ST Engineering",
+      "sector": "Industrials"
+    },
+    "U96.SI": {
+      "name": "Sembcorp Industries",
+      "sector": "Industrials"
+    },
+    "F34.SI": {
+      "name": "Wilmar International",
+      "sector": "Consumer Goods"
+    },
+    "C52.SI": {
+      "name": "ComfortDelGro",
+      "sector": "Consumer Goods"
+    },
+    "S68.SI": {
+      "name": "SGX Group",
+      "sector": "Financial Services"
+    },
+    "BSL.SI": {
+      "name": "Raffles Medical Group",
+      "sector": "Healthcare"
+    }
+  },
+  "news_sources": [
+    {
+      "name": "Google News",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q={query}&hl=en-SG&gl=SG&ceid=SG:en",
+      "active": true
+    },
+    {
+      "name": "Channel NewsAsia",
+      "type": "rss",
+      "url": "https://www.channelnewsasia.com/rss/business",
+      "active": true
+    },
+    {
+      "name": "Business Times",
+      "type": "rss",
+      "url": "https://www.businesstimes.com.sg/rss/companies-markets",
+      "active": true
+    }
+  ],
+  "political_news": {
+    "articles_per_topic": 6,
+    "topics": [
+      "Middle East war oil prices",
+      "Federal Reserve interest rate decision",
+      "China economy trade war tariffs",
+      "Singapore monetary policy MAS",
+      "Asia Pacific geopolitics tension",
+      "global recession risk inflation",
+      "US China relations technology",
+      "Singapore election politics",
+      "European Central Bank ECB",
+      "commodity prices oil gold",
+      "Russia Ukraine war energy",
+      "emerging markets currency"
+    ]
+  },
+  "macro_data": {
+    "sora_fallback": 1.24,
+    "options_proxy": "EWS",
+    "global_reference": "SPY"
+  }
+}

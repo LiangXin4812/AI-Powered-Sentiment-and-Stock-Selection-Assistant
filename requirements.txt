@@ -1,0 +1,29 @@
+# Tested Python 3.12 CPU runtime. Torch is installed separately from its CPU index.
+numpy==2.0.2
+pandas==2.2.3
+scipy==1.15.3
+scikit-learn==1.6.1
+SQLAlchemy==2.0.43
+psycopg2-binary==2.9.10
+PyYAML==6.0.2
+requests==2.32.4
+yfinance==0.2.65
+xgboost-cpu==3.0.5
+shap==0.48.0
+numba==0.61.2
+matplotlib==3.10.3
+python-docx==1.2.0
+feedparser==6.0.11
+googlenewsdecoder==0.1.7
+newspaper3k==0.2.8
+sumy==0.11.0
+nltk==3.9.1
+lxml_html_clean==0.4.2
+pandas-ta-classic==0.3.59
+transformers==4.49.0
+huggingface-hub==0.34.4
+# Stable transport dependencies for the pinned requests/yfinance versions.
+chardet==5.2.0
+charset-normalizer==3.4.2
+urllib3==2.5.0
+peewee==3.18.2

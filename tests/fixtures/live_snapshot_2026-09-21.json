@@ -1,0 +1,2848 @@
+{
+ "saved_at": "2026-10-22T21:47+08:00",
+ "model": "RandomF",
+ "D": {
+  "date": "2026-09-21",
+  "mode": "live",
+  "findings": {
+   "r4_ic": -0.0218142565708428,
+   "r4_days": 21,
+   "event_fired": 0.9971264367816091,
+   "pos_v7": 0.5603448275862069,
+   "pos_v8": 0.3275862068965517,
+   "ic_v7": -0.0218142565708428,
+   "ic_v8": -0.020590436003588,
+   "oof_lo": 0.5333333333333333,
+   "oof_hi": 0.5397849462365591,
+   "oof_neutral": 0.5333333333333333,
+   "sw_lo": 0.5382716049382716,
+   "sw_hi": 0.5456790123456791,
+   "sw_n": 15,
+   "sw_sw_lo": 0,
+   "sw_sw_hi": 4,
+   "r13_leads": 4,
+   "r13_n": 15,
+   "rev_ic": 0.0708550168957978,
+   "rev_t": 9.772202912907051,
+   "n": 270,
+   "acc": 0.3962962962962963,
+   "neutral": 0.5407407407407407,
+   "shown": 0.4621212121212121,
+   "hidden": 0.3333333333333333,
+   "ge90_n": 117,
+   "ge90_acc": 0.36752136752136755,
+   "first": "2026-08-17",
+   "last": "2026-09-15"
+  },
+  "names": {
+   "D05.SI": "DBS Group",
+   "O39.SI": "OCBC Bank",
+   "U11.SI": "UOB",
+   "C38U.SI": "CapitaLand Integrated Commercial Trust",
+   "N2IU.SI": "Mapletree Pan Asia Commercial Trust",
+   "A17U.SI": "Ascendas REIT",
+   "ME8U.SI": "Mapletree Industrial Trust",
+   "Z74.SI": "Singtel",
+   "BN4.SI": "Keppel Corp",
+   "S63.SI": "ST Engineering",
+   "U96.SI": "Sembcorp Industries",
+   "F34.SI": "Wilmar International",
+   "C52.SI": "ComfortDelGro",
+   "S68.SI": "SGX Group",
+   "BSL.SI": "Raffles Medical Group"
+  },
+  "sectors": {
+   "D05.SI": "Banking",
+   "O39.SI": "Banking",
+   "U11.SI": "Banking",
+   "C38U.SI": "REIT",
+   "N2IU.SI": "REIT",
+   "A17U.SI": "REIT",
+   "ME8U.SI": "REIT",
+   "Z74.SI": "Telecommunications",
+   "BN4.SI": "Industrials",
+   "S63.SI": "Industrials",
+   "U96.SI": "Industrials",
+   "F34.SI": "Consumer Goods",
+   "C52.SI": "Consumer Goods",
+   "S68.SI": "Financial Services",
+   "BSL.SI": "Healthcare"
+  },
+  "rows": {
+   "D05.SI": {
+    "ticker": "D05.SI",
+    "name": "DBS Group",
+    "sector": "Banking",
+    "move": 0.6505334322527423,
+    "period_ret": -0.38630316457760605,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -1.1717790615471846
+     ],
+     [
+      "2026-09-16",
+      0.06515055603624198
+     ],
+     [
+      "2026-09-17",
+      0.18229086469447875
+     ],
+     [
+      "2026-09-18",
+      -0.10397950158061997
+     ],
+     [
+      "2026-09-21",
+      0.6505334322527423
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "bullish",
+      "event": true,
+      "move": -1.1717790615471846
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.06515055603624198
+     },
+     "2026-09-17": {
+      "reading": "bullish",
+      "event": true,
+      "move": 0.18229086469447875
+     },
+     "2026-09-18": {
+      "reading": "bullish",
+      "event": true,
+      "move": -0.10397950158061997
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": 0.6505334322527423
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.289,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Weekly timeframe confirms bullish",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": true
+     },
+     {
+      "factor": "Price above VWAP",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.021,
+      "decisive": false
+     }
+    ],
+    "week_pos": 3,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.39999999999999997,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.464500264775608,
+    "t6_probs": {
+     "bullish": 0.214016520582959,
+     "neutral": 0.464500264775608,
+     "bearish": 0.321483214641434
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.3333333333333333,
+    "t6_base": 0.7333333333333333,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.18,
+     "news_bearish_ratio": 0.04,
+     "avg_sentiment": 0.843287999629974,
+     "n_articles": 50.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 13.0,
+     "n_bearish_events": 0.0,
+     "rsi": 57.25,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 1,
+     "weekly_bullish": 1,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "DBS Group\u2019s outlook remains neutral, with a balanced mix of bullish and bearish signals. Rule\u2011based analysis highlights a positive geopolitical backdrop and a risk\u2011on macro regime, while elevated political news volume and bearish options positioning temper the view. SHAP values reinforce the importance of news coverage volume, but also flag negative news share and a modest yield curve spread as risk factors. Recent headlines such as \"DBS Group stock edges lower as investors lock in gains after strong first\u2011half returns\" and \"JP Morgan increases DBS\u2019s TP to $70\" illustrate the market\u2019s mixed sentiment, and the ML models diverge\u2014LogReg leans bullish while RandomForest leans bearish\u2014though the overall stance stays neutral.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Elevated political news volume"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [
+     {
+      "title": "DBS Group stock edges lower as investors lock in gains after strong first-half returns - AD HOC NEWS",
+      "source": "AD HOC NEWS",
+      "at": "Fri, 18 Sep 2026 12:17:01 GMT",
+      "sentiment": "bearish",
+      "score": 0.965
+     }
+    ],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "upgrade"
+    ],
+    "warning": "mild"
+   },
+   "O39.SI": {
+    "ticker": "O39.SI",
+    "name": "OCBC Bank",
+    "sector": "Banking",
+    "move": 0.9241584553320248,
+    "period_ret": -0.5651500879745863,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -2.668760977360163
+     ],
+     [
+      "2026-09-16",
+      0.5806461457283252
+     ],
+     [
+      "2026-09-17",
+      0.3207196295412773
+     ],
+     [
+      "2026-09-18",
+      0.31968820948200527
+     ],
+     [
+      "2026-09-21",
+      0.9241584553320248
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -2.668760977360163
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.5806461457283252
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.3207196295412773
+     },
+     "2026-09-18": {
+      "reading": "bullish",
+      "event": true,
+      "move": 0.31968820948200527
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": 0.9241584553320248
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.289,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Weekly timeframe confirms bullish",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": true
+     },
+     {
+      "factor": "Price above VWAP",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.021,
+      "decisive": false
+     }
+    ],
+    "week_pos": 1,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.13333333333333336,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.45673505573986,
+    "t6_probs": {
+     "bullish": 0.232065683588088,
+     "neutral": 0.45673505573986,
+     "bearish": 0.311199260672052
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.3333333333333333,
+    "t6_base": 0.4666666666666667,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.22,
+     "news_bearish_ratio": 0.14,
+     "avg_sentiment": 0.827373995184898,
+     "n_articles": 50.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 1,
+     "n_bullish_events": 12.0,
+     "n_bearish_events": 1.0,
+     "rsi": 58.55,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 1,
+     "weekly_bullish": 1,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "OCBC\u2019s outlook remains neutral as rule\u2011based analysis balances bullish signals such as a positive geopolitical backdrop, a Risk\u2011On macro regime, and price trading above VWAP against bearish pressures from elevated political news volume and options market bearish positioning. The SHAP explanations reinforce this balance, with average news sentiment (+0.043) and positive news share (+0.030) supporting a mild bullish tilt, while the negative yield curve spread (\u22120.017) tempers enthusiasm. Recent headlines \u2013 the STI slip at open and a complaint over coal\u2011power financing \u2013 add regulatory and market\u2011wide risk, echoing the bearish weight of 0.242 on political news volume. Though the LogReg model predicts bullish, the RandomForest model flags bearish, underscoring the mild contradiction in the models\u2019 signals.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011On macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [
+     {
+      "title": "Daily Markets Briefing: STI up 0.11%; Top stock is OCBC Bank - Singapore Business Review",
+      "source": "Singapore Business Review",
+      "at": "Sun, 13 Sep 2026 21:30:00 GMT",
+      "sentiment": "bullish",
+      "score": 0.9294
+     }
+    ],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "upgrade",
+     "warning"
+    ],
+    "warning": "mild"
+   },
+   "U11.SI": {
+    "ticker": "U11.SI",
+    "name": "UOB",
+    "sector": "Banking",
+    "move": 0.7659159985011543,
+    "period_ret": -0.5433577769535014,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -2.3623906372391534
+     ],
+     [
+      "2026-09-16",
+      -0.29035262827369346
+     ],
+     [
+      "2026-09-17",
+      1.6258238255943747
+     ],
+     [
+      "2026-09-18",
+      -0.23878291850020217
+     ],
+     [
+      "2026-09-21",
+      0.7659159985011543
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -2.3623906372391534
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.29035262827369346
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 1.6258238255943747
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.23878291850020217
+     },
+     "2026-09-21": {
+      "reading": "bullish",
+      "event": true,
+      "move": 0.7659159985011543
+     }
+    },
+    "sentiment": "bullish",
+    "net": 0.492,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": true
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": true
+     },
+     {
+      "factor": "Unusual bullish corporate event activity (4)",
+      "direction": "bullish",
+      "source": "task1_news",
+      "weight": 0.204,
+      "decisive": true
+     },
+     {
+      "factor": "Weekly timeframe confirms bullish",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": true
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     },
+     {
+      "factor": "Price above VWAP",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.021,
+      "decisive": false
+     }
+    ],
+    "week_pos": 1,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.13333333333333336,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.431310945162193,
+    "t6_probs": {
+     "bullish": 0.220544512938961,
+     "neutral": 0.431310945162193,
+     "bearish": 0.348144541898847
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.3333333333333333,
+    "t6_base": 0.4666666666666667,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.14,
+     "news_bearish_ratio": 0.14,
+     "avg_sentiment": 0.88200600028038,
+     "n_articles": 50.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 17.0,
+     "n_bearish_events": 0.0,
+     "rsi": 56.29,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 1,
+     "weekly_bullish": 1,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "UOB maintains a bullish outlook driven by a favorable geopolitical backdrop, a risk\u2011on macro regime, and recent bullish corporate events such as the \u00a3750m covered bond issuance. High news coverage volume and a share of positive headlines\u2014including the S$26.31 scrip dividend announcement\u2014along with the stock trading above VWAP reinforce this positive stance. However, elevated political news volume and bearish options market positioning, coupled with slightly negative average news sentiment and mild RSI bearish momentum, introduce some caution. Overall, the bullish case remains strong but investors should monitor for potential short\u2011term reversals if volatility spikes.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk-On macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "upgrade"
+    ],
+    "warning": "mild"
+   },
+   "C38U.SI": {
+    "ticker": "C38U.SI",
+    "name": "CapitaLand Integrated Commercial Trust",
+    "sector": "REIT",
+    "move": -1.3100424405900424,
+    "period_ret": -1.3100424405900424,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.873361627060032
+     ],
+     [
+      "2026-09-16",
+      -0.44052821794189345
+     ],
+     [
+      "2026-09-17",
+      0.8849549119871458
+     ],
+     [
+      "2026-09-18",
+      0.43859607845351256
+     ],
+     [
+      "2026-09-21",
+      -1.3100424405900424
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "bullish",
+      "event": true,
+      "move": -0.873361627060032
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.44052821794189345
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.8849549119871458
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.43859607845351256
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -1.3100424405900424
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.121,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 1,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.2,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.490167894970273,
+    "t6_probs": {
+     "bullish": 0.218408724332307,
+     "neutral": 0.490167894970273,
+     "bearish": 0.291423380697419
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.2,
+    "t6_base": 0.4,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.08695652173913043,
+     "news_bearish_ratio": 0.043478260869565216,
+     "avg_sentiment": 0.874704350595889,
+     "n_articles": 23.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 6.0,
+     "n_bearish_events": 0.0,
+     "rsi": 32.6,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "The neutral outlook is driven by a positive geopolitical backdrop, a risk\u2011on macro regime, and strong RSI momentum, while elevated political news volume and bearish options positioning temper expectations. Recent corporate news\u2014such as the private placement at midpoint and the issuance of $300\u202fmillion fixed\u2011rate notes\u2014remains largely neutral, offering no clear upside or downside. SHAP values confirm the bullish influence of momentum and corporate events but also highlight a negative political news tone. Though the linear LogReg model leans bullish, the RandomForest model is neutral, underscoring the mild contradiction in the ML signals.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk-on macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma"
+    ],
+    "warning": "mild"
+   },
+   "N2IU.SI": {
+    "ticker": "N2IU.SI",
+    "name": "Mapletree Pan Asia Commercial Trust",
+    "sector": "REIT",
+    "move": -0.8264454667762711,
+    "period_ret": 0.0,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      0.833332505491069
+     ],
+     [
+      "2026-09-16",
+      -0.8264454667762711
+     ],
+     [
+      "2026-09-17",
+      0.833332505491069
+     ],
+     [
+      "2026-09-18",
+      0.0
+     ],
+     [
+      "2026-09-21",
+      -0.8264454667762711
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.833332505491069
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.8264454667762711
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.833332505491069
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -0.8264454667762711
+     }
+    },
+    "sentiment": "neutral",
+    "net": -0.025,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Weekly timeframe confirms bearish",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.1333333333333333,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.528695284588036,
+    "t6_probs": {
+     "bullish": 0.228721678063462,
+     "neutral": 0.528695284588036,
+     "bearish": 0.242583037348503
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4,
+    "t6_base": 0.5333333333333333,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.047619047619047616,
+     "news_bearish_ratio": 0.09523809523809523,
+     "avg_sentiment": 0.89556667634419,
+     "n_articles": 21.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 1,
+     "n_bullish_events": 6.0,
+     "n_bearish_events": 1.0,
+     "rsi": 33.54,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Mapletree Pan Asia Commercial Trust remains in a neutral stance as rule\u2011based analysis balances bullish drivers such as a positive geopolitical backdrop and a risk\u2011on macro regime with bearish signals from elevated political news volume and a bearish weekly timeframe. Momentum is supported by a positive RSI contribution (+0.217) and modest positive corporate events (+0.050), but political news tone (-0.227) and a recent headline warning of a DPU drop weigh against a clear upside. The LogReg model forecasts bullish sentiment while the RandomForest model is neutral, reflecting a mild contradiction that tempers confidence. With the market in a risk\u2011on environment and VIX at 14.73, the outlook is cautious, awaiting any VIX spike that could reverse the current equilibrium.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk-on macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [
+     {
+      "title": "Mapletree Pan Asia stock holds steady as latest distribution edges higher - AD HOC NEWS",
+      "source": "AD HOC NEWS",
+      "at": "Fri, 18 Sep 2026 08:33:19 GMT",
+      "sentiment": "bullish",
+      "score": 0.8642
+     }
+    ],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "upgrade",
+     "warning"
+    ],
+    "warning": "mild"
+   },
+   "A17U.SI": {
+    "ticker": "A17U.SI",
+    "name": "Ascendas REIT",
+    "sector": "REIT",
+    "move": -1.2820501064172207,
+    "period_ret": -0.43103408409496113,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      0.0
+     ],
+     [
+      "2026-09-16",
+      0.43103408409497224
+     ],
+     [
+      "2026-09-17",
+      0.0
+     ],
+     [
+      "2026-09-18",
+      0.42918415410722055
+     ],
+     [
+      "2026-09-21",
+      -1.2820501064172207
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.43103408409497224
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.42918415410722055
+     },
+     "2026-09-21": {
+      "reading": "bullish",
+      "event": false,
+      "move": -1.2820501064172207
+     }
+    },
+    "sentiment": "bullish",
+    "net": 0.353,
+    "signals": [
+     {
+      "factor": "RSI oversold \u2014 potential bounce",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.378,
+      "decisive": true
+     },
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": true
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": true
+     },
+     {
+      "factor": "Weekly timeframe confirms bearish",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 1,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.0,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.471881992783387,
+    "t6_probs": {
+     "bullish": 0.226401719028256,
+     "neutral": 0.471881992783387,
+     "bearish": 0.301716288188357
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4,
+    "t6_base": 0.4,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.05263157894736842,
+     "news_bearish_ratio": 0.0,
+     "avg_sentiment": 0.880131580327686,
+     "n_articles": 19.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 1.0,
+     "n_bearish_events": 0.0,
+     "rsi": 29.85,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Ascendas REIT remains bullish on the back of an oversold RSI, a positive geopolitical backdrop, and a risk\u2011on macro regime, all of which are reinforced by SHAP contributions. Positive corporate events, notably the unit issuance for a 50% ascent purchase, further strengthen the outlook. However, elevated political news volume, a bearish weekly timeframe, and bearish options market positioning introduce downside concerns. Despite these contradictions, the overall sentiment stays bullish, with confidence at 0.68.",
+    "drivers": [
+     "RSI oversold",
+     "Positive geopolitical backdrop"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "ma"
+    ],
+    "warning": "mild"
+   },
+   "ME8U.SI": {
+    "ticker": "ME8U.SI",
+    "name": "Mapletree Industrial Trust",
+    "sector": "REIT",
+    "move": 0.0,
+    "period_ret": 0.0,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.5235597192677299
+     ],
+     [
+      "2026-09-16",
+      0.0
+     ],
+     [
+      "2026-09-17",
+      0.5263152941442195
+     ],
+     [
+      "2026-09-18",
+      0.0
+     ],
+     [
+      "2026-09-21",
+      0.0
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.5235597192677299
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.0
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.5263152941442195
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": 0.0
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.121,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.0,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.510541125266202,
+    "t6_probs": {
+     "bullish": 0.225751089345424,
+     "neutral": 0.510541125266202,
+     "bearish": 0.263707785388373
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.9333333333333333,
+    "t6_base": 0.9333333333333333,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.0,
+     "news_bearish_ratio": 0.038461538461538464,
+     "avg_sentiment": 0.897942309196179,
+     "n_articles": 26.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 6.0,
+     "n_bearish_events": 0.0,
+     "rsi": 45.38,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Mapletree Industrial Trust remains neutral today, with a balanced mix of bullish and bearish signals. Positive geopolitical backdrop and a risk\u2011on macro regime support a bullish stance, while elevated political news volume and bearish options positioning add downside pressure. The SHAP analysis highlights negative news share and higher VIX as key bearish contributors, whereas the put/call ratio and news coverage volume add further nuance. Though the linear model signals bearish, the non\u2011linear model indicates neutral, underscoring the overall balanced outlook.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Elevated political news volume"
+    ],
+    "risks": [
+     "Negative news share"
+    ],
+    "headlines": [],
+    "event_types": [
+     "earnings",
+     "management"
+    ],
+    "warning": "mild"
+   },
+   "Z74.SI": {
+    "ticker": "Z74.SI",
+    "name": "Singtel",
+    "sector": "Telecommunications",
+    "move": -0.45976968655135897,
+    "period_ret": -2.914800747287216,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.22422037659871608
+     ],
+     [
+      "2026-09-16",
+      -0.674151331618722
+     ],
+     [
+      "2026-09-17",
+      0.0
+     ],
+     [
+      "2026-09-18",
+      -1.5837142636447754
+     ],
+     [
+      "2026-09-21",
+      -0.45976968655135897
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.22422037659871608
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.674151331618722
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -1.5837142636447754
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.45976968655135897
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.284,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Unusual bullish corporate event activity (3)",
+      "direction": "bullish",
+      "source": "task1_news",
+      "weight": 0.204,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": true
+     },
+     {
+      "factor": "Price below Bollinger lower band",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.041,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.13333333333333336,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.434653135289457,
+    "t6_probs": {
+     "bullish": 0.241119750819772,
+     "neutral": 0.434653135289457,
+     "bearish": 0.324227113890771
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4,
+    "t6_base": 0.26666666666666666,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.14,
+     "news_bearish_ratio": 0.16,
+     "avg_sentiment": 0.879745998382568,
+     "n_articles": 50.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 15.0,
+     "n_bearish_events": 0.0,
+     "rsi": 36.64,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 1,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Singtel\u2019s outlook remains neutral, with rule\u2011based analysis balancing bullish macro and corporate signals against decisive bearish political and options market factors. The risk\u2011on regime and low VIX support momentum, yet elevated political news volume and bearish options positioning temper enthusiasm. Although both ML models predict a bullish move, the rule\u2011based framework stays neutral, reflecting the mixed sentiment in recent headlines such as the Singapore shares drag and the corporate governance win. Investors should monitor for any VIX spikes that could trigger a reversal.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011On macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "management"
+    ],
+    "warning": "mild"
+   },
+   "BN4.SI": {
+    "ticker": "BN4.SI",
+    "name": "Keppel Corp",
+    "sector": "Industrials",
+    "move": 0.3626469884079775,
+    "period_ret": -2.294794621647178,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -1.1473973108235946
+     ],
+     [
+      "2026-09-16",
+      -0.8928520490927738
+     ],
+     [
+      "2026-09-17",
+      0.18017570632469226
+     ],
+     [
+      "2026-09-18",
+      -0.8093538985083026
+     ],
+     [
+      "2026-09-21",
+      0.3626469884079775
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -1.1473973108235946
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.8928520490927738
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.18017570632469226
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.8093538985083026
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.3626469884079775
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.325,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Unusual bullish corporate event activity (3)",
+      "direction": "bullish",
+      "source": "task1_news",
+      "weight": 0.204,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": true
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.06666666666666665,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.513358354148954,
+    "t6_probs": {
+     "bullish": 0.22401885029987,
+     "neutral": 0.513358354148954,
+     "bearish": 0.262622795551175
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.2,
+    "t6_base": 0.26666666666666666,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.0967741935483871,
+     "news_bearish_ratio": 0.06451612903225806,
+     "avg_sentiment": 0.906864512351251,
+     "n_articles": 31.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 1,
+     "n_bullish_events": 5.0,
+     "n_bearish_events": 1.0,
+     "rsi": 39.28,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Keppel Corp\u2019s outlook remains neutral, driven by a risk\u2011on macro regime and bullish geopolitical backdrop, yet tempered by elevated political news volume and bearish options market positioning. Momentum from RSI and positive corporate events add a slight bullish nuance, but the negative political news tone and higher news coverage volume inject caution. Recent headlines such as the Business Times article on corporate governance plateau and the Smart Investor piece on SPH acquisition highlight ongoing corporate activity without altering the neutral stance. Despite the model split\u2014LogReg bullish versus RandomForest neutral\u2014the overall consensus leans toward a balanced view, suggesting investors should monitor for any VIX spikes that could shift sentiment.",
+    "drivers": [
+     "Risk-On macro regime",
+     "Elevated political news volume"
+    ],
+    "risks": [
+     "Options market bearish positioning"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "warning"
+    ],
+    "warning": "mild"
+   },
+   "S63.SI": {
+    "ticker": "S63.SI",
+    "name": "ST Engineering",
+    "sector": "Industrials",
+    "move": -0.38350873137729113,
+    "period_ret": 1.6634057911171451,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.8806276931150769
+     ],
+     [
+      "2026-09-16",
+      -0.19743788289953157
+     ],
+     [
+      "2026-09-17",
+      0.7912950190183121
+     ],
+     [
+      "2026-09-18",
+      2.355257455108273
+     ],
+     [
+      "2026-09-21",
+      -0.38350873137729113
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.8806276931150769
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.19743788289953157
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.7912950190183121
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 2.355257455108273
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -0.38350873137729113
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.121,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.0,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.485766748556253,
+    "t6_probs": {
+     "bullish": 0.199293390092238,
+     "neutral": 0.485766748556253,
+     "bearish": 0.314939861351509
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4,
+    "t6_base": 0.4,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.20930232558139536,
+     "news_bearish_ratio": 0.06976744186046512,
+     "avg_sentiment": 0.884623255840568,
+     "n_articles": 43.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 12.0,
+     "n_bearish_events": 0.0,
+     "rsi": 48.96,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "The overall outlook remains neutral with a confidence of 0.55. Positive geopolitical backdrop and a risk\u2011on macro regime drive bullish sentiment, while elevated political news volume and negative news share from headlines like the share price drop ahead of Airshow 2026 temper expectations. Options market bearish positioning adds a risk factor, and the VIX at 14.73 signals potential volatility spikes. Though the LogReg model predicts bearish and the RandomForest model neutral, the consensus SHAP signals suggest a mixed stance, keeping the stock likely to trade within a range.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011on macro regime"
+    ],
+    "risks": [
+     "Options market bearish positioning"
+    ],
+    "headlines": [
+     {
+      "title": "Goldman Sachs initiates coverage on ST Engineering; stock ends 2.4% up",
+      "source": "Business Times",
+      "at": "Fri, 18 Sep 2026 05:03:33 +0000",
+      "sentiment": "bullish",
+      "score": 0.9529
+     }
+    ],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "management"
+    ],
+    "warning": "mild"
+   },
+   "U96.SI": {
+    "ticker": "U96.SI",
+    "name": "Sembcorp Industries",
+    "sector": "Industrials",
+    "move": 0.0,
+    "period_ret": -2.479340341131653,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.8264494075791107
+     ],
+     [
+      "2026-09-16",
+      -0.8333365122477177
+     ],
+     [
+      "2026-09-17",
+      -0.33613414399392694
+     ],
+     [
+      "2026-09-18",
+      -0.5058977038722157
+     ],
+     [
+      "2026-09-21",
+      0.0
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.8264494075791107
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.8333365122477177
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.33613414399392694
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.5058977038722157
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.346,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Unusual bullish corporate event activity (3)",
+      "direction": "bullish",
+      "source": "task1_news",
+      "weight": 0.204,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": true
+     },
+     {
+      "factor": "Price above VWAP",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.021,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.13333333333333336,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.535297021095676,
+    "t6_probs": {
+     "bullish": 0.21777523256328,
+     "neutral": 0.535297021095676,
+     "bearish": 0.246927746341044
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4666666666666667,
+    "t6_base": 0.3333333333333333,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.16,
+     "news_bearish_ratio": 0.12,
+     "avg_sentiment": 0.899728000164032,
+     "n_articles": 25.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 6.0,
+     "n_bearish_events": 0.0,
+     "rsi": 45.93,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 1,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Sembcorp Industries remains in a neutral stance, with rule\u2011based drivers such as a positive geopolitical backdrop, risk\u2011on macro regime, and bullish corporate event activity balancing out bearish signals from elevated political news volume and options market positioning. Recent headlines\u2014particularly the 5.6% weekly decline tied to earnings growth and the 30% year\u2011to\u2011date drop\u2014highlight the downside pressure, while a 6% rally driven by $10\u202fbillion renewables investments offers a counterpoint. Machine\u2011learning models also predict a bearish next\u2011day return, though the rule\u2011based framework maintains neutrality, suggesting that the market is currently in a state of equilibrium. Investors should monitor for any VIX spikes that could trigger a reversal, as the sector is currently complacent with a VIX of 14.73. Overall, the outlook is cautious, with bullish and bearish factors roughly offsetting each other.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011On macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma"
+    ],
+    "warning": "mild"
+   },
+   "F34.SI": {
+    "ticker": "F34.SI",
+    "name": "Wilmar International",
+    "sector": "Consumer Goods",
+    "move": -0.8152165990639837,
+    "period_ret": -1.8817186210869363,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -0.5376338917391199
+     ],
+     [
+      "2026-09-16",
+      0.27027000903734333
+     ],
+     [
+      "2026-09-17",
+      0.5390830382983713
+     ],
+     [
+      "2026-09-18",
+      -1.3404812884881379
+     ],
+     [
+      "2026-09-21",
+      -0.8152165990639837
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.5376338917391199
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.27027000903734333
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.5390830382983713
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -1.3404812884881379
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -0.8152165990639837
+     }
+    },
+    "sentiment": "neutral",
+    "net": 0.142,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": true
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     },
+     {
+      "factor": "Price above VWAP",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.021,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.06666666666666665,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.465501241126562,
+    "t6_probs": {
+     "bullish": 0.262612895050607,
+     "neutral": 0.465501241126562,
+     "bearish": 0.271885863822831
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.3333333333333333,
+    "t6_base": 0.26666666666666666,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.05263157894736842,
+     "news_bearish_ratio": 0.15789473684210525,
+     "avg_sentiment": 0.877884209156036,
+     "n_articles": 19.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 4.0,
+     "n_bearish_events": 0.0,
+     "rsi": 38.48,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 1,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Wilmar International\u2019s outlook remains neutral, driven by a positive geopolitical backdrop and a Risk-On macro regime, yet tempered by elevated political news volume and bearish options positioning. Technical analysis confirms the stock is trading above VWAP, supporting a modest bullish bias. However, both machine\u2011learning models predict a bullish move while the rule\u2011based framework stays neutral, highlighting a mild contradiction. The low VIX of 14.73 suggests market complacency, which could trigger a reversal if volatility spikes.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Elevated political news volume"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [
+     {
+      "title": "Daily Markets Briefing: STI down 0.15%; Top stock is Wilmar International - Singapore Business Review",
+      "source": "Singapore Business Review",
+      "at": "Tue, 25 Aug 2026 07:00:00 GMT",
+      "sentiment": "bearish",
+      "score": 0.9668
+     }
+    ],
+    "event_types": [
+     "earnings",
+     "ma"
+    ],
+    "warning": "mild"
+   },
+   "C52.SI": {
+    "ticker": "C52.SI",
+    "name": "ComfortDelGro",
+    "sector": "Consumer Goods",
+    "move": -0.7999992370605447,
+    "period_ret": -3.1249970896168877,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -1.5624985448084439
+     ],
+     [
+      "2026-09-16",
+      0.7936500427734305
+     ],
+     [
+      "2026-09-17",
+      -1.5748016714081325
+     ],
+     [
+      "2026-09-18",
+      0.0
+     ],
+     [
+      "2026-09-21",
+      -0.7999992370605447
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": -1.5624985448084439
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.7936500427734305
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": -1.5748016714081325
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -0.7999992370605447
+     }
+    },
+    "sentiment": "neutral",
+    "net": -0.066,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Weekly timeframe confirms bearish",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     },
+     {
+      "factor": "Price below Bollinger lower band",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.041,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.33333333333333337,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.42562671408785,
+    "t6_probs": {
+     "bullish": 0.216605549715855,
+     "neutral": 0.42562671408785,
+     "bearish": 0.357767736196296
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.5333333333333333,
+    "t6_base": 0.8666666666666667,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.08571428571428572,
+     "news_bearish_ratio": 0.05714285714285714,
+     "avg_sentiment": 0.870960005692073,
+     "n_articles": 35.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 12.0,
+     "n_bearish_events": 0.0,
+     "rsi": 33.21,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 1,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "The neutral outlook for ComfortDelGro is driven by a positive geopolitical backdrop and a risk\u2011on macro regime, while price above VWAP and a favorable yield curve spread add bullish nuance. However, elevated political news volume, a bearish weekly timeframe, and bearish options positioning temper the sentiment, and the price remains below the Bollinger lower band. Recent neutral news on acquisitions\u2014such as the CityCab buy\u2011out and the UK CMAC Group purchase\u2014does not shift the stance, though the linear model signals bearishness and the random forest leans bullish, highlighting model split contradictions.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011on macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "upgrade"
+    ],
+    "warning": "mild"
+   },
+   "S68.SI": {
+    "ticker": "S68.SI",
+    "name": "SGX Group",
+    "sector": "Financial Services",
+    "move": 0.5405357106342601,
+    "period_ret": -2.575295314349535,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      -1.6586606865888975
+     ],
+     [
+      "2026-09-16",
+      -0.6657857137475354
+     ],
+     [
+      "2026-09-17",
+      -0.491504500124218
+     ],
+     [
+      "2026-09-18",
+      -0.31432282615789786
+     ],
+     [
+      "2026-09-21",
+      0.5405357106342601
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "bullish",
+      "event": true,
+      "move": -1.6586606865888975
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": -0.6657857137475354
+     },
+     "2026-09-17": {
+      "reading": "bullish",
+      "event": true,
+      "move": -0.491504500124218
+     },
+     "2026-09-18": {
+      "reading": "bullish",
+      "event": false,
+      "move": -0.31432282615789786
+     },
+     "2026-09-21": {
+      "reading": "bullish",
+      "event": false,
+      "move": 0.5405357106342601
+     }
+    },
+    "sentiment": "bullish",
+    "net": 0.681,
+    "signals": [
+     {
+      "factor": "RSI oversold \u2014 potential bounce",
+      "direction": "bullish",
+      "source": "task2_technical",
+      "weight": 0.378,
+      "decisive": true
+     },
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Positive company news sentiment",
+      "direction": "bullish",
+      "source": "task1_news",
+      "weight": 0.181,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 4,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": -0.19999999999999998,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.500260366325293,
+    "t6_probs": {
+     "bullish": 0.224747011590679,
+     "neutral": 0.500260366325293,
+     "bearish": 0.274992622084028
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.13333333333333333,
+    "t6_base": 0.3333333333333333,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.24,
+     "news_bearish_ratio": 0.06,
+     "avg_sentiment": 0.828472001552582,
+     "n_articles": 50.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 11.0,
+     "n_bearish_events": 0.0,
+     "rsi": 24.84,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "SGX Group remains bullish on the back of a strong RSI oversold signal (+0.296 SHAP) and a 11.6% earnings lift reported by The Edge Singapore, which together outweigh the modest negative impact of elevated political news volume and bearish options positioning. The risk\u2011on macro regime and low VIX of 14.73 further support a growth\u2011momentum bias, while positive company news sentiment and the favorable geopolitical backdrop reinforce the outlook. However, the internal contradictions\u2014particularly the elevated political news volume and options market bearish stance\u2014suggest caution, and the SHAP negative political news tone indicates some downside risk. Overall, the bullish consensus from both rule\u2011based and ML models, coupled with recent earnings strength, drives the positive sentiment.",
+    "drivers": [
+     "RSI oversold",
+     "Positive geopolitical backdrop"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "upgrade"
+    ],
+    "warning": "mild"
+   },
+   "BSL.SI": {
+    "ticker": "BSL.SI",
+    "name": "Raffles Medical Group",
+    "sector": "Healthcare",
+    "move": -1.1834378377890364,
+    "period_ret": -0.5952375461590109,
+    "daily_moves": [
+     [
+      "2026-09-15",
+      0.0
+     ],
+     [
+      "2026-09-16",
+      0.5952446419502655
+     ],
+     [
+      "2026-09-17",
+      0.5917153919925866
+     ],
+     [
+      "2026-09-18",
+      -0.588234716633218
+     ],
+     [
+      "2026-09-21",
+      -1.1834378377890364
+     ]
+    ],
+    "days": {
+     "2026-09-15": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.0
+     },
+     "2026-09-16": {
+      "reading": null,
+      "event": false,
+      "move": 0.5952446419502655
+     },
+     "2026-09-17": {
+      "reading": "neutral",
+      "event": true,
+      "move": 0.5917153919925866
+     },
+     "2026-09-18": {
+      "reading": "neutral",
+      "event": true,
+      "move": -0.588234716633218
+     },
+     "2026-09-21": {
+      "reading": "neutral",
+      "event": false,
+      "move": -1.1834378377890364
+     }
+    },
+    "sentiment": "neutral",
+    "net": -0.025,
+    "signals": [
+     {
+      "factor": "Positive geopolitical backdrop",
+      "direction": "bullish",
+      "source": "task1_political",
+      "weight": 0.25,
+      "decisive": false
+     },
+     {
+      "factor": "Elevated political news volume",
+      "direction": "bearish",
+      "source": "task1_political",
+      "weight": 0.242,
+      "decisive": false
+     },
+     {
+      "factor": "Risk-On macro regime",
+      "direction": "bullish",
+      "source": "task3_macro",
+      "weight": 0.213,
+      "decisive": false
+     },
+     {
+      "factor": "Weekly timeframe confirms bearish",
+      "direction": "bearish",
+      "source": "task2_technical",
+      "weight": 0.146,
+      "decisive": false
+     },
+     {
+      "factor": "Options market bearish positioning",
+      "direction": "bearish",
+      "source": "task4_options",
+      "weight": 0.1,
+      "decisive": false
+     }
+    ],
+    "week_pos": 0,
+    "week_neg": 0,
+    "week_n": 4,
+    "edge": 0.0,
+    "n_prior": 15,
+    "t6_class": "neutral",
+    "t6_prob": 0.545496766143865,
+    "t6_probs": {
+     "bullish": 0.21490851936908,
+     "neutral": 0.545496766143865,
+     "bearish": 0.239594714487055
+    },
+    "t6_model": "RandomF",
+    "t6_acc": 0.4666666666666667,
+    "t6_base": 0.4666666666666667,
+    "t6_source": "stored live forecast",
+    "features": {
+     "news_bullish_ratio": 0.20689655172413793,
+     "news_bearish_ratio": 0.13793103448275862,
+     "avg_sentiment": 0.855006904437624,
+     "n_articles": 29.0,
+     "n_political": 72.0,
+     "political_direction": 0.771109725038211,
+     "has_bullish_events": 1,
+     "has_bearish_events": 0,
+     "n_bullish_events": 8.0,
+     "n_bearish_events": 0.0,
+     "rsi": 33.31,
+     "macd_bullish_crossover": 0,
+     "macd_bearish_crossover": 0,
+     "bb_above_upper": 0,
+     "bb_below_lower": 0,
+     "vwap_above": 0,
+     "weekly_bullish": 0,
+     "regime_encoded": 1,
+     "vix": 14.73,
+     "yield_spread": 0.97,
+     "options_bullish": 0,
+     "options_bearish": 1,
+     "pc_vol_ratio": 1.43
+    },
+    "summary": "Raffles Medical Group\u2019s outlook remains neutral as rule\u2011based analysis balances bullish factors such as a positive geopolitical backdrop, a risk\u2011on macro regime, and strong momentum from the recent 87.5% earnings jump, against bearish signals like elevated political news volume and a bearish weekly timeframe. The SHAP explanations from both LogReg and RandomForest models reinforce this balance, with positive contributions from RSI momentum, VIX volatility, and macro regime, offset by negative political news tone and volume. Though the machine\u2011learning models predict a bullish next\u2011day return, the rule\u2011based framework stays neutral, reflecting the mixed signals in the market context. Investors should monitor the low VIX of 14.73 and potential spikes that could shift sentiment, while the ownership structure\u201443% held by private companies\u2014provides additional stability. Overall, the consensus points to a cautious stance, with no clear directional bias.",
+    "drivers": [
+     "Positive geopolitical backdrop",
+     "Risk\u2011On macro regime"
+    ],
+    "risks": [
+     "Elevated political news volume"
+    ],
+    "headlines": [],
+    "event_types": [
+     "dividend",
+     "earnings",
+     "ma",
+     "management",
+     "upgrade"
+    ],
+    "warning": "mild"
+   }
+  },
+  "period": {
+   "start": "2026-09-14",
+   "first": "2026-09-15",
+   "end": "2026-09-21",
+   "sessions": 5,
+   "days": [
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-21"
+   ],
+   "reading_dates": [
+    "2026-09-15",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-21"
+   ]
+  },
+  "record": {
+   "as_of": "2026-09-21",
+   "n": 300,
+   "accuracy": 0.4033333333333333,
+   "always_neutral": 0.53,
+   "shown_acc": null,
+   "withheld_acc": null,
+   "source": "stored champion forecasts matured by the report date"
+  },
+  "model": {
+   "name": "RandomF",
+   "trained_at": "2026-09-27",
+   "train_window": "2026-06-11..2026-09-22",
+   "in_training_window": true
+  },
+  "versions": {
+   "rule_layer": "rl_v8",
+   "patterns": "11 patterns",
+   "renderer": "Task 5 language-model summary where it passed its checks; all numbers by template"
+  },
+  "inputs_today": {
+   "articles": 521,
+   "political": 72,
+   "vix": 14.73,
+   "pc_ratio": 1.43,
+   "options_bearish": true,
+   "regime": 1
+  },
+  "provenance": [
+   "Project database: Tasks 1-6 stored outputs for the period; adjusted daily closes.",
+   "Record of each statement: research R14, R10 and the stored champion record."
+  ]
+ },
+ "X": {
+  "D05.SI": {
+   "news_bullish_ratio": 0.18,
+   "news_bearish_ratio": 0.04,
+   "avg_sentiment": 0.843287999629974,
+   "n_articles": 50.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 13.0,
+   "n_bearish_events": 0.0,
+   "rsi": 57.25,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 1.0,
+   "weekly_bullish": 1.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "O39.SI": {
+   "news_bullish_ratio": 0.22,
+   "news_bearish_ratio": 0.14,
+   "avg_sentiment": 0.827373995184898,
+   "n_articles": 50.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 12.0,
+   "n_bearish_events": 1.0,
+   "rsi": 58.55,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 1.0,
+   "weekly_bullish": 1.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "U11.SI": {
+   "news_bullish_ratio": 0.14,
+   "news_bearish_ratio": 0.14,
+   "avg_sentiment": 0.88200600028038,
+   "n_articles": 50.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 17.0,
+   "n_bearish_events": 0.0,
+   "rsi": 56.29,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 1.0,
+   "weekly_bullish": 1.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "C38U.SI": {
+   "news_bullish_ratio": 0.08695652173913043,
+   "news_bearish_ratio": 0.043478260869565216,
+   "avg_sentiment": 0.874704350595889,
+   "n_articles": 23.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 6.0,
+   "n_bearish_events": 0.0,
+   "rsi": 32.6,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "N2IU.SI": {
+   "news_bullish_ratio": 0.047619047619047616,
+   "news_bearish_ratio": 0.09523809523809523,
+   "avg_sentiment": 0.89556667634419,
+   "n_articles": 21.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 6.0,
+   "n_bearish_events": 1.0,
+   "rsi": 33.54,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "A17U.SI": {
+   "news_bullish_ratio": 0.05263157894736842,
+   "news_bearish_ratio": 0.0,
+   "avg_sentiment": 0.880131580327686,
+   "n_articles": 19.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 1.0,
+   "n_bearish_events": 0.0,
+   "rsi": 29.85,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "ME8U.SI": {
+   "news_bullish_ratio": 0.0,
+   "news_bearish_ratio": 0.038461538461538464,
+   "avg_sentiment": 0.897942309196179,
+   "n_articles": 26.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 6.0,
+   "n_bearish_events": 0.0,
+   "rsi": 45.38,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "Z74.SI": {
+   "news_bullish_ratio": 0.14,
+   "news_bearish_ratio": 0.16,
+   "avg_sentiment": 0.879745998382568,
+   "n_articles": 50.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 15.0,
+   "n_bearish_events": 0.0,
+   "rsi": 36.64,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 1.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "BN4.SI": {
+   "news_bullish_ratio": 0.0967741935483871,
+   "news_bearish_ratio": 0.06451612903225806,
+   "avg_sentiment": 0.906864512351251,
+   "n_articles": 31.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 5.0,
+   "n_bearish_events": 1.0,
+   "rsi": 39.28,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "S63.SI": {
+   "news_bullish_ratio": 0.20930232558139536,
+   "news_bearish_ratio": 0.06976744186046512,
+   "avg_sentiment": 0.884623255840568,
+   "n_articles": 43.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 12.0,
+   "n_bearish_events": 0.0,
+   "rsi": 48.96,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "U96.SI": {
+   "news_bullish_ratio": 0.16,
+   "news_bearish_ratio": 0.12,
+   "avg_sentiment": 0.899728000164032,
+   "n_articles": 25.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 6.0,
+   "n_bearish_events": 0.0,
+   "rsi": 45.93,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 1.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "F34.SI": {
+   "news_bullish_ratio": 0.05263157894736842,
+   "news_bearish_ratio": 0.15789473684210525,
+   "avg_sentiment": 0.877884209156036,
+   "n_articles": 19.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 4.0,
+   "n_bearish_events": 0.0,
+   "rsi": 38.48,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 1.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "C52.SI": {
+   "news_bullish_ratio": 0.08571428571428572,
+   "news_bearish_ratio": 0.05714285714285714,
+   "avg_sentiment": 0.870960005692073,
+   "n_articles": 35.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 12.0,
+   "n_bearish_events": 0.0,
+   "rsi": 33.21,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 1.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "S68.SI": {
+   "news_bullish_ratio": 0.24,
+   "news_bearish_ratio": 0.06,
+   "avg_sentiment": 0.828472001552582,
+   "n_articles": 50.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 11.0,
+   "n_bearish_events": 0.0,
+   "rsi": 24.84,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  },
+  "BSL.SI": {
+   "news_bullish_ratio": 0.20689655172413793,
+   "news_bearish_ratio": 0.13793103448275862,
+   "avg_sentiment": 0.855006904437624,
+   "n_articles": 29.0,
+   "n_political": 72.0,
+   "political_direction": 0.771109725038211,
+   "n_bullish_events": 8.0,
+   "n_bearish_events": 0.0,
+   "rsi": 33.31,
+   "macd_bullish_crossover": 0.0,
+   "macd_bearish_crossover": 0.0,
+   "bb_above_upper": 0.0,
+   "bb_below_lower": 0.0,
+   "vwap_above": 0.0,
+   "weekly_bullish": 0.0,
+   "regime_encoded": 1.0,
+   "vix": 14.73,
+   "yield_spread": 0.97,
+   "options_bullish": 0.0,
+   "options_bearish": 1.0,
+   "pc_vol_ratio": 1.43
+  }
+ },
+ "returns": "{\"columns\":[\"A17U.SI\",\"BN4.SI\",\"BSL.SI\",\"C38U.SI\",\"C52.SI\",\"D05.SI\",\"F34.SI\",\"ME8U.SI\",\"N2IU.SI\",\"O39.SI\",\"S63.SI\",\"S68.SI\",\"U11.SI\",\"U96.SI\",\"Z74.SI\"],\"index\":[\"2026-06-15T00:00:00.000\",\"2026-06-16T00:00:00.000\",\"2026-06-17T00:00:00.000\",\"2026-06-18T00:00:00.000\",\"2026-06-19T00:00:00.000\",\"2026-06-22T00:00:00.000\",\"2026-06-23T00:00:00.000\",\"2026-06-24T00:00:00.000\",\"2026-06-25T00:00:00.000\",\"2026-06-26T00:00:00.000\",\"2026-06-29T00:00:00.000\",\"2026-06-30T00:00:00.000\",\"2026-07-01T00:00:00.000\",\"2026-07-02T00:00:00.000\",\"2026-07-03T00:00:00.000\",\"2026-07-06T00:00:00.000\",\"2026-07-07T00:00:00.000\",\"2026-07-08T00:00:00.000\",\"2026-07-09T00:00:00.000\",\"2026-07-10T00:00:00.000\",\"2026-07-13T00:00:00.000\",\"2026-07-14T00:00:00.000\",\"2026-07-15T00:00:00.000\",\"2026-07-16T00:00:00.000\",\"2026-07-17T00:00:00.000\",\"2026-07-20T00:00:00.000\",\"2026-07-21T00:00:00.000\",\"2026-07-22T00:00:00.000\",\"2026-07-23T00:00:00.000\",\"2026-07-24T00:00:00.000\",\"2026-07-27T00:00:00.000\",\"2026-07-28T00:00:00.000\",\"2026-07-29T00:00:00.000\",\"2026-07-30T00:00:00.000\",\"2026-07-31T00:00:00.000\",\"2026-08-03T00:00:00.000\",\"2026-08-04T00:00:00.000\",\"2026-08-05T00:00:00.000\",\"2026-08-06T00:00:00.000\",\"2026-08-07T00:00:00.000\",\"2026-08-11T00:00:00.000\",\"2026-08-12T00:00:00.000\",\"2026-08-13T00:00:00.000\",\"2026-08-14T00:00:00.000\",\"2026-08-17T00:00:00.000\",\"2026-08-18T00:00:00.000\",\"2026-08-19T00:00:00.000\",\"2026-08-20T00:00:00.000\",\"2026-08-21T00:00:00.000\",\"2026-08-24T00:00:00.000\",\"2026-08-25T00:00:00.000\",\"2026-08-26T00:00:00.000\",\"2026-08-27T00:00:00.000\",\"2026-08-28T00:00:00.000\",\"2026-08-31T00:00:00.000\",\"2026-09-01T00:00:00.000\",\"2026-09-02T00:00:00.000\",\"2026-09-03T00:00:00.000\",\"2026-09-04T00:00:00.000\",\"2026-09-07T00:00:00.000\",\"2026-09-08T00:00:00.000\",\"2026-09-09T00:00:00.000\",\"2026-09-10T00:00:00.000\",\"2026-09-11T00:00:00.000\",\"2026-09-14T00:00:00.000\",\"2026-09-15T00:00:00.000\",\"2026-09-16T00:00:00.000\",\"2026-09-17T00:00:00.000\",\"2026-09-18T00:00:00.000\",\"2026-09-21T00:00:00.000\"],\"data\":[[0.0,2.816899363,0.0,0.0,0.7751942413,0.3953249681,-0.560220828,0.0,0.7873933231,0.8936195418,1.608330466,2.967227983,0.7599549752,1.3050589832,0.0],[0.3952530977,2.3744299009,0.0,0.0,0.0,0.3780037259,1.4084492659,-0.5102038924,0.0,2.3196950392,0.4655476289,3.9569895755,1.4304306838,0.6441233026,0.7025798848],[1.1811100532,1.4272954639,1.0638287754,0.8547002399,0.7692312053,2.0084823871,0.5555523107,0.0,0.0,1.4839306022,2.1316114834,0.3723630629,0.897427776,0.9599974761,1.1627855531],[-2.3346359571,-0.7915510754,-0.5263152941,-2.1186425566,-0.763359208,1.5228385453,0.2762548421,-1.0256468552,-0.7812418767,1.8683928209,1.1796671517,0.9892818172,0.8894654493,1.4263075827,-0.4597725897],[0.0,-0.0886518441,-1.5873000855,1.7316004698,0.0,-0.060613453,2.7548179286,0.5181408287,0.0,-1.7942623159,-2.8699548641,-2.2857121059,-1.1335077866,-1.2500018023,0.4618962622],[0.0,-1.1535051466,-1.0752677835,-0.8510632202,0.0,0.500305823,-1.0723862153,0.5154637244,-0.7874028501,1.5022365851,-0.1846644466,0.4177125281,0.5350290066,0.6329123165,0.2298862949],[0.3984121758,-0.2693065582,0.5434777327,-0.4291842393,0.7692312053,0.0,1.0840109999,-0.5128203217,2.3809466651,0.2800033701,-0.5550448503,-0.8319498973,0.9630048263,0.6289317301,-0.2293590299],[0.3968215472,0.8100839292,0.0,2.1551708501,0.0,-0.1055862415,-0.8042912814,0.0,0.7751951072,-0.4786566724,-0.6511621357,-0.2516756106,0.150607197,1.0937458856,1.3793065553],[0.0,0.2678552241,0.5405400181,0.421950775,1.5267184161,-0.226521996,0.2702686814,0.5154637244,0.0,-0.0400850741,-1.4981271056,1.5979779218,0.0250601967,0.6182464446,-0.2267475373],[0.3952530977,-1.5137915,-1.0752677835,0.8403354552,0.0,-0.9686710237,-1.3477075077,-0.5128203217,0.0,-0.3207626142,-1.0456289174,-0.0413916761,-0.2756223912,-0.7680558247,0.6818107236],[0.0,0.4520675465,-0.5434777327,-0.4166663327,0.7518801158,0.9170045477,0.273222438,0.0,0.0,0.0804448092,-0.2881815205,0.3312626293,0.2512610046,-0.3095942181,0.2257348523],[-1.9684945202,-1.530150799,0.0,-0.8368294717,0.0,-0.9540997444,-1.634880973,-1.0309336927,-0.7692320579,-0.3617340075,0.0963350588,-0.6190657093,-0.3508915854,-1.3975156451,-0.6756793131],[-1.2048172861,-0.9140702404,-0.5464475535,-0.4219406286,-0.7462690671,0.0458653615,0.5540267833,0.0,-0.7751951072,-0.5244068229,1.636193613,0.0415291898,-0.2766524466,-1.8897664896,0.680275796],[0.8130002107,0.553501537,1.0989000192,1.2711957234,0.0,1.5283487696,1.9283698868,0.0,0.0,1.7031599035,2.6515124022,0.0830239005,1.0592728115,-0.6420555131,0.4504528754],[0.4032316703,-0.3669787093,1.0869554654,0.4184097051,0.7518801158,0.4967660756,0.5405373628,1.041672647,0.7812513293,0.9170620882,0.0922470414,-0.2488650841,0.424254819,-3.3925638425,0.2242055109],[0.4016025218,-0.6445626293,-1.0752677835,0.0,0.0,0.224689745,0.0,-0.5154699683,0.7751951072,0.7111844671,2.0276440156,0.3742210206,0.695824578,-3.846161343,-0.4474188215],[0.0,1.3901750843,1.0869554654,0.4166663327,0.0,2.5855552658,0.8064533943,0.0,0.7692320579,3.3346475253,0.1806781993,0.1242779097,2.8874586333,-0.3478223852,-1.5730311952],[-0.3999961273,-1.3711141964,-1.6129016752,0.0,-1.4925381342,0.6701662929,1.0666668557,-0.5181345524,0.0,1.7084245459,-1.8034283878,-0.6619770249,3.9338039387,-1.2216443938,-0.2283117228],[0.0,0.9267863758,2.7322377674,0.4149374281,0.7575761805,1.6353097367,0.5277013896,0.0,-0.7633600477,1.9783470421,0.2754793065,2.5406105978,2.3309446616,-1.0600679729,0.4576571935],[1.2048172861,5.4178110609,0.5319143877,0.826445624,0.7518801158,0.3132507367,1.0498689828,1.041672647,0.7692320579,0.4026423029,0.3663025196,-1.5434648869,0.0902119387,1.4285735348,0.2278027849],[0.0,0.9581897156,-0.5291000285,0.4098357424,0.7462690671,0.4826159529,0.5194774867,-0.5154699683,0.0,0.1822762883,-0.4562026807,0.7425755234,-0.9013063015,-0.8802808321,0.6818107236],[-1.1904742466,-1.2942182117,0.0,-0.8163258896,-1.4814822902,1.7516556843,0.5168053543,0.0,0.7633692838,1.4556064856,-2.474795047,-2.9074569599,0.9095037158,-2.1314331745,0.2257348523],[0.0,0.7867076364,0.0,1.2345669239,0.7518801158,1.3189059892,0.5141357829,0.5181408287,1.51514471,1.7216670849,1.2218071602,1.1809392554,1.2843680649,1.0889263242,-0.6756793131],[-0.4016122425,-0.6071075557,1.0638287754,-0.4065037471,0.0,-0.6851182205,-0.2557529739,-1.0309336927,-0.7462698696,1.4809563533,-0.6499618099,-0.5418889621,-3.2258106463,-1.6157990324,-0.4535171973],[1.209675491,-1.3961589834,-1.0526305883,0.8163258896,0.0,-0.7174522927,-0.7692386347,1.041672647,0.7518809304,-0.7644193012,-2.5233570131,0.0838162192,-2.3678167406,-2.189784127,1.1389583653],[-0.7968050651,-1.2389377049,0.5319143877,-0.8097159685,-0.7462690671,-0.0833684006,0.2584089222,-0.5154699683,0.7462698696,0.4551836607,-0.3835113454,-1.0469012093,0.4473766136,-0.7462697386,-0.9008947642],[1.2048172861,1.2544799297,0.0,0.0,-0.7518801158,0.1390775687,0.7731913009,0.5181408287,0.0,-0.1742778757,0.3849878173,-0.7617367931,0.1406514469,2.0676653463,0.4545478734],[-0.3968311522,0.442483251,0.0,0.8163258896,0.7575761805,2.3055583431,-0.2557529739,-0.5154699683,-0.7407419357,1.8854762293,0.0,0.3837959474,0.7490631238,0.1841690466,0.4524800485],[0.3984121758,0.6167356234,1.058200057,0.4048579843,0.0,-0.2172197815,-1.0256473816,0.0,0.7462698696,-0.9595662045,0.7670135048,0.679693463,-0.0929457894,-2.7573591118,0.4504528754],[-1.1904742466,0.2626951327,-0.5235597193,-1.6129019747,-0.7518801158,0.5986495502,0.7772100694,0.0,-1.4814838715,0.657439699,0.8563277844,-0.2109752861,0.7441855744,-0.3780678073,-1.5695151379],[-0.4016122425,-0.8733561782,-4.2105223532,0.0,0.0,0.5950662066,-1.0282839917,0.0,-0.7518718333,0.6875259508,-0.0943356576,1.2685038023,0.4155167014,0.3795025844,0.683386131],[2.8225826522,2.7312747942,-0.5494565596,1.2295072273,0.7575761805,-0.63188446,0.5194774867,0.5181408287,0.757567772,-1.2290871014,-0.5665755441,0.3340288984,-0.8275856509,2.4574682898,2.4886899302],[1.1764686898,2.9159475217,-1.6574570353,1.6194319371,1.5037602317,1.4747586792,0.7752017863,1.0309274488,2.2556427913,2.9381253511,1.8043745109,0.0,1.7385268106,2.7675340073,1.766002965],[0.0,-4.3333344879,-0.5617972261,-0.7968121383,-0.7407411451,-0.1999935639,1.2820499314,0.0570244239,0.0,-2.2834121092,-0.559704744,0.3745324595,-0.022781998,-0.5386025839,-0.6507732436],[-0.3875931538,-0.0870989702,-0.5649712187,0.0,0.0,-1.1088857665,-0.5063261398,0.0,-2.2058858854,0.1030854654,-5.4409053855,1.4096112496,-1.0938916568,-0.3610157358,-0.8264396792],[-0.7782119857,-2.2667917657,0.5681812794,0.0,0.0,0.5809220184,0.763354272,0.0,-0.7518718333,-0.8925405098,0.7936554706,-1.0629531123,-0.8294924917,0.905805055,-0.9009000301],[0.0,0.4460357608,0.0,0.0,0.7462690671,0.0671570039,-1.515148741,0.0,-0.7575861041,-0.519580532,0.984248293,-0.2892628098,0.4879155988,0.5385938646,0.6818120982],[0.7843156239,-0.4440551162,0.0,0.4016061154,0.0,-1.2751577891,1.7948674252,0.5181404116,1.5267200954,-0.3133684738,0.0,-0.4973018486,-0.4393083041,0.1785781963,-1.8058674223],[-1.5564239714,-0.4460271378,-0.5649712187,-0.7999993844,-0.7407411451,2.0802090777,-0.2518876967,-0.5154695555,-1.5567801557,2.4449901558,-0.0974617913,1.2911264598,1.2076164586,-0.356511069,-0.2298793624],[-0.7905157625,0.1792101811,-0.5681812794,-0.8064509873,-0.7462690671,1.6648987828,-0.5050475459,-0.518134235,-0.7751930821,3.3071903535,0.6829167981,0.7812522058,-0.6424961272,0.1788889649,-0.9216580748],[0.0,0.4533108971,0.0,2.0325187357,0.7518801158,0.864660887,0.507611224,0.0,0.0,3.4983572998,-1.1627883227,2.8151796312,-2.63279718,1.0714258148,0.2325523628],[-0.7968050651,1.8953072165,0.5714280265,-0.7968121383,2.2388072014,-1.480712132,-0.5050475459,-0.5208328483,0.0,-0.5420903918,0.7843183668,-0.9523875841,-0.4980998338,1.0600679729,-0.4640366866],[-0.5169876681,-1.5943339751,-0.5681812794,-1.6064244617,-1.4598547999,0.8569573971,-5.8375658805,0.0,-0.7812492724,0.9939060054,0.7782053661,0.040065021,-0.595944833,-2.2727201328,-0.9324000515],[0.0,0.540057799,-0.5714280265,-0.8163258896,0.0,-0.2113933901,1.0781673091,0.0,0.7874008357,0.9206371741,5.7915123258,1.0812994201,0.2398033131,4.2933785974,4.7058778651],[0.0,3.0438688475,0.5747120924,0.0,0.7407411451,1.7873672659,-2.1333337114,0.0,-0.7812492724,0.7343474557,1.5510908626,1.0301118512,0.5132035889,2.4013715983,0.2247242542],[-0.4098356651,-1.6507430954,-0.5714280265,-1.6460892318,0.7352945161,-1.5088398467,0.8174404865,0.0,-0.7874008357,-1.9017384743,0.1796955789,-1.9215677299,-0.6078288196,1.842550833,-0.4484300618],[-0.41152223,-0.7950543729,0.0,0.0168732253,-2.9197095997,0.3697817945,-0.2739723343,0.0,0.0,-0.0323109164,-1.8834062684,0.5997585652,-0.782778098,-0.6578956828,-0.2252303773],[0.4132227334,0.3561969471,0.0,0.4219506061,0.0,-0.2105311344,0.5494500096,0.0,0.7936500428,-0.5171294268,-0.8226695525,-0.9936407055,-0.8382646476,0.1655611433,0.4514668556],[1.2345666899,0.4436489355,0.0,0.8403352926,-0.0697211358,0.2109753031,1.3661188837,0.5235597193,0.7874008357,0.6497688471,-1.1111100319,-0.0802908787,0.770754722,1.6835000618,-1.1235891245],[-0.4065036711,0.2650237408,-0.5747120924,0.4166662527,0.7751930821,-0.5789505808,1.3477075957,0.5208328483,0.7812492724,-0.1936716166,-0.3745314673,1.084774867,0.4934635306,-0.8278177326,0.4545450112],[0.4081628681,0.7929444572,0.0,-0.4149373488,-0.7692300639,1.1117045982,-0.2659571938,0.0,-0.7751930821,1.8434660201,0.6578918474,0.9538941676,0.9329758713,1.0016764926,1.5837034755],[-0.4065036711,-0.2622354377,-0.5780341245,-0.8333325055,0.0,-0.2094288729,0.0,0.0,-0.7812492724,-0.1587781436,-1.2138199251,0.669291649,-0.3891993312,1.1570197127,0.4454445163],[-0.4081628681,0.5258581982,-0.5813947847,0.0,0.0,-0.7738672015,0.5333328247,-0.518134235,0.0,-1.7175601347,1.039694305,-1.0950284812,-0.7570240965,-0.4901917244,0.0],[-0.4098356651,-0.0871859516,0.5847947509,-0.4201776639,0.0,0.6609385194,1.0610069511,0.0,0.0,0.550162066,-0.4677197289,0.8699063084,0.3444866923,-1.3136276141,0.2217239809],[0.82304446,1.2216434804,0.5813947847,0.0,0.0,1.6414970124,0.7874008357,1.0416719054,0.0,1.4483449223,1.4097708054,-0.0392012105,1.9127087233,-1.4975066416,0.442477456],[-1.6326514724,-0.2586266005,-0.5780341245,-0.8438810925,-0.7751930821,-0.6330721629,-2.0833313931,0.0,-0.7874008357,-0.5710669498,-1.946246885,-2.1568597532,-0.3368700667,2.3648625791,-1.7621128718],[-1.2448120465,-0.3457213734,-0.5813947847,-0.4255315263,0.0,0.8971457277,2.1276575508,0.0,-0.7936500428,1.62731406,-0.8506630741,0.0,0.8450079775,0.4950529718,0.0],[-0.4201776639,-0.4336530086,0.5847947509,-0.8547000709,0.7812492724,0.4510289704,0.0,-1.0309329663,-2.3999977112,0.219779259,-0.5719682293,0.2003977376,-0.0718189585,1.477827151,-0.4484300618],[0.4219506061,0.5226517597,-0.5813947847,0.8620681682,0.0,0.8980174535,-0.5208328483,0.5208328483,0.8196713302,1.0964924205,0.4793790565,1.1999969482,0.6468534552,-1.1326811775,1.8018000602],[0.4201676463,2.1663778235,0.5847947509,0.4273500355,-0.7751930821,-0.2288624306,-0.5235597193,1.0362746466,0.8130073421,-1.2085568375,-0.763358084,-0.6719370807,-0.6188962912,0.0,0.884954912],[-0.8368292246,0.7633600753,-1.1627895694,-0.4255315263,0.0,-0.4715212703,-1.8421035295,-1.0256461357,-0.8064508376,-0.5646123042,-0.5769179629,-0.9152389571,-0.3592850919,1.6366596145,-0.4385960785],[-0.8438810925,-0.6734000247,-1.7647111622,-0.8547000709,0.7812492724,-0.7682438999,0.0,0.0,0.0,-1.1041021232,0.2901328098,-0.4819234286,-1.0096110201,-0.3220608825,0.4405282179],[-0.4255315263,-2.7966094777,0.0,-1.7241363364,-0.7751930821,-0.9161278509,-0.5361925154,-0.518134235,-1.6260146843,0.1275885413,-0.964314647,-0.4035527793,-0.4613856855,-1.4539604484,-0.8771921569],[0.0,-0.3487354919,0.5988018395,0.0,-0.7812492724,0.273471913,0.0,-0.5208328483,-0.8264454668,0.6690060398,-0.2921196233,-1.5397125746,0.6586890266,0.0,-0.442477456],[-0.8547000709,-0.8748939528,0.0,0.4385960785,0.7874008357,0.8571476131,0.2695415191,0.0,0.0,0.791139231,-0.1953076615,-5.7201622769,2.5933193239,-0.8196674538,-0.8888880412],[0.0,-1.1473973108,0.0,-0.8733616271,-1.5624985448,-1.1717790615,-0.5376338917,-0.5235597193,0.8333325055,-2.6687609774,-0.8806276931,-1.6586606866,-2.3623906372,-0.8264494076,-0.2242203766],[0.4310340841,-0.8928520491,0.595244642,-0.4405282179,0.7936500428,0.065150556,0.270270009,0.0,-0.8264454668,0.5806461457,-0.1974378829,-0.6657857137,-0.2903526283,-0.8333365122,-0.6741513316],[0.0,0.1801757063,0.591715392,0.884954912,-1.5748016714,0.1822908647,0.5390830383,0.5263152941,0.8333325055,0.3207196295,0.791295019,-0.4915045001,1.6258238256,-0.336134144,0.0],[0.4291841541,-0.8093538985,-0.5882347166,0.4385960785,0.0,-0.1039795016,-1.3404812885,0.0,0.0,0.3196882095,2.3552574551,-0.3143228262,-0.2387829185,-0.5058977039,-1.5837142636],[-1.2820501064,0.3626469884,-1.1834378378,-1.3100424406,-0.7999992371,0.6505334323,-0.8152165991,0.0,-0.8264454668,0.9241584553,-0.3835087314,0.5405357106,0.7659159985,0.0,-0.4597696866]]}",
+ "narrative": {
+  "mode": "llm",
+  "model": "openai/gpt-oss-20b",
+  "summary": [
+   "Today the 15 stocks moved -0.3% on average (5 up, 8 down); over 15\u201321 Sep they moved -1.2%. Weakest: Telecommunications (-2.9%), Financial Services (-2.6%) and Consumer Goods (-2.5%); held up best: REIT (-0.4%) and Banking (-0.5%).",
+   "Biggest movers over 15\u201321 Sep: ComfortDelGro (-3.1%), Singtel (-2.9%) and SGX Group (-2.6%). ComfortDelGro moved without a company news story; the move looks sector-wide. Singtel moved more than the market without a company news story. For SGX Group, the company news and the price disagree.",
+   "The market backdrop is calm (VIX 14.7), but Singapore ETF options lean defensive (put/call 1.43): more traders are buying protection against a fall.",
+   "Today's news added a positive signal for SGX Group (not yet in the price), UOB (already in the price) and Ascendas REIT (the price went the other way).",
+   "Task 6 expects no big move for all 15 stocks; normal 3-day swings run from \u00b11.0% (Mapletree Industrial) to \u00b12.6% (SGX Group), so a bigger move than a stock's own swing would be unusual.",
+   "No stock is flagged \u2691 today. The moves in ComfortDelGro and Singtel came without company news, so sector or market news is the place to check before reacting. If you prefer less day-to-day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move."
+  ],
+  "cards": {
+   "S68.SI": "SGX Group fell 2.6% over 15\u201321 Sep while the price rose 0.5% today. The news was mostly positive but does not explain the move, and the model\u2019s reading is positive yet the pattern shows a dormant signal. Task 6 predicts no big move with a fifty percent chance, which is treated as noise.",
+   "U11.SI": "UOB fell 0.5% over 15\u201321 Sep and rose 0.8% today. The news is mixed and already in the price, and the model\u2019s reading is positive. The pattern indicates the move is complete, so no further change is expected. Task 6 forecasts no big move with a forty-three percent chance, considered weak.",
+   "A17U.SI": "Ascendas REIT fell 0.4% over 15\u201321 Sep and dropped 1.3% today. The price moved opposite to the news, which is mostly neutral, and the model\u2019s reading is positive. The pattern is noise, so no clear direction is seen. Task 6 expects no big move with a forty-seven percent chance, treated as noise."
+  },
+  "flags": [],
+  "retried": [],
+  "raw": "summary try 1: {\"summary\":[\"Today the 15 stocks moved {avg_today} on average ({n_up} up, {n_down} down); over {period} they moved {avg_period}. Weakest: Telecommunications ({sw1}), Financial Services ({sw2}) and Consumer Goods ({sw3}); held up best: REIT ({ss1}) and Banking ({ss2}).\",\"Biggest movers over {period}: ComfortDelGro ({mv1}), Singtel ({mv2}) and SGX Group ({mv3}). ComfortDelGro moved without a company news story; the move looks sector\u2011wide. Singtel moved more than the market without a company news story. For SGX Group, the company news and the price disagree.\",\"The market backdrop is calm (VIX {vix}), but Singapore ETF options lean defensive (put/call {pc_ratio}): more traders are buying protection against a fall.\",\"Today's news added a positive signal for SGX Group (not yet in the price), UOB (already in the price) and Ascendas REIT (the price went the other way).\",\"Task 6 expects no big move for all 15 stocks; normal 3\u2011day swings run from {swing_low} (Mapletree Industrial) to {swing_high} (SGX Group), so a bigger move than a stock's own swing would be unusual.\",\"No stock is flagged \u2691 today. The moves in ComfortDelGro and Singtel came without company news, so sector or market news is the place to check before reacting. If you prefer less day\u2011to\u2011day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move.\"]}\n\ncards try 1: {\"cards\":{\"c1\":\"SGX Group fell {c1_period_move} over {period} while the price rose {c1_today_move} today. The news was mostly positive but does not explain the move, and the model\u2019s reading is positive yet the pattern shows a dormant signal. Task 6 predicts no big move with a fifty percent chance, which is treated as noise.\",\"c2\":\"UOB fell {c2_period_move} over {period} and rose {c2_today_move} today. The news is mixed and already in the price, and the model\u2019s reading is positive. The pattern indicates the move is complete, so no further change is expected. Task 6 forecasts no big move with a forty\u2011three percent chance, considered weak.\",\"c3\":\"Ascendas REIT fell {c3_period_move} over {period} and dropped {c3_today_move} today. The price moved opposite to the news, which is mostly neutral, and the model\u2019s reading is positive. The pattern is noise, so no clear direction is seen. Task 6 expects no big move with a forty\u2011seven percent chance, treated as noise.\"}}"
+ }
+}

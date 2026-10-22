@@ -1,0 +1,101 @@
+{
+  "source": "outputs/research/walk_forward_predictions.csv (h=3, out-of-fold sigmoid calibration, RandomF)",
+  "event_definition": "|three-session return| > 1.0%",
+  "horizon_sessions": 3,
+  "window": "2026-07-27 to 2026-09-15",
+  "frozen_at": "2026-10-16",
+  "pre_registered": false,
+  "acceptance_for_new_dates": {
+    "event_definition": "|three-session return| > 1.0%",
+    "min_new_dates": 15,
+    "quiet_move_rate_below_rest_by": 0.1,
+    "quiet_group_strictly_lower_on_share_of_dates": 0.6,
+    "range_coverage_between": [
+      0.6,
+      0.8
+    ]
+  },
+  "n_stock_days": 465,
+  "n_dates": 31,
+  "range": {
+    "n": 420,
+    "inside": 310,
+    "range_coverage": 0.7380952380952381,
+    "range_coverage_first_half": 0.7380952380952381,
+    "range_coverage_second_half": 0.7380952380952381,
+    "note": "daily returns only on stored walk-forward dates; window spans more than 20 trading days"
+  },
+  "quiet": {
+    "quiet_moves": 65,
+    "quiet_n": 155,
+    "quiet_move_rate": 0.41935483870967744,
+    "rest_moves": 175,
+    "rest_n": 310,
+    "rest_move_rate": 0.5645161290322581,
+    "quiet_mean_abs_ret": 1.0800646689257478,
+    "rest_mean_abs_ret": 1.5473465177784758,
+    "quiet_move_rate_first_half": 0.41333333333333333,
+    "rest_move_rate_first_half": 0.6,
+    "quiet_move_rate_second_half": 0.425,
+    "rest_move_rate_second_half": 0.53125,
+    "dates_quiet_strictly_lower": 22,
+    "dates_tied": 2,
+    "dates": 31,
+    "p_dates_one_sided": 0.004065029323101044,
+    "nonoverlap_dates": 11,
+    "nonoverlap_quiet_move_rate": 0.38181818181818183,
+    "nonoverlap_rest_move_rate": 0.5727272727272728,
+    "nonoverlap_dates_quiet_strictly_lower": 8,
+    "p_nonoverlap_one_sided": 0.01953125
+  },
+  "quiet_both_rules": {
+    "n": 81,
+    "moves": 30,
+    "move_rate": 0.37037037037037035
+  },
+  "volatility_rule": {
+    "auc_move": 0.5875121906965141,
+    "auc_move_model_same_rows": 0.5721122224490258,
+    "quiet_move_rate": 0.45,
+    "rest_move_rate": 0.5357142857142857,
+    "model_quiet_move_rate_same_rows": 0.4
+  },
+  "move_auc": 0.5697222222222222,
+  "direction": {
+    "auc_among_moves": 0.482156848778403,
+    "lean_sign_hit": 0.4021505376344086,
+    "share_up": 0.3913978494623656
+  },
+  "by_model": {
+    "RandomF": {
+      "quiet_move_rate": 0.41935483870967744,
+      "rest_move_rate": 0.5645161290322581,
+      "dates_quiet_strictly_lower": 22,
+      "dates": 31,
+      "auc_move": 0.5697222222222222,
+      "auc_direction_among_moves": 0.482156848778403,
+      "lean_sign_hit": 0.4021505376344086,
+      "quiet_record": true
+    },
+    "XGBoost": {
+      "quiet_move_rate": 0.47096774193548385,
+      "rest_move_rate": 0.5387096774193548,
+      "dates_quiet_strictly_lower": 19,
+      "dates": 31,
+      "auc_move": 0.5838148148148149,
+      "auc_direction_among_moves": 0.5624332217394401,
+      "lean_sign_hit": 0.3978494623655914,
+      "quiet_record": false
+    },
+    "LogReg": {
+      "quiet_move_rate": 0.5225806451612903,
+      "rest_move_rate": 0.5129032258064516,
+      "dates_quiet_strictly_lower": 14,
+      "dates": 31,
+      "auc_move": 0.5245740740740741,
+      "auc_direction_among_moves": 0.47959256357290403,
+      "lean_sign_hit": 0.3935483870967742,
+      "quiet_record": false
+    }
+  }
+}

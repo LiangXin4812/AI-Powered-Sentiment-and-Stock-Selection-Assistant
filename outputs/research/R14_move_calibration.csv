@@ -1,0 +1,7 @@
+model,event_definition,p_move_bin,n,stated_mean,observed_move_rate
+RandomF,model label band (neutral class),"(0.0, 0.4]",12,0.3725456704817364,0.0
+RandomF,model label band (neutral class),"(0.4, 0.45]",39,0.4289249978467858,0.28205128205128205
+RandomF,model label band (neutral class),"(0.45, 0.5]",174,0.4792946522369022,0.4425287356321839
+RandomF,model label band (neutral class),"(0.5, 0.55]",149,0.5232242209289057,0.5369127516778524
+RandomF,model label band (neutral class),"(0.55, 0.6]",79,0.5668893313232348,0.5189873417721519
+RandomF,model label band (neutral class),"(0.6, 1.0]",12,0.6207410435159221,0.6666666666666666

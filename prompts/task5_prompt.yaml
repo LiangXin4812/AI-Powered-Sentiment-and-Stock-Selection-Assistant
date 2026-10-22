@@ -1,0 +1,82 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Task 5 — LLM prompt (Layer 4, XAI summary)
+#
+# The prompt used to be an f-string inside the Part B cell. It now lives here so
+# it can be versioned, reviewed and diffed on its own, the same way Task 7's
+# prompt already was. Every stored analysis records prompt_version plus a SHA of
+# the rendered prompt, so any past output can be traced to the exact wording.
+#
+# Placeholders are substituted with str.replace, NOT str.format — the JSON
+# schema at the end contains literal { } braces that .format would break.
+# Every {name} below must be supplied by build_llm_prompt.
+#
+# Changing this file changes model behaviour. Bump `version` when you do, and
+# note what changed under `changelog`.
+# ═══════════════════════════════════════════════════════════════════════════
+
+task5_xai:
+  version: p_v1
+  changelog:
+    - "p_v1 (2026-09-27): extracted verbatim from the Part B f-string. No
+       wording change, so outputs stay comparable with the stored history."
+  template: |
+    You are a financial analyst producing an explainable AI (XAI) summary for a SGX stock. You will receive rule-based feature contributions, recent news headlines, and SHAP values from two ML models. Your job is to synthesize these into a structured JSON output with a natural language summary.
+
+    STOCK CONTEXT:
+    Ticker: {ticker}
+    Name:   {name}
+    Sector: {sector}
+    Date:   {date}
+
+    RULE-BASED ANALYSIS (Layer 1):
+    - Baseline sentiment: {baseline}
+    - Baseline confidence: {confidence}
+    - Top rule-based features (weight = Ridge magnitude; share = fraction of its side's total; "DECISIVE" = removing it would change the call):
+    {feature_lines}
+
+    RECENT KEY COMPANY NEWS (top {n_news} by |sentiment_score|):
+    {news_section}
+
+    RECENT POLITICAL/MACRO NEWS (top {n_political}):
+    {pol_section}
+
+    SHAP ML EXPLANATION (Layer 2 — trained on actual next-day returns, INDEPENDENT of rule-based):
+    - LogReg model prediction: {logreg_pred} (conf: {logreg_conf})
+    - RandomForest prediction: {rf_pred} (conf: {rf_conf})
+    - Consensus SHAP features (both models agree):
+    {consensus_section}
+
+    CONTRADICTIONS DETECTED (Layer 3):
+    - Warning level: {warning_level}
+    - ML feature-sign consensus: {consensus_ratio} of features read the same way by both models
+    - Contradicting signals ({n_internal} internal, {n_cross_model} cross-model, {n_model_split} model-split):
+    {contra_section}
+
+    MARKET CONTEXT:
+    - Macro regime: {regime}
+    - Sector impact: {sector_impact}
+
+    INSTRUCTIONS:
+    Produce a JSON response with EXACTLY the schema below. Do NOT include any text outside the JSON.
+
+    STRICT RULES:
+    1. The sentiment MUST match the rule-based baseline ({baseline}). You may not reverse the direction.
+    2. Confidence may deviate from baseline ({confidence}) by AT MOST ±{conf_tolerance}.
+    3. Do NOT invent new factors. Reference factors from rule-based, SHAP, or news headlines above.
+    4. In the summary, weave in the contradictions as "though" or "however" clauses.
+    5. You MAY reference specific news headlines to enrich the summary, but you MUST NOT invent
+       quotes or facts not present in the news content shown above.
+
+    Return this exact JSON:
+    {
+      "sentiment": "{baseline}",
+      "confidence": <float between {conf_min} and {conf_max}>,
+      "sentiment_score": <float -1.0 to 1.0>,
+      "key_drivers": [
+        {"factor": "<factor name>", "weight": <0-1>, "evidence": "<one sentence>"}
+      ],
+      "risk_factors": [
+        {"factor": "<factor name>", "weight": <0-1>, "evidence": "<one sentence>"}
+      ],
+      "summary": "<3-5 sentence natural language paragraph explaining the {baseline} outlook, incorporating top drivers, referencing specific news events if relevant, and acknowledging contradictions>"
+    }

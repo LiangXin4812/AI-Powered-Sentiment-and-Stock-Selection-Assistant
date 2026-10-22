@@ -1,0 +1,13 @@
+.env
+.git
+__pycache__/
+*.pyc
+*.ipynb
+raw_data/
+data/
+cache/
+outputs/report/
+outputs/sample_report/
+outputs/research_review/
+outputs/figures/
+outputs/config_snapshots/

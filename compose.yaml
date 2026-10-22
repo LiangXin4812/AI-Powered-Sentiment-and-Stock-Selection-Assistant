@@ -1,0 +1,24 @@
+services:
+  capstone:
+    platform: linux/amd64
+    build: .
+    image: sgx-capstone:review
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      REPORT_TO: ${REPORT_TO:-}
+      HF_TOKEN: ${HF_TOKEN:-}
+      HF_HOME: /app/cache/huggingface
+      FINBERT_MODEL_DIR: ${FINBERT_MODEL_DIR:-}
+      TZ: Asia/Singapore
+    volumes:
+      - ./outputs:/app/outputs
+      - ./data:/app/data
+      - ./cache:/app/cache
+      - ./raw_data:/app/raw_data
+      - ./reports:/app/reports
+    command: ["python", "-m", "sgx_capstone", "doctor"]

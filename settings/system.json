@@ -1,0 +1,10 @@
+{
+  "storage": {
+    "raw_files_path": "${project_root}/raw_data",
+    "database_path": "${project_root}/data/fallback.sqlite",
+    "postgresql_url": ""
+  },
+  "api_keys": {
+    "openai": ""
+  }
+}

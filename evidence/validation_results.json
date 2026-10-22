@@ -1,0 +1,26 @@
+{
+  "version": "2.1",
+  "date": "2026-10-16",
+  "offline_tests_passed": 21,
+  "pip_check": "passed (Python 3.12, requirements.lock)",
+  "container_file_set_commands": [
+    "doctor",
+    "smoke",
+    "sample",
+    "figures",
+    "outlook-evidence",
+    "research-report"
+  ],
+  "sample_report": "outputs/sample_report/T7_Daily_Signal_Report_SAMPLE_2026-09-18.docx (6 pages)",
+  "figures_byte_identical_to_final_report": true,
+  "docker_image_built": false,
+  "docker_note": "no Docker daemon or registry access in the build environment",
+  "live_database_executed": false,
+  "live_signal_report_executed": false,
+  "outlook_explanation": "template only; LLM phrasing not used",
+  "model_parity_rows": 855,
+  "t6_directional_skill_established": false,
+  "r14_pre_registered": false,
+  "r14_frozen_at": "2026-10-16",
+  "r14_event": "|three-session return| > 1.0%"
+}
