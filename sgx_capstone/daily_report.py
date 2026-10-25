@@ -145,11 +145,11 @@ NEWS_SOURCES, CHART_SOURCES = ("task1_news",), ("task2_technical",)
 ATTENTION_FLAG = {"ELEVATED": "⚑"}
 GLOSSARY = [
     ["News & signals", "What today's news and indicators say on top of the price itself: positive, neutral or "
-     "negative. It describes the day; the forecast is Task 6's job."],
+     "negative. It describes the day; the forecast is a separate model's job."],
     ["News today", "The company articles collected on the day, each read as positive, negative or neutral by a "
      "finance language model (FinBERT). 'Mostly positive' means clearly more positive than negative articles."],
     ["Normal day / big move", "A normal day: a one-day move within about ±0.6%, treated as the price not reacting. "
-     "A big move (Task 6): a three-day change beyond about ±1%. Both are half a standard deviation of past moves."],
+     "A big move (forecast): a three-day change beyond about ±1%. Both are half a standard deviation of past moves."],
     ["RSI", "A 0-100 gauge of how fast the price has moved lately. Below 30 'oversold' (fell fast), above 70 "
      "'overbought' (rose fast)."],
     ["Average price (VWAP)", "The day's average price, weighted by how many shares traded at each price."],
@@ -160,11 +160,11 @@ GLOSSARY = [
      "people buying protection against a fall. The same for all 15 stocks."],
     ["Normal 3-day swing", "How far the stock usually moves over three trading days (its recent daily volatility "
      "× √3); about 2 times in 3 the move stays inside it. A yardstick for whether a move is unusual."],
-    ["Calmer than most", "The five stocks with the highest chance of no big move in Task 6's forecast for the day."],
-    ["Task 6 lean", "The model's most likely outcome over the next three trading days: rise, fall or no big move, "
+    ["Calmer than most", "The five stocks with the highest chance of no big move in the forecast model's probabilities for the day."],
+    ["Forecast lean", "The forecast model's most likely outcome over the next three trading days: rise, fall or no big move, "
      "with the probability it gave. Probabilities are calibrated out-of-fold, so 50% means about half come true."],
     ["★  ⚑  ✓  ✗", "★ more company-event news than usual. ⚑ worth a closer look: the price went against the news, or "
-     "the news is silent while the model holds a firm view, and the model has a usable record on this stock. ✓ / ✗ "
+     "the news is silent while the model leans one way, and the model has a usable record on this stock. ✓ / ✗ "
      "the model's record on that stock is about as good as or better than / worse than always guessing its most "
      "common past outcome."],
 ]
@@ -544,6 +544,20 @@ def research_findings(root, date):
               "shown": float(hit[m.decision == "shown"].mean()), "hidden": float(hit[m.decision == "withheld"].mean()),
               "ge90_n": int((m.p >= 0.9).sum()), "ge90_acc": float(hit[m.p >= 0.9].mean()),
               "first": str(m.date.min()), "last": str(m.date.max())})
+    shown, direc = m.decision == "shown", m.pred != "neutral"
+    f.update({"shown_dir": float(hit[shown & direc].mean()) if (shown & direc).any() else None,
+              "shown_dir_n": int((shown & direc).sum()),
+              "hidden_dir": float(hit[~shown & direc].mean()) if (~shown & direc).any() else None,
+              "shown_neu": float(hit[shown & ~direc].mean()) if (shown & ~direc).any() else None,
+              "shown_neu_n": int((shown & ~direc).sum())})
+    r15 = next((p for p in (res / "R15_report_followup.csv", root / "evidence" / "R15_report_followup.csv")
+                if p.exists()), None)
+    if r15 is not None:
+        g = pd.read_csv(r15).set_index("group")
+        if "flagged (ELEVATED)" in g.index:
+            f["r15"] = {"flag": float(g.loc["flagged (ELEVATED)", "value"]),
+                        "flag_n": int(g.loc["flagged (ELEVATED)", "n"]),
+                        "rest": float(g.loc["routine", "value"]), "dates": int(g.loc["routine", "dates"])}
     return f
 
 
@@ -1126,7 +1140,7 @@ def today_text(r, D):
         t = f"No news signal today (neutral reading); the price {moved}"
         t += f", more than {band}: a move without a news signal." if abs(m) > thr else "."
         if a == "model_only":
-            t += f" Task 6 still leans '{fc}'."
+            t += f" The forecast model still leans '{fc}'."
     else:
         word = EVIDENCE_WORD[s]
         if a in ("move_complete", "momentum", "mean_reversion"):
@@ -1135,11 +1149,15 @@ def today_text(r, D):
             t = f"{word} reading, but the price {moved}, within {band}: the news has not shown up in the price."
         else:
             t = f"{word} reading, but the price {moved}: the price went against the news."
-        t += {"momentum": " Task 6 expects the move to continue.", "mean_reversion": " Task 6 expects a pullback.",
-              "move_complete": " Task 6 expects no big move from here.", "dormant": " Task 6 expects no big move.",
-              "muted_pending": " Task 6 still expects that direction.", "muted_fading": " Task 6 expects the opposite.",
-              "lag": " Task 6 sides with the news.", "contradicted": " Task 6 sides with the price.",
-              "noise": " Task 6 has no clear view."}.get(a, "")
+        t += {"momentum": " The forecast model expects the move to continue.",
+              "mean_reversion": " The forecast model expects a pullback.",
+              "move_complete": " The forecast model expects no big move from here.",
+              "dormant": " The forecast model expects no big move.",
+              "muted_pending": " The forecast model still expects that direction.",
+              "muted_fading": " The forecast model expects the opposite.",
+              "lag": " The forecast model sides with the news.",
+              "contradicted": " The forecast model sides with the price.",
+              "noise": " The forecast model has no clear view."}.get(a, "")
     return t + f" (Pattern: {PATTERN_NAME.get(a, a)}.)"
 
 
@@ -1203,9 +1221,13 @@ def card_forecast(r, D=None):
     o = (D or {}).get("outlook", {}).get(r["ticker"]) if D else None
     if o and o.get("range"):
         s += f"; its normal 3-day swing is ±{o['range']['half_width_pct']:.1f}%"
-    return s + (". Past record on this stock: about as good as a simple rule or better (✓), still only a weak "
-                "signal." if not r["withheld"] else
-                ". Past record on this stock: below a simple rule (✗), so this call carries no weight.")
+    f = (D or {}).get("findings") or {}
+    if r["withheld"]:
+        return s + ". Past record on this stock: below a simple rule (✗), so this call carries no weight."
+    if r["t6_class"] != "neutral" and f.get("shown_dir") is not None:
+        return s + (f". Past record on this stock: ✓, but rise-or-fall calls marked ✓ were right only "
+                    f"{pct0(f['shown_dir'])} in testing, so treat the direction as unknown.")
+    return s + ". Past record on this stock: about as good as a simple rule or better (✓), still only a weak signal."
 
 
 def record_cell(r):
@@ -1654,7 +1676,8 @@ def flag_reason(r):
     """Why a stock carries ⚑ (ELEVATED attention), in words."""
     return {"lag": "the price went against the news and the model sides with the news",
             "contradicted": "the price went against the news and the model sides with the price",
-            "model_only": "there is no news signal, but the model holds a firm view"}.get(
+            "model_only": f"today's news gives no signal, but the forecast model leans to "
+                          f"{'a rise' if r.get('t6_class') == 'bullish' else 'a fall'}"}.get(
         r["archetype"], "the pattern engine rates it worth a closer look")
 
 
@@ -1716,7 +1739,7 @@ def page_glance(doc, D):
                      f"Sections: 1 today · 2 news & last {n} days · 3 next 3 days · 4 system · 5 findings"])
     if D["mode"] == "sample":
         if D.get("source") == "snapshot" and D.get("calm_source") == "stored":
-            doc.note(f"SAMPLE rebuilt offline from the saved copy of the project database for "
+            doc.note(f"Rebuilt offline from the saved copy of the project database for "
                      f"{pd.Timestamp(D['date']):%d %b %Y}: every figure, forecast and chance is as stored that day.")
         else:
             doc.note(f"SAMPLE built from stored project records. The model used for 'calmer than most' was retrained "
@@ -1734,13 +1757,16 @@ def page_glance(doc, D):
         for text, ref in zip(nar["summary"], refs):
             doc.bullet(text.rstrip() + ref)
         kept = [a.strip() == t.strip() for a, (_, t) in zip(nar["summary"], lines)]
-        doc.small((f"Drafted by code from Tasks 1-6; the AI writer ({nar.get('model')}, the same model as Task 5) "
-                   "checked it and kept the wording" + ("" if all(kept) else f", rewording {len(kept) - sum(kept)} "
-                   f"of {len(kept)} lines") + "; every number was filled in by code and the text passed the "
-                   "report's checks."), size=7.2)
+        reworded = len(kept) - sum(kept)
+        doc.small((f"Drafted by code from the day's data and analysis; the AI writer ({nar.get('model')}, the "
+                   "same model that writes the news summaries) "
+                   + ("checked it and kept the wording" if not reworded else
+                      f"reworded {reworded} of {len(kept)} lines")
+                   + "; every number was filled in by code and the text passed the report's checks."), size=7.2)
     elif nar.get("summary"):
         doc.p(" ".join(nar["summary"]))
-        doc.small(f"Written by AI ({nar.get('model')}, the same model as Task 5) from a code-written draft of these "
+        doc.small(f"Written by AI ({nar.get('model')}, the same model that writes the news summaries) from a "
+                  "code-written draft of these "
                   "facts; every number was filled in by code and the text passed the report's checks.", size=7.2)
     else:
         for (lead, text), ref in zip(lines, refs):
@@ -1753,7 +1779,7 @@ def page_glance(doc, D):
                    ("good", f"Normal 3-day swing: reliable, held {ev['range']['range_coverage'] * 100:.0f} "
                             "times in 100 (section 3)"),
                    ("warn", "Calmer than most: promising, still being confirmed (section 3)"),
-                   ("bad", "Up-or-down lean: weak; only ✓ calls carry information (section 3)")], size=7.3)
+                   ("bad", "Up-or-down lean: not reliable, even with ✓ (section 3)")], size=7.3)
 
     doc.h("All 15 stocks today")
     mkt = market_signals(D)
@@ -1789,6 +1815,7 @@ def page_glance(doc, D):
 
 
 def page_week(doc, D, chart):
+    from . import narrative as N
     n = D["period"]["sessions"]
     doc.h(f"2 · The last {n} trading days and what may explain them", new_page=True,
           sub="Each square is one day's news-and-signals reading for a stock; the bar is its price change over "
@@ -1805,7 +1832,7 @@ def page_week(doc, D, chart):
         doc.small("No stock had a positive or negative news-and-signals reading today, so the cards show the "
                   "biggest movers.", size=7.6)
     if any(re.search(r"geopolitic|political", r.get("summary") or "", re.I) for r in cards):
-        doc.small("Task 5's AI summaries mention a 'geopolitical backdrop' and 'political news volume': those two "
+        doc.small("The AI summaries mention a 'geopolitical backdrop' and 'political news volume': those two "
                   "rules fire every day and cancel out, so they carry no information (section 5).", size=7.4)
     for ci, r in enumerate(cards):
         lines = []
@@ -1819,12 +1846,12 @@ def page_week(doc, D, chart):
         heads = headline_text(r)
         if heads:
             lines.append(("Headlines", heads))
-        lines += [("Price chart", chart_text(r)), ("Task 5 reading", reading_text(r, D)),
-                  ("Task 5 rules", rules_text(r))]
+        lines += [("Price chart", chart_text(r)), ("News & signals reading", reading_text(r, D)),
+                  ("Rules behind the reading", rules_text(r))]
         summ = clean_t5_summary(r.get("summary"))
         if summ and summary_is_clean(summ):
-            lines.append(("AI summary (Task 5: rules, two ML models, contradiction check; checked)", summ))
-        lines.append(("Task 6 lean", card_forecast(r, D)))
+            lines.append(("AI summary of the evidence (checked)", N.plain_terms(summ)))
+        lines.append(("Forecast lean", card_forecast(r, D)))
         accent = C_BLUE if r["period_ret"] > 0 else "E34948"
         doc.card(f"{r['name']}", f"{r['sector']}  ·  {pct(r['period_ret'])} over {_period_short(D)}", lines,
                  accent, gap=ci < len(cards) - 1)
@@ -1833,8 +1860,8 @@ def page_week(doc, D, chart):
 def page_next(doc, D):
     f, q, ev = D["findings"], D["evidence"]["quiet"], D["evidence"]
     doc.h("3 · The next 3 trading days: how much each stock may move", new_page=True,
-          sub="The normal swing and the calmer stocks have held up in testing. The up-or-down lean is weak on its "
-              "own; ✓ marks the calls whose record makes them worth a look.")
+          sub="The normal swing and the calmer stocks have held up in testing. The up-or-down lean has not: even "
+              "with ✓, a rise-or-fall call is no better than a guess.")
     calm = _calm(D)
     calm_set = {o["ticker"] for o in calm}
     looks = sorted(D["outlook"].values(), key=lambda o: o["range"]["half_width_pct"])
@@ -1852,7 +1879,7 @@ def page_next(doc, D):
                                                                                            VERDICT["bad"][2])
         if o["ticker"] in calm_set:
             chips[(i, 2)] = ("DCEAFB", "1C5CAB")
-    t6t = doc.table(["Stock", "Normal 3-day swing", "Calmer than most", "Task 6 lean", "Chance",
+    t6t = doc.table(["Stock", "Normal 3-day swing", "Calmer than most", "Forecast lean", "Chance",
                      "Record vs simple rule"], rows,
                     widths=[1.85, 0.95, 1.0, 1.0, 0.7, 1.4], font=8.0, chips=chips, colors=colors,
                     align_right=(1, 4), pad=(26, 60))
@@ -1862,7 +1889,7 @@ def page_next(doc, D):
             for par in cell.paragraphs:
                 par.paragraph_format.keep_with_next = True
     doc.small("Normal 3-day swing: about 2 times in 3 the 3-day change stays inside it (last 20 trading days). "
-              "Calmer than most: the five highest chances of no big move. Task 6 lean: the model's most likely "
+              "Calmer than most: the five highest chances of no big move. Forecast lean: the model's most likely "
               f"3-day outcome (rise above +{thr:.2f}%, fall below −{thr:.2f}%, otherwise no big move) and the "
               "probability it gave. Record vs simple rule: percentage points more (or fewer) of its calls on this "
               "stock that were right over the last 30 days than always guessing the stock's most common past "
@@ -1884,10 +1911,14 @@ def page_next(doc, D):
     if f["n"] >= MIN_RECORD:
         ge90 = (f" Before its probabilities were refitted, chances of 90% or more were right only "
                 f"{pct0(f['ge90_acc'])} of the time." if f["ge90_n"] else "")
-        doc.bullet(f"Weak on its own: right {pct0(f['acc'])} of {f['n']} past calls, against "
-                   f"{pct0(f['neutral'])} for always guessing 'no big move'. The ✓ mark separates the better calls "
-                   f"(right {pct0(f['shown'])}) from the rest ({pct0(f['hidden'])}), so only ✓ calls carry "
-                   f"information.{ge90}{span}", lead="Up-or-down lean. ", size=8.6)
+        split = (f" Calls marked ✓ were right {pct0(f['shown'])}, the rest {pct0(f['hidden'])}, but the gain is in "
+                 f"'no big move' calls ({pct0(f['shown_neu'])} right); ✓ rise-or-fall calls were right only "
+                 f"{pct0(f['shown_dir'])} of {f['shown_dir_n']}, so a ✓ never makes a direction likely."
+                 if f.get("shown_dir") is not None and f.get("shown_neu") is not None else
+                 f" Calls marked ✓ were right {pct0(f['shown'])}, the rest {pct0(f['hidden'])}.")
+        doc.bullet(f"Not reliable: right {pct0(f['acc'])} of {f['n']} past calls, against "
+                   f"{pct0(f['neutral'])} for always guessing 'no big move'.{split}{ge90}{span}",
+                   lead="Up-or-down lean. ", size=8.6)
     else:
         doc.bullet(f"Only {f['n']} live forecasts had matured by this date, too few to quote a record; treat every "
                    f"call as unproven.{span}", lead="Up-or-down lean. ", size=8.6)
@@ -1897,44 +1928,48 @@ def page_system(doc, D):
     rows = list(D["rows"].values())
     it, f = D["inputs_today"], D["findings"]
     doc.h("4 · The system behind this report", new_page=True,
-          sub="Seven tasks run in sequence every trading day. Every number on the pages above comes from one of "
+          sub="Four stages run in sequence after every close. Every number on the pages above comes from one of "
               "them; nothing is written by hand.")
     doc.table(["Stage", "What it does for this report"], [
-        ["Tasks 1–4 — collect", f"Today's raw facts. {it['articles']} company news articles (each read as "
+        ["1 · Collect the day's facts", f"Today's raw facts. {it['articles']} company news articles (each read as "
          f"positive, negative or neutral by FinBERT, a finance language model) and {it['political']} political "
          f"articles; price-chart indicators (RSI, MACD, Bollinger bands, VWAP, weekly trend); the market "
          f"backdrop (VIX {it['vix']:.1f}, US yield spread); Singapore ETF options positioning (put/call "
          f"{it['pc_ratio']:.2f})."],
-        ["Task 5 — read the evidence", "What the news and indicators say on top of the price itself: one reading "
+        ["2 · Read the news and signals", "What the news and indicators say on top of the price itself: one reading "
          "per stock (sections 1–2), built in four layers. (1) Weighted rules score the day's evidence — the scores "
          "and rules on the cards. (2) Two independent machine-learning models re-read the same inputs as a "
          "second opinion. (3) A contradiction check compares all layers and flags internally mixed readings "
          "(named on the cards when strongly mixed). (4) An AI writer (an open-source model served by Groq) drafts the news "
          "summary; it may only phrase what the rules computed, and a summary that fails the checks is replaced "
          "by a fixed template."],
-        ["Task 6 — forecast", "The 3-day forecast and chance for every stock (section 3). Three model families "
+        ["3 · Forecast the next 3 days", "The 3-day forecast and chance for every stock (section 3). Three model families "
          "(logistic regression, random forest, XGBoost) are re-evaluated every week in a champion–challenger "
          f"setup. A replay of that weekly choice under {f['sw_n']} settings moved accuracy only between "
          f"{f['sw_lo'] * 100:.1f}% and {f['sw_hi'] * 100:.1f}% ({f['sw_sw_lo']}–{f['sw_sw_hi']} switches), and "
          f"the pooled winner led per stock on just {f['r13_leads']} of {f['r13_n']}: switching added churn, not "
          "accuracy. The serving model is therefore pinned (random forest) and the weekly evaluation is kept as "
          "monitoring. Each forecast carries its own per-stock record — the ✓ / ✗ column."],
-        ["Task 7 — check and write", "Sorts each stock into one of 11 patterns (below; shown on the cards and "
+        ["4 · Check and write the report", "Sorts each stock into one of 11 patterns (below; shown on the cards and "
          "table in plain words as 'price vs news'), flags what deserves a closer look (⚑), picks the cards, and "
          "draws the day's market read: where the moves were, whether company news, the sector or the whole market "
-         "moved with them, and what the backdrop and Task 6 add. Every kind of statement carries its tested record "
-         "(section 5). An AI writer, the same model as Task 5, rewrites the code-written market read in plainer words "
+         "moved with them, and what the backdrop and the forecast add. Every kind of statement carries its tested "
+         "record (section 5). An AI writer, the same model as stage 2, rewrites the code-written market read in "
+         "plainer words "
          "and drafts each card's 'In short' line. It may not write a single digit (code fills in every number), "
          "and a draft that breaks any rule — no advice, no targets, no claimed certainty, no number or stock it "
          "was not given, no rise word next to a fall, no claim that the news explains a move the report says it "
-         "does not, no more than little weight on Task 6 — is replaced by the template text."],
-    ], widths=[1.15, 5.75], font=8.2, bold_col0=True, pad=(35, 70))
+         "does not, no more than little weight on the forecast, no figure in words, no claim against the "
+         "stored price facts — is replaced by the template text."],
+    ], widths=[1.3, 5.6], font=8.2, bold_col0=True, pad=(35, 70))
     nar = D.get("narrative") or {}
-    doc.small(("AI-written text in this report: the market read and 'In short' lines (Task 7) and the news "
-               "summaries (Task 5), all checked; every number, table and verdict is computed by code."
+    doc.small(("AI-written text in this report: the market read and 'In short' lines (stage 4) and the news "
+               "summaries (stage 2), all checked; every number, table and verdict is computed by code. In the "
+               "project's documentation the four stages are Tasks 1–4, 5, 6 and 7."
                if nar.get("mode") == "llm" else
                "This copy uses the template text throughout (no AI call was made). With an API key, the same model "
-               "as Task 5 rewrites the market read and writes the 'In short' lines; numbers and tables are unchanged."),
+               "as stage 2 rewrites the market read and writes the 'In short' lines; numbers and tables are "
+               "unchanged. In the project's documentation the four stages are Tasks 1–4, 5, 6 and 7."),
               size=7.6)
 
     doc.h2("Today's patterns: how news, price and forecast line up")
@@ -1947,10 +1982,10 @@ def page_system(doc, D):
         widths=[1.25, 2.3, 3.35], font=7.8, bold_col0=True, pad=(26, 60))
     warn = sum(1 for r in rows if r.get("warning") == "high")
     mild = sum(1 for r in rows if r.get("warning") == "mild")
-    extra = (f" Task 5's contradiction check rated {warn} of 15 readings strongly mixed (named on the cards) and "
+    extra = (f" The contradiction check rated {warn} of 15 readings strongly mixed (named on the cards) and "
              f"{mild} mildly mixed today.")
     doc.small("The other patterns in the 11-pattern engine did not occur today; the full set is defined in the "
-              f"final report, Appendix B.{extra}", size=7.6)
+              f"final report, Appendix C.{extra}", size=7.6)
 
 
 def page_findings(doc, D):
@@ -1981,9 +2016,12 @@ def page_findings(doc, D):
           if f["ge90_n"] >= MIN_RECORD else "Its calibration had been fitted on its own training rows. ")
          + "Refitted out-of-fold, no model says 90%.", "warn", "Found and fixed", "Never read a high chance as near-certain"],
         ["Does marking weak forecasts help?",
-         (f"Calls on stocks where the model matched a simple rule (✓) were right {pct0(f['shown'])}; the "
-          f"others {pct0(f['hidden'])}." if f["n"] >= MIN_RECORD else
-          f"Only {f['n']} live calls had matured by this date, too few to compare."), "good", "Works as a filter", "Look at ✓ calls only, and still with care"],
+         ((f"✓ calls right {pct0(f['shown'])}, others {pct0(f['hidden'])}; the gain is in 'no big move' calls "
+           f"({pct0(f['shown_neu'])}). ✓ rise-or-fall calls: {pct0(f['shown_dir'])} of {f['shown_dir_n']}." if f.get("shown_dir") is not None and f.get("shown_neu") is not None else
+           f"Calls marked ✓ were right {pct0(f['shown'])}; the others {pct0(f['hidden'])}.")
+          if f["n"] >= MIN_RECORD else
+          f"Only {f['n']} live calls had matured by this date, too few to compare."), "warn",
+         "For 'no big move' only", "Trust ✓ on 'no big move', never on a direction"],
         ["Does switching models weekly help?",
          f"Replaying the weekly champion choice under {f['sw_n']} settings gave {f['sw_lo'] * 100:.1f}–"
          f"{f['sw_hi'] * 100:.1f}%: switching added churn, not accuracy.", "info", "No gain",
@@ -1996,6 +2034,12 @@ def page_findings(doc, D):
          f"The five with the highest chance of no big move moved over 1% {_in_tens(q['quiet_move_rate'])} times, the others "
          f"{_in_tens(q['rest_move_rate'])} ({q['dates']} test days). The rule was set after looking at the data.",
          "warn", "Promising", "A hint where less is likely to happen"],
+    ] + ([
+        ["Does ⚑ mean a bigger move?",
+         f"No. Next 3 days: flagged stocks moved {f['r15']['flag']:.1f}% on average, the rest "
+         f"{f['r15']['rest']:.1f}% ({f['r15']['flag_n']} flags, {f['r15']['dates']} dates).", "info",
+         "Not a forecast", "⚑ means read the card first"],
+    ] if f.get("r15") else []) + [
         ["What do seven years of prices say?",
          f"A stock that beat the other 14 on a day tended to lag slightly the next day, 2019-2025 (rank "
          f"correlation {f['rev_ic']:+.3f}, t {f['rev_t']:.1f}), but by less than trading costs.", "info",
@@ -2007,7 +2051,7 @@ def page_findings(doc, D):
         table.append([what, found, f"{icon}  {verdict}", use])
         chips[(k, 2)] = (fill, ink)
     doc.table(["What was tested", "What we found", "Verdict", "What it means for you"], table,
-              widths=[1.3, 3.15, 0.95, 1.5], font=7.5, chips=chips, bold_col0=True, pad=(22, 60))
+              widths=[1.3, 3.15, 0.95, 1.5], font=7.2, chips=chips, bold_col0=True, pad=(18, 50))
 
     doc.h2("Limitations")
     for t in [
@@ -2016,16 +2060,15 @@ def page_findings(doc, D):
         "means no negative signal was found, not that there was no bad news.",
         "Free data: options data is one Singapore stock-market fund shared by all 15 stocks, and news publication "
         "times have not been checked against the report's cut-off.",
-        "One political-news rule counts every day as positive (it reads the news classifier's confidence, not "
-        "whether the news was good or bad), and its counterweight fires every day too. The two are summed and "
-        "marked 'unreliable'; Task 5's AI summaries still mention them.",
+        "One political-news rule fires every day (it reads the classifier's confidence, not the tone), as does its "
+        "counterweight; the two are summed and marked 'unreliable'.",
         "The news search often returns older articles, so only headlines from the last 30 days are shown; some "
         "stocks show none on a given day.",
     ]:
-        doc.bullet(t, size=7.8)
+        doc.bullet(t, size=7.6)
 
     doc.h2("Words used in this report")
-    doc.table(["Word", "Meaning"], GLOSSARY, widths=[1.5, 5.4], font=7.2, bold_col0=True, pad=(18, 60))
+    doc.table(["Word", "Meaning"], GLOSSARY, widths=[1.5, 5.4], font=7.0, bold_col0=True, pad=(14, 50))
     doc.small("General information about 15 listed companies, generated automatically from stored data. It is not "
               "financial advice or a recommendation to deal in any security, and it takes no account of your "
               "circumstances. Past patterns do not guarantee future results.", size=7.4, italic=True)
@@ -2052,7 +2095,7 @@ def reviewer_notes(D):
             + ("the same stored probabilities." if D.get("calm_source") == "stored" else
                f"the bundled {D['model']['name']} model (trained {D['model']['trained_at']})."),
             f"- Task 7: patterns, attention, cards, market read, compliance checks R1-R7; narrative "
-            + (f"AI ({nar.get('model')}) with checks N1-N11." if nar.get("mode") == "llm" else "template."), "",
+            + (f"AI ({nar.get('model')}) with checks N1-N13." if nar.get("mode") == "llm" else "template."), "",
             "## Provenance", ""]
     out += [f"- {p}" for p in D.get("provenance") or []]
     days = D["period"].get("days") or []
@@ -2133,6 +2176,7 @@ def build_sample(root=None, out_dir=None, period_sessions=PERIOD_SESSIONS, date=
     if saved and not N.matches_layout(saved, D):
         print("  Saved AI text was written for an earlier layout of the report; using the template text.")
         saved = None
+    saved = N.revalidate(saved, D) if saved else None
     D["narrative"] = (N.build(D, api_key, llm_settings) if api_key or not saved else saved)
     nar = D["narrative"]
     print(f"  AI narrative: {'written by ' + str(nar['model']) if nar['mode'] == 'llm' else 'off (template text)'}"

@@ -1,10 +1,11 @@
 """Explicit, repeatable entrypoints for the SGX capstone prototype.
 
 Without the database: doctor, smoke, sample, figures, outlook-evidence,
-research-report. With the database: doctor --online, ingest, daily, report
+research-report, followup. With the database: doctor --online, ingest, daily, report
 (Research Report), signal-report (Daily Signal Report), run-all (the whole
 day after the close: ingest -> daily -> signal-report -> reports/<date>/) and
-check-dates (build and check the report for every stored date in a range).
+check-dates (build and check the report for every stored date in a range) and
+republish (the same, published to reports/<date>/ in the current format).
 
 The database is the original external PostgreSQL database. This container
 never creates a fresh data history. All network-backed commands fail clearly
@@ -231,7 +232,7 @@ def run_all(ns, cfg, date=None, use_llm=True, force=False):
     return files
 
 
-def check_dates_cmd(ns, cfg, start, end, use_llm=False):
+def check_dates_cmd(ns, cfg, start, end, use_llm=False, publish_all=False):
     import task7_report, task7_generate                          # noqa: F401
     configure_report_modules(cfg)
     for file in ("task6_features", "task6_runtime"):
@@ -239,7 +240,7 @@ def check_dates_cmd(ns, cfg, start, end, use_llm=False):
         apply_config(cfg, ns)
     from .automation import check_dates
     key = os.environ.get("GROQ_API_KEY") if use_llm else None
-    return check_dates(ns, cfg, start, end, ROOT, api_key=key)
+    return check_dates(ns, cfg, start, end, ROOT, api_key=key, publish_all=publish_all)
 
 
 def sample(cfg, sessions=None, date=None, use_llm=False):
@@ -267,6 +268,7 @@ def main(argv=None):
     sub.add_parser("research-report")
     sub.add_parser("outlook-evidence")
     sub.add_parser("figures")
+    sub.add_parser("followup", help="R15: what followed the report (flags vs next moves, record by call type)")
     sample_cmd = sub.add_parser("sample")
     sample_cmd.add_argument("--sessions", type=int)
     sample_cmd.add_argument("--date", help="2026-09-21 (default), 2026-09-17, 2026-09-18, or a date saved with --save-snapshot")
@@ -286,6 +288,11 @@ def main(argv=None):
     check_cmd.add_argument("--start", default="2026-08-17")
     check_cmd.add_argument("--end", default=datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat())
     check_cmd.add_argument("--llm", action="store_true", help="also let the AI write the text (slower)")
+    rep_cmd = sub.add_parser("republish", help="rebuild every stored date's report in the current format "
+                                               "and publish it to reports/<date>/")
+    rep_cmd.add_argument("--start", default="2026-08-17")
+    rep_cmd.add_argument("--end", default=datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat())
+    rep_cmd.add_argument("--no-llm", action="store_true", help="template text only (no AI call)")
     ingest_cmd = sub.add_parser("ingest")
     ingest_cmd.add_argument("--date", default=datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat())
     report_cmd = sub.add_parser("report")
@@ -307,6 +314,10 @@ def main(argv=None):
               f"quiet five moved {q['quiet_move_rate']:.1%} vs {q['rest_move_rate']:.1%} "
               f"(lower on {q['dates_quiet_strictly_lower']}/{q['dates']} dates, "
               f"{q['dates_tied']} tied); direction AUC {ev['direction']['auc_among_moves']:.3f}")
+        return
+    if args.command == "followup":
+        from .research.r15_report_followup import run as run_r15, summary
+        print(summary(run_r15(ROOT)))
         return
     if args.command == "figures":
         from .figures import build as build_figures
@@ -336,6 +347,8 @@ def main(argv=None):
         return run_all(ns, cfg, args.date, not args.no_llm, args.force)
     if args.command == "check-dates":
         return check_dates_cmd(ns, cfg, args.start, args.end, args.llm)
+    if args.command == "republish":
+        return check_dates_cmd(ns, cfg, args.start, args.end, not args.no_llm, publish_all=True)
     return report(ns, cfg, args.date)
 
 

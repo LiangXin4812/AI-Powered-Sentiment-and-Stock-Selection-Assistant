@@ -1,11 +1,11 @@
-# Verification status (version 3.1, 22 October 2026)
+# Verification status (version 3.5, 25 October 2026)
 
 ## Executed
 
 - **Clean Python 3.12 environment from `requirements.lock`**: all pinned
   packages installed. CPU PyTorch is used only by FinBERT during live
   ingestion and is not imported by any offline command.
-- **Offline test suite (`smoke`)**: 40 tests passed. Besides the model,
+- **Offline test suite (`smoke`)**: 43 tests passed. Besides the model,
   config, baseline, calibration-fold, outlook and R14 checks of earlier
   versions they cover: the default sample (21 Sep 2026, saved copy of the live
   database) with its cards chosen by today's news readings, 'calmer than most'
@@ -13,22 +13,43 @@
   full without advice sentences, no reviewer page and the reviewer notes file;
   the stored-records sample (17 Sep) with the Task 5 rules reproducing the
   stored rl_v8 score for all 15 stocks; the AI narrative layer (mocked model):
-  the six-line market read built by rules, checks N1–N11 each replacing only
+  the six-line market read built by rules, checks N1–N13 each replacing only
   the failing block, one retry with feedback, saved text for an older layout
   not reused; and the automation pieces (both samples pass every report check,
   publishing writes the day folder and index, the workflow runs at 18:30
-  Singapore time on weekdays and holds no credential).
+  Singapore time on weekdays and holds no credential); and R15 (flags do not
+  mean bigger moves; the ✓ gain is in "no big move" calls) with the report
+  wording that follows from it.
 - **Live path from Google Colab against the project database** (20 Oct 2026):
   `doctor --online` and `signal-report --date 2026-09-21 --save-snapshot` ran
   end to end six times while the AI narrative layer was hardened; on the last
-  run every AI block passed its checks at the first attempt. The saved inputs
-  are `tests/fixtures/live_snapshot_2026-09-21.json`.
+  run every AI block passed its checks at the first attempt. Rerun on 23 Oct
+  2026 with the new layout: one empty reply was replaced by template text as
+  designed, and a rerun passed every block; its saved inputs are
+  `tests/fixtures/live_snapshot_2026-09-21.json`. The Research Report
+  (`report --date 2026-09-21`) ran on the same day after the R14 field fix.
+  Rerun on 24 Oct 2026 with the 3.2 card facts: the six-line market read
+  passed every check at the first attempt; the three card lines wrote their
+  chances out in words and one contradicted the stored price fact, which the
+  checks of the time did not catch. 3.3 adds N12 and N13 for exactly this,
+  re-checks saved AI text when the sample is rebuilt, and replaces the three
+  card lines with the code's text in the packaged sample.
 - **Multi-date check** (`check-dates`, Colab against the project database,
   22 Oct 2026): the report was built for all 20 stored dates from 17 Aug to
   22 Sep 2026; 18 passed every check. The two failures were quoted third-party
   headlines matching the advice and price-target patterns (24 Aug, 2 Sep);
   the six earliest dates (17-24 Aug) also printed 'nan' for a forecast record that did not yet
-  exist. Both are fixed in 3.1 and covered by a regression test.
+  exist. Both are fixed in 3.1 and covered by a regression test; rerun on
+  23 Oct 2026, all 20 dates passed. The saved report inputs are kept in
+  `evidence/date_check_inputs/` and feed R15.
+- **Archive rebuild with the AI writer** (`republish`, Colab against the
+  project database, 25 Oct 2026): all 20 stored dates rebuilt with the AI
+  writer on and LibreOffice PDFs, and all 20 passed every report check. The AI
+  text passed checks N1-N13 in full on 7 dates; on 12 dates one or more AI
+  lines failed a check (N12 and N13 included) and were replaced by the
+  template text, as designed; on 1 date no AI text was kept. The rebuilt
+  reports are in the repository's `reports/` folder with the index
+  `reports/README.md`.
 - **Sample reports** for 21 Sep and 17 Sep 2026 converted to PDF with
   LibreOffice and inspected page by page: six A4 pages each, sections 1–5 in
   order, section 3 starting on its own page.
@@ -42,9 +63,7 @@
 | Item | Limit |
 | --- | --- |
 | Docker image build | Docker Hub was not reachable here; the container file set was verified in earlier versions |
-| New-layout AI text on a live run | Colab notebook step 4 (`signal-report --date 2026-09-21 --save-snapshot`) refreshes the snapshot with it |
-| Multi-date check after the 3.1 fixes | Colab notebook step 5 reruns it |
-| Scheduled run on GitHub Actions | Needs the repository and its secrets; see `AUTOMATION.md` |
+| Scheduled run on GitHub Actions | The workflow is in the repository; its first scheduled run (23 Oct 2026) stopped because the Actions secrets `SUPABASE_URL` and `GROQ_API_KEY` were not yet set; see `AUTOMATION.md` |
 | Forward confirmation of R14 | Exploratory rule, frozen 16 Oct 2026; needs at least 15 new dates |
 | New Task 6 directional skill | Not established; no model promoted |
 | Reader comprehension | Protocol in `READER_TEST.md`; no participants yet |

@@ -1,6 +1,6 @@
 # SGX AI-Powered Sentiment & Stock Selection Assistant
 
-NUS FT5007 capstone, Liang Xin (A0221401E). Version 3.1, 22 October 2026.
+NUS FT5007 capstone, Liang Xin (A0221401E). Version 3.5, 24 October 2026.
 
 The system reads company news, price indicators, macro conditions and options
 activity for 15 SGX-listed stocks every trading day (Tasks 1–4), turns them
@@ -32,7 +32,8 @@ a three-session move of more than 1%):
 | --- | --- |
 | Normal three-session swing, ±(20-day volatility × √3) | realised change inside it 73.8% of the time (about 68% expected) |
 | "Calmer than most": the five stocks a day with the highest chance of no big move | moved more than 1% in 41.9% of cases vs 56.5% for the other ten; lower rate on 22 of 31 dates (2 tied) |
-| Up-or-down lean | weak: live calls right 40% vs 54% for always "no big move"; calls marked ✓ right 46%, ✗ 33% |
+| Up-or-down lean | not reliable: live calls right 40% vs 54% for always "no big move"; calls marked ✓ right 46%, ✗ 33%, but the gain is in "no big move" calls; ✓ rise-or-fall calls right 22% (R15) |
+| Flag ⚑ (worth a closer look) | not a forecast of size: over the next 3 sessions flagged stocks moved 1.18% on average, the rest 1.26% (R15, 18 report dates) |
 
 None of this is a trading strategy, and the report never gives advice.
 
@@ -46,6 +47,7 @@ docker compose run --rm capstone python -m sgx_capstone sample           # Daily
 docker compose run --rm capstone python -m sgx_capstone sample --date 2026-09-17   # stored-records version
 docker compose run --rm capstone python -m sgx_capstone figures          # report figures + sources.json
 docker compose run --rm capstone python -m sgx_capstone outlook-evidence # recompute R14
+docker compose run --rm capstone python -m sgx_capstone followup         # recompute R15
 docker compose run --rm capstone python -m sgx_capstone research-report  # HTML research review
 ```
 
@@ -100,6 +102,76 @@ reviewer access: `AUTOMATION.md`.
 `Run_T7_in_Colab.ipynb` (delivered with the package) uploads this folder,
 installs it, reads the keys from Colab secrets or a hidden prompt, and runs
 the live 21 Sep report and the multi-date check.
+
+## What changed in 3.5
+
+- **`republish`**: rebuilds every stored date's Daily Signal Report in the
+  current format (AI writer on, PDF when LibreOffice is installed), checks
+  each one and publishes it to `reports/<date>/` with a fresh index, so the
+  archive a reviewer browses never mixes layouts. Run it after any layout
+  change (Colab notebook Step 7a; Step 7b pushes code and archive together).
+  Covered by a test with the database mocked.
+- The report's pattern reference points to the final report's Appendix C
+  (appendices now follow the order in which the report first uses them).
+- Figures use the report's names for the outlook: *normal 3-day swing* (the
+  code's typical range) and *calmer than most* (quieter-than-most ranking);
+  the architecture figure counts 43 tests and shows `republish`.
+- The R15 test now runs on a copy of the frozen inputs. Before, running the
+  tests while `check-dates` or `republish` was writing `outputs/date_check/`
+  recomputed `outputs/research/R15_report_followup.csv` from a partial set,
+  and a report built at that moment printed "nan" in its testing section.
+
+## What changed in 3.4
+
+- **The reader's vocabulary.** An investor does not know the project's task
+  numbers, so the Daily Signal Report no longer prints "Task 5" or "Task 6":
+  cards say *News & signals reading*, *Rules behind the reading*, *AI summary
+  of the evidence* and *Forecast lean*; section 4 describes four plain stages
+  (collect the day's facts; read the news and signals; forecast the next 3
+  days; check and write the report) and notes once which project Tasks they
+  are. The AI prompt uses the same names, and code maps any "Task 5/6" in AI
+  text to them (`narrative.plain_terms`, applied like the hyphen fix). A test
+  asserts that no "Task 5-7" reaches the reader.
+- The 21 Sep report rebuilt from the saved database copy is no longer labelled
+  "SAMPLE" (it is the real report of that day); the stored-records
+  reconstruction of 17 Sep keeps its label.
+- Figures: the R14 chart's legend no longer overlaps a bar label, the
+  calibration chart's point labels sit above their bubbles, and the
+  architecture figure shows the AI writer, checks N1-N13 and the daily run.
+- The report's pattern reference points to the final report's Appendix G.
+
+## What changed in 3.3
+
+A live rerun of the 21 Sep report on 24 Oct 2026 (the first with the 3.2 card
+facts) showed two new failure modes of the AI writer: it wrote chances out in
+words ("a fifty-percent chance"), which evades the no-digit rule, and said the
+price had "already" followed the news on a card whose stored fact says not
+yet. Two checks were added: **N13** (no figure written out in words) and
+**N12** (a card may not contradict its stored price fact). The prompt states
+both rules, saved AI text is **re-checked whenever the sample is rebuilt**
+(a block that fails a newer check falls back to the code's text, named in the
+output), the AI label no longer says "kept the wording" when lines were
+reworded, and the reviewer notes say N1-N13. Snapshot refreshed from that
+run; 42 offline tests.
+
+## What changed in 3.2
+
+- **R15, what followed the report** (`python -m sgx_capstone followup`, offline):
+  from the saved inputs of all 20 checked reports (`evidence/date_check_inputs/`)
+  and the stored outcomes, flagged stocks did not move more over the next three
+  sessions (1.18% vs 1.26%), and the ✓ gain comes from "no big move" calls
+  (58.4% vs 52.9%); ✓ rise-or-fall calls were right 21.7% (46 calls). The
+  report now says so: the lean is "not reliable, even with ✓", a ✓ on a
+  direction is called unknown on the card, and section 5 adds "Does ⚑ mean a
+  bigger move?". Covered by a test.
+- The AI writer no longer receives the pattern description or the phrase
+  "treat as noise" for cards, which it had mixed into the five-day line.
+- A flag on a model-only pattern says the model leans one way instead of
+  "holds a firm view".
+- Research Report: the R14 sentence uses the renamed fields (lower on 22 of 31
+  dates, 2 tied); this crashed `report` in 3.1.
+- Sample snapshot for 21 Sep refreshed from the 23 Oct live run; section 5
+  compacted so the report stays at six pages.
 
 ## What changed in 3.1
 
@@ -249,7 +321,7 @@ in words; the AI label says whether the AI reworded the code-written draft.
 
 | Path | Purpose |
 | --- | --- |
-| `sgx_capstone/__main__.py` | Commands: `doctor`, `smoke`, `ingest`, `daily`, `report`, `signal-report`, `sample`, `figures`, `outlook-evidence`, `research-report` |
+| `sgx_capstone/__main__.py` | Commands: `doctor`, `smoke`, `ingest`, `daily`, `report`, `signal-report`, `sample`, `figures`, `outlook-evidence`, `followup`, `research-report`, `run-all`, `check-dates` |
 | `sgx_capstone/legacy/` | Task 1–6 serving code selected from the notebooks |
 | `src/task7_report.py`, `src/task7_generate.py` | Task 7 engine: report input, 11 patterns, attention, price context, reliability, compliance R1–R7, renderer |
 | `sgx_capstone/outlook.py` | Typical range, quieter-than-most ranking, group Shapley explanation |

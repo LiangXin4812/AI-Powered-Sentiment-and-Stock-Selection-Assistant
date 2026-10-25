@@ -134,6 +134,28 @@ class NarrativeChecks(unittest.TestCase):
         dropped = self.line(3, "Today's news added no signal for any stock.")
         self.assertTrue(any("N11 drops 'sgx group'" in f for f in self.build(self.reply(dropped))["flags"]))
 
+    def test_lessons_from_the_24_oct_live_run(self):
+        """The model wrote chances in words and said the price had already followed when the fact
+        said not yet; N13 and N12 catch both, and revalidate() drops such saved blocks."""
+        ok = self.N.check_block("UOB rose {c2_period_move}.", {"c2_period_move": ("+1%", "")}, own="c2",
+                                price_fact="already in the price")
+        self.assertEqual(ok, [])
+        fl = self.N.check_block("Task 6 predicts no big move with a fifty-percent chance.", {}, own="c1")
+        self.assertTrue(any(f.startswith("N13") for f in fl), fl)
+        fl = self.N.check_block("The price already reflects the news.", {}, own="c1",
+                                price_fact="not yet in the price")
+        self.assertTrue(any(f.startswith("N12") for f in fl), fl)
+        fl = self.N.check_block("The news is not yet in the price.", {}, own="c1",
+                                price_fact="the price went the other way")
+        self.assertTrue(any(f.startswith("N12") for f in fl), fl)
+        good = self.build(self.reply())
+        saved = dict(good, cards=dict(good["cards"], **{"S68.SI": "The price already reflects the news, "
+                                                                  "a fifty-percent chance."}))
+        out = self.N.revalidate(saved, self.D)
+        self.assertNotIn("S68.SI", out["cards"])
+        self.assertIsNotNone(out["summary"])
+        self.assertTrue(any("saved card S68.SI" in f for f in out["flags"]))
+
     def test_corporate_buyout_is_not_advice(self):
         from sgx_capstone.daily_report import summary_is_clean, clean_t5_summary
         self.assertTrue(summary_is_clean("Recent news on the CityCab buy‑out does not shift the stance."))
@@ -180,7 +202,9 @@ class NarrativeChecks(unittest.TestCase):
             doc = Document(render(D, tmp))
             body = "\n".join([p.text for p in doc.paragraphs] +
                              [c.text for t in doc.tables for r in t.rows for c in r.cells]).lower()
-        self.assertIn("the ai writer (openai/gpt-oss-20b, the same model as task 5)", body)
+        self.assertIn("the ai writer (openai/gpt-oss-20b, the same model that writes the news summaries)", body)
+        # the reader never meets the internal stage names
+        self.assertNotRegex(body, r"\btask [5-7]\b")
         self.assertIn("in short (ai-written, checked)", body)
         import task7_generate as g
         for pattern in g._R1_PATTERNS + g._R2_PATTERNS + g._R3_PATTERNS:

@@ -133,25 +133,27 @@ def fig_architecture(b: Builder):
          fill=AQUA_T, edge=AQUA, fs=7.7, sfs=6.3)
     _arrow(ax, HW / 2, 0.64, HW / 2, 0.617)
     _arrow(ax, 1 - HW / 2, 0.64, 1 - HW / 2, 0.617)
-    _box(ax, 0.0, 0.3, 1.0, 0.14, "T7 Report layer",
+    _box(ax, 0.0, 0.285, 1.0, 0.155, "T7 Report layer",
          "input builder with look-ahead guard; 7-year price context since 2019\n"
          "11 patterns (evidence vs price vs forecast) > attention level > withholding below the prior-data rule\n"
-         "outlook: typical range and quieter-than-most ranking with its R14 record, explained by group Shapley\n"
-         "LLM summarises the news (T5); report text checked R1-R7; deterministic fallback",
+         "outlook: normal 3-day swing and calmer-than-most ranking with its R14 record, explained by group Shapley\n"
+         "market read drafted by code from T1-T6, worded by the LLM under checks N1-N13; report text checked R1-R7\n"
+         "run-all publishes every trading day at 18:30 SGT; check-dates checks every stored date; republish rebuilds the archive",
          fill=NAVY_T, edge=NAVY_T, fs=7.7, sfs=6.3, tcolor="white")
     _arrow(ax, HW / 2, 0.48, HW / 2, 0.442)
     _arrow(ax, 1 - HW / 2, 0.48, 1 - HW / 2, 0.442)
     _box(ax, 0.0, 0.15, HW, 0.105, "Daily Signal Report",
-         "board of 15 stocks, stock cards,\nnext three sessions with record,\nreviewer appendix",
+         "one-minute market read, 15-stock board,\ncards where today's news adds something,\n"
+         "next 3 days with record, tested scorecard",
          fill=BLUE_T, edge=BLUE, fs=7.7, sfs=6.3)
     _box(ax, 1 - HW, 0.15, HW, 0.105, "Research Report",
-         "reliability against baselines, calibration,\nresearch programme R1-R14,\nincident log, guideline map",
+         "reliability against baselines, calibration,\nresearch programme R1-R15,\nincident log, guideline map",
          fill=XL, fs=7.7, sfs=6.3)
-    _arrow(ax, HW / 2, 0.3, HW / 2, 0.257)
-    _arrow(ax, 1 - HW / 2, 0.3, 1 - HW / 2, 0.257)
+    _arrow(ax, HW / 2, 0.285, HW / 2, 0.257)
+    _arrow(ax, 1 - HW / 2, 0.285, 1 - HW / 2, 0.257)
     ax.text(0.5, 0.105, "config.yaml, settings and prompts are hashed into a SHA-256 manifest; "
             "the serving path is a Docker image\nwith pinned artefacts, a doctor command, "
-            "offline tests and an offline sample report", ha="center", va="center",
+            "43 offline tests and an offline rebuild of the 21 Sep report", ha="center", va="center",
             fontsize=6.5, color=INK2, style="italic")
     return b.save(fig, "f1_architecture.png", ["config.yaml"], {})
 
@@ -355,19 +357,19 @@ def fig_outlook_record(b: Builder):
     q = [rf.quiet_move_rate_first_half, rf.quiet_move_rate_second_half, rf.quiet_move_rate]
     o = [rf.rest_move_rate_first_half, rf.rest_move_rate_second_half, rf.rest_move_rate]
     xx, w = np.arange(3), 0.36
-    b1 = a1.bar(xx - w / 2 - 0.01, np.array(q) * 100, w, color=BLUE, label="Called quieter than most (5 a day)")
+    b1 = a1.bar(xx - w / 2 - 0.01, np.array(q) * 100, w, color=BLUE, label="Called calmer than most (5 a day)")
     b2 = a1.bar(xx + w / 2 + 0.01, np.array(o) * 100, w, color=LIGHT, label="Other 10 stocks")
     for bar in list(b1) + list(b2):
         a1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1, f"{bar.get_height():.0f}%",
                 ha="center", fontsize=7)
     a1.set_xticks(xx, groups)
-    a1.set_ylim(0, 72)
+    a1.set_ylim(0, 90)                       # headroom so the legend clears the tallest bar label
     a1.set_ylabel("% with a move above 1%")
-    a1.set_title("Quieter-than-most call, RandomForest", loc="left", fontsize=8.8, weight="bold")
-    a1.legend(fontsize=6.8, frameon=False, loc="upper left")
+    a1.set_title("Calmer-than-most call, RandomForest", loc="left", fontsize=8.8, weight="bold")
+    a1.legend(fontsize=6.8, frameon=False, loc="upper left", ncol=2, columnspacing=1.0, handlelength=1.4)
     _style(a1)
 
-    labels = ["Model's quiet five", "Volatility's quiet five", "Both agree", "Other ten\n(model rule)"]
+    labels = ["Model's calmer five", "Volatility's calmer five", "Both agree", "Other ten\n(model rule)"]
     vals = [vol.model_quiet_move_rate_same_rows, vol.quiet_move_rate, vol.both_quiet_move_rate,
             vol.model_rest_move_rate_same_rows]
     cols = [BLUE, ORANGE, AQUA, LIGHT]
@@ -409,11 +411,13 @@ def fig_move_calibration(b: Builder):
     a1.plot([0.3, 0.7], [0.3, 0.7], color=GREY, ls="--", lw=0.9)
     sz = 18 + 1.4 * c.n
     a1.scatter(c.stated_mean, c.observed_move_rate, s=sz, color=BLUE, alpha=0.85, zorder=3)
-    for _, row in c.iterrows():
-        a1.text(row.stated_mean + 0.008, row.observed_move_rate - 0.035, f"n={int(row.n)}",
-                fontsize=6.6, color=INK2)
+    for _, row in c.iterrows():                     # label above each bubble, clear of its neighbours
+        r_pt = (18 + 1.4 * row.n) ** 0.5 / 2         # bubble radius in points
+        a1.annotate(f"n={int(row.n)}", (row.stated_mean, row.observed_move_rate), xytext=(0, r_pt + 2),
+                    textcoords="offset points", ha="center", va="bottom", fontsize=6.4, color=INK2,
+                    bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none", alpha=0.85), zorder=4)
     a1.set_xlim(0.33, 0.68)
-    a1.set_ylim(-0.03, 0.75)
+    a1.set_ylim(-0.05, 0.8)
     a1.set_xlabel("Stated 1 − P(neutral)")
     a1.set_ylabel("Observed share outside the label band")
     a1.set_title("Calibration on the model's own label band", loc="left", fontsize=8.8, weight="bold")
@@ -431,7 +435,7 @@ def fig_move_calibration(b: Builder):
     a2.set_ylim(0, 100)
     a2.set_xlim(-0.5, 2.5)
     a2.set_ylabel("% inside ±s·√3")
-    a2.set_title("Typical range held", loc="left", fontsize=8.8, weight="bold")
+    a2.set_title("Normal 3-day swing held", loc="left", fontsize=8.8, weight="bold")
     _style(a2)
     fig.tight_layout()
     facts = {"bins": c.round(3).to_dict(orient="records"),

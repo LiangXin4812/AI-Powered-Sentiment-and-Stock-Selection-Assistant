@@ -1,0 +1,1306 @@
+{
+ "date": "2026-09-02",
+ "mode": "live",
+ "period": {
+  "start": "2026-08-26",
+  "first": "2026-08-27",
+  "end": "2026-09-02",
+  "sessions": 5,
+  "days": [
+   "2026-08-27",
+   "2026-08-28",
+   "2026-08-31",
+   "2026-09-01",
+   "2026-09-02"
+  ],
+  "reading_dates": [
+   "2026-08-31",
+   "2026-09-01",
+   "2026-09-02"
+  ]
+ },
+ "record": {
+  "as_of": "2026-09-02",
+  "n": 105,
+  "accuracy": 0.4666666666666667,
+  "always_neutral": 0.6095238095238096,
+  "shown_acc": null,
+  "withheld_acc": null,
+  "source": "stored champion forecasts matured by the report date"
+ },
+ "findings": {
+  "r4_ic": -0.0218142565708428,
+  "r4_days": 21,
+  "event_fired": 0.9971264367816091,
+  "pos_v7": 0.5603448275862069,
+  "pos_v8": 0.3275862068965517,
+  "ic_v7": -0.0218142565708428,
+  "ic_v8": -0.020590436003588,
+  "oof_lo": 0.5333333333333333,
+  "oof_hi": 0.5397849462365591,
+  "oof_neutral": 0.5333333333333333,
+  "sw_lo": 0.5382716049382716,
+  "sw_hi": 0.5456790123456791,
+  "sw_n": 15,
+  "sw_sw_lo": 0,
+  "sw_sw_hi": 4,
+  "r13_leads": 4,
+  "r13_n": 15,
+  "rev_ic": 0.0708550168957978,
+  "rev_t": 9.772202912907051,
+  "n": 105,
+  "acc": 0.4666666666666667,
+  "neutral": 0.6095238095238096,
+  "shown": 0.4935064935064935,
+  "hidden": 0.39285714285714285,
+  "ge90_n": 59,
+  "ge90_acc": 0.4576271186440678,
+  "first": "2026-08-17",
+  "last": "2026-08-26"
+ },
+ "narrative": {
+  "mode": "template",
+  "model": "openai/gpt-oss-20b",
+  "summary": null,
+  "cards": {},
+  "flags": [],
+  "retried": []
+ },
+ "outlook_record": {
+  "window": "2026-07-27 to 2026-09-15",
+  "n_dates": 31,
+  "as_of": null,
+  "quiet_move_rate": 0.41935483870967744,
+  "rest_move_rate": 0.5645161290322581,
+  "range_coverage": 0.7380952380952381
+ },
+ "rows": {
+  "D05.SI": {
+   "ticker": "D05.SI",
+   "name": "DBS Group",
+   "sector": "Banking",
+   "move": 0.8971457276781392,
+   "period_ret": 1.7838413542215603,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.531802026088144,
+   "t6_source": "stored live forecast",
+   "same_day": "bullish",
+   "archetype": "move_complete",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.0,
+   "n_prior": 7,
+   "net": 0.696,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": false
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": false
+    },
+    {
+     "factor": "Positive company news sentiment",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.181,
+     "decisive": false
+    },
+    {
+     "factor": "Weekly timeframe confirms bullish",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.146,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "O39.SI": {
+   "ticker": "O39.SI",
+   "name": "OCBC Bank",
+   "sector": "Banking",
+   "move": 1.6273140599832647,
+   "period_ret": 1.3040707393372042,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.502283407098323,
+   "t6_source": "stored live forecast",
+   "same_day": "bullish",
+   "archetype": "move_complete",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.515,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (4)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Weekly timeframe confirms bullish",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.146,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "U11.SI": {
+   "ticker": "U11.SI",
+   "name": "UOB",
+   "sector": "Banking",
+   "move": 0.8450079775251584,
+   "period_ret": 2.002441219894524,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "bullish",
+   "t6_prob": 0.551440205490092,
+   "t6_source": "stored live forecast",
+   "same_day": "bullish",
+   "archetype": "momentum",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.42857142857142855,
+   "n_prior": 7,
+   "net": 0.515,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (2)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Weekly timeframe confirms bullish",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.146,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "C38U.SI": {
+   "ticker": "C38U.SI",
+   "name": "CapitaLand Integrated Commercial Trust",
+   "sector": "REIT",
+   "move": -0.42553152634362545,
+   "period_ret": -1.6806806028663912,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.567428628876771,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "dormant",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.529,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Positive company news sentiment",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.181,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "N2IU.SI": {
+   "ticker": "N2IU.SI",
+   "name": "Mapletree Pan Asia Commercial Trust",
+   "sector": "REIT",
+   "move": -0.7936500427734305,
+   "period_ret": -1.5748016714081325,
+   "sentiment": "neutral",
+   "week_pos": 1,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.563279770389313,
+   "t6_source": "stored live forecast",
+   "same_day": "bearish",
+   "archetype": "quiet",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.348,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": false
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": true
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    }
+   ],
+   "warning": "low"
+  },
+  "A17U.SI": {
+   "ticker": "A17U.SI",
+   "name": "Ascendas REIT",
+   "sector": "REIT",
+   "move": -1.2448120465286205,
+   "period_ret": -2.857140076751319,
+   "sentiment": "neutral",
+   "week_pos": 1,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.578266400620981,
+   "t6_source": "stored live forecast",
+   "same_day": "bearish",
+   "archetype": "quiet",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.2857142857142857,
+   "n_prior": 7,
+   "net": 0.348,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": false
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": true
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    }
+   ],
+   "warning": "low"
+  },
+  "ME8U.SI": {
+   "ticker": "ME8U.SI",
+   "name": "Mapletree Industrial Trust",
+   "sector": "REIT",
+   "move": 0.0,
+   "period_ret": 0.5181404116229027,
+   "sentiment": "neutral",
+   "week_pos": 0,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.595929538087358,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "quiet",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.0,
+   "n_prior": 7,
+   "net": 0.098,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": false
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Negative company news sentiment",
+     "direction": "bearish",
+     "source": "task1_news",
+     "weight": 0.216,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (2)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    },
+    {
+     "factor": "Bearish corporate events (1)",
+     "direction": "bearish",
+     "source": "task1_news",
+     "weight": 0.055,
+     "decisive": false
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": false
+    }
+   ],
+   "warning": "low"
+  },
+  "Z74.SI": {
+   "ticker": "Z74.SI",
+   "name": "Singtel",
+   "sector": "Telecommunications",
+   "move": 0.0,
+   "period_ret": -1.1086516230013554,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "bullish",
+   "t6_prob": 0.57410904047145,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "muted_pending",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.7142857142857143,
+   "n_prior": 7,
+   "net": 0.369,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": true
+    }
+   ],
+   "warning": "low"
+  },
+  "BN4.SI": {
+   "ticker": "BN4.SI",
+   "name": "Keppel Corp",
+   "sector": "Industrials",
+   "move": -0.34572137344931475,
+   "period_ret": 1.0517080382459243,
+   "sentiment": "bullish",
+   "week_pos": 2,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.50940032971096,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "dormant",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.0,
+   "n_prior": 7,
+   "net": 0.369,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (2)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": true
+    }
+   ],
+   "warning": "low"
+  },
+  "S63.SI": {
+   "ticker": "S63.SI",
+   "name": "ST Engineering",
+   "sector": "Industrials",
+   "move": -0.8506630740727328,
+   "period_ret": -0.8506630740727328,
+   "sentiment": "bullish",
+   "week_pos": 2,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.595128298571392,
+   "t6_source": "stored live forecast",
+   "same_day": "bearish",
+   "archetype": "noise",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.5714285714285714,
+   "n_prior": 7,
+   "net": 0.529,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Positive company news sentiment",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.181,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "U96.SI": {
+   "ticker": "U96.SI",
+   "name": "Sembcorp Industries",
+   "sector": "Industrials",
+   "move": 0.49505297180894026,
+   "period_ret": -0.4901917243818832,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.587200570965802,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "dormant",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.369,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (2)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": true
+    }
+   ],
+   "warning": "mild"
+  },
+  "F34.SI": {
+   "ticker": "F34.SI",
+   "name": "Wilmar International",
+   "sector": "Consumer Goods",
+   "move": 2.127657550770312,
+   "period_ret": 2.399997711181645,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.51295603691983,
+   "t6_source": "stored live forecast",
+   "same_day": "bullish",
+   "archetype": "move_complete",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.2857142857142857,
+   "n_prior": 7,
+   "net": 0.369,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (4)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": true
+    }
+   ],
+   "warning": "mild"
+  },
+  "C52.SI": {
+   "ticker": "C52.SI",
+   "name": "ComfortDelGro",
+   "sector": "Consumer Goods",
+   "move": 0.0,
+   "period_ret": -0.7751930820906638,
+   "sentiment": "bullish",
+   "week_pos": 2,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "bullish",
+   "t6_prob": 0.594628716575814,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "muted_pending",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.369,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (4)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": true
+    }
+   ],
+   "warning": "mild"
+  },
+  "S68.SI": {
+   "ticker": "S68.SI",
+   "name": "SGX Group",
+   "sector": "Financial Services",
+   "move": 0.0,
+   "period_ret": -2.4247123163253836,
+   "sentiment": "bullish",
+   "week_pos": 3,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "bullish",
+   "t6_prob": 0.572023430990312,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "muted_pending",
+   "attention": "ROUTINE",
+   "withheld": true,
+   "edge": -0.14285714285714285,
+   "n_prior": 7,
+   "net": 0.696,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": false
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (4)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": false
+    },
+    {
+     "factor": "Positive company news sentiment",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.181,
+     "decisive": false
+    },
+    {
+     "factor": "Weekly timeframe confirms bullish",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.146,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": false
+    },
+    {
+     "factor": "Price above VWAP",
+     "direction": "bullish",
+     "source": "task2_technical",
+     "weight": 0.021,
+     "decisive": false
+    }
+   ],
+   "warning": "mild"
+  },
+  "BSL.SI": {
+   "ticker": "BSL.SI",
+   "name": "Raffles Medical Group",
+   "sector": "Healthcare",
+   "move": -0.5813947847045586,
+   "period_ret": -0.5813947847045586,
+   "sentiment": "bullish",
+   "week_pos": 2,
+   "week_neg": 0,
+   "week_n": 3,
+   "t6_class": "neutral",
+   "t6_prob": 0.543385476706028,
+   "t6_source": "stored live forecast",
+   "same_day": "neutral",
+   "archetype": "dormant",
+   "attention": "ROUTINE",
+   "withheld": false,
+   "edge": 0.0,
+   "n_prior": 7,
+   "net": 0.383,
+   "signals": [
+    {
+     "factor": "Positive geopolitical backdrop",
+     "direction": "bullish",
+     "source": "task1_political",
+     "weight": 0.25,
+     "decisive": true
+    },
+    {
+     "factor": "Elevated political news volume",
+     "direction": "bearish",
+     "source": "task1_political",
+     "weight": 0.242,
+     "decisive": false
+    },
+    {
+     "factor": "Bullish corporate events (3)",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.204,
+     "decisive": true
+    },
+    {
+     "factor": "Positive company news sentiment",
+     "direction": "bullish",
+     "source": "task1_news",
+     "weight": 0.181,
+     "decisive": true
+    },
+    {
+     "factor": "Weekly timeframe confirms bearish",
+     "direction": "bearish",
+     "source": "task2_technical",
+     "weight": 0.146,
+     "decisive": false
+    },
+    {
+     "factor": "Options market bullish positioning",
+     "direction": "bullish",
+     "source": "task4_options",
+     "weight": 0.136,
+     "decisive": true
+    }
+   ],
+   "warning": "high"
+  }
+ },
+ "cards": [
+  "D05.SI",
+  "S68.SI",
+  "C38U.SI"
+ ],
+ "calm_source": "stored",
+ "outlook": {
+  "D05.SI": {
+   "move_rank": 8,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.107545190032674,
+    "half_width_pct": 1.9183245408151186,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.07854534943562716,
+    "political news": 0.008366020492192114,
+    "price indicators": -0.012485987124797576,
+    "market conditions": -0.019993604494917706,
+    "options market": 0.02331767729544442
+   },
+   "top_group": "company news",
+   "basis": "stored"
+  },
+  "O39.SI": {
+   "move_rank": 11,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.464107215469873,
+    "half_width_pct": 2.535908084922014,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.0378858857528889,
+    "political news": -0.0063306845193618275,
+    "price indicators": 0.00862729654418943,
+    "market conditions": -0.026526802763872925,
+    "options market": 0.0252274730719888
+   },
+   "top_group": "company news",
+   "basis": "stored"
+  },
+  "U11.SI": {
+   "move_rank": 12,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 0.9884208503895952,
+    "half_width_pct": 1.7119951321352147,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.02612939732843035,
+    "political news": 0.00047007133816005884,
+    "price indicators": 0.0088924484224727,
+    "market conditions": -0.032052135788864275,
+    "options market": 0.021872227351059988
+   },
+   "top_group": "market conditions",
+   "basis": "stored"
+  },
+  "C38U.SI": {
+   "move_rank": 5,
+   "activity": "quieter than most",
+   "range": {
+    "daily_sd_pct": 0.8514644200440035,
+    "half_width_pct": 1.4747796363533818,
+    "n_returns": 20
+   },
+   "vol_quiet": true,
+   "move_by_group": {
+    "company news": 0.009869367196772089,
+    "political news": -0.014072465226319074,
+    "price indicators": -0.029656050288736854,
+    "market conditions": -0.030583291713644087,
+    "options market": 0.04085326775532753
+   },
+   "top_group": "options market",
+   "basis": "stored"
+  },
+  "N2IU.SI": {
+   "move_rank": 6,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 0.7828270303088712,
+    "half_width_pct": 1.3558961900332263,
+    "n_returns": 20
+   },
+   "vol_quiet": true,
+   "move_by_group": {
+    "company news": 0.0037245038735795512,
+    "political news": -0.011928588375786586,
+    "price indicators": -0.022507484494948216,
+    "market conditions": -0.025400497817039933,
+    "options market": 0.024683745359888005
+   },
+   "top_group": "market conditions",
+   "basis": "stored"
+  },
+  "A17U.SI": {
+   "move_rank": 4,
+   "activity": "quieter than most",
+   "range": {
+    "daily_sd_pct": 0.7574924516795202,
+    "half_width_pct": 1.3120154126588417,
+    "n_returns": 20
+   },
+   "vol_quiet": true,
+   "move_by_group": {
+    "company news": 0.022310147789793636,
+    "political news": -0.01262050218368482,
+    "price indicators": -0.028267470283349524,
+    "market conditions": -0.028853470483138723,
+    "options market": 0.03416777159265755
+   },
+   "top_group": "options market",
+   "basis": "stored"
+  },
+  "ME8U.SI": {
+   "move_rank": 1,
+   "activity": "quieter than most",
+   "range": {
+    "daily_sd_pct": 0.3946151778639293,
+    "half_width_pct": 0.6834935374981549,
+    "n_returns": 20
+   },
+   "vol_quiet": true,
+   "move_by_group": {
+    "company news": -0.09671766107378198,
+    "political news": -0.002793860479003141,
+    "price indicators": -0.0056676175883414795,
+    "market conditions": -0.017348983385971926,
+    "options market": 0.02286165622426835
+   },
+   "top_group": "company news",
+   "basis": "stored"
+  },
+  "Z74.SI": {
+   "move_rank": 14,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.3658078020738371,
+    "half_width_pct": 2.365648506565863,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.03112685220221912,
+    "political news": 0.001438868130333591,
+    "price indicators": -0.0018124946370486111,
+    "market conditions": -0.02739653935752345,
+    "options market": 0.035915208374035106
+   },
+   "top_group": "options market",
+   "basis": "stored"
+  },
+  "BN4.SI": {
+   "move_rank": 10,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.0760912998428613,
+    "half_width_pct": 1.8638448049106708,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.043914056148408,
+    "political news": -0.004981504464709164,
+    "price indicators": 0.0035820254449734946,
+    "market conditions": -0.022210827469625313,
+    "options market": 0.026261635885163056
+   },
+   "top_group": "company news",
+   "basis": "stored"
+  },
+  "S63.SI": {
+   "move_rank": 2,
+   "activity": "quieter than most",
+   "range": {
+    "daily_sd_pct": 1.6842716656828647,
+    "half_width_pct": 2.9172440987113837,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.0011760831504662216,
+    "political news": -0.008788550490821553,
+    "price indicators": -0.04825875500835258,
+    "market conditions": -0.0344944632437689,
+    "options market": 0.030807306309107108
+   },
+   "top_group": "price indicators",
+   "basis": "stored"
+  },
+  "U96.SI": {
+   "move_rank": 3,
+   "activity": "quieter than most",
+   "range": {
+    "daily_sd_pct": 1.5576868561503825,
+    "half_width_pct": 2.6979927771346954,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.015994657464653034,
+    "political news": -0.011279580312119062,
+    "price indicators": -0.014522926876915131,
+    "market conditions": -0.043843978321153984,
+    "options market": 0.019006327035500866
+   },
+   "top_group": "market conditions",
+   "basis": "stored"
+  },
+  "F34.SI": {
+   "move_rank": 9,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.7702030611994233,
+    "half_width_pct": 3.0660816417113597,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": -0.018483003948344623,
+    "political news": -0.0076765883620845115,
+    "price indicators": 0.007780303836613483,
+    "market conditions": -0.03938712351130083,
+    "options market": 0.01834886309677622
+   },
+   "top_group": "market conditions",
+   "basis": "stored"
+  },
+  "C52.SI": {
+   "move_rank": 15,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.0253688594672372,
+    "half_width_pct": 1.7759909610962068,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": -0.01796999950865054,
+    "political news": -0.0018761995782588087,
+    "price indicators": -0.016361516195903328,
+    "market conditions": -0.036017165700619296,
+    "options market": 0.03317674591479683
+   },
+   "top_group": "market conditions",
+   "basis": "stored"
+  },
+  "S68.SI": {
+   "move_rank": 13,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 1.1958953842098954,
+    "half_width_pct": 2.071351565988642,
+    "n_returns": 20
+   },
+   "vol_quiet": false,
+   "move_by_group": {
+    "company news": 0.04953262037888893,
+    "political news": -0.008898724190171185,
+    "price indicators": -0.013286653074625818,
+    "market conditions": -0.03148243385342103,
+    "options market": 0.018544752519925385
+   },
+   "top_group": "company news",
+   "basis": "stored"
+  },
+  "BSL.SI": {
+   "move_rank": 7,
+   "activity": "usual",
+   "range": {
+    "daily_sd_pct": 0.46127074359385967,
+    "half_width_pct": 0.7989443639496411,
+    "n_returns": 20
+   },
+   "vol_quiet": true,
+   "move_by_group": {
+    "company news": 0.004181807166782233,
+    "political news": -0.010974419764069371,
+    "price indicators": -0.016932444632357668,
+    "market conditions": -0.028888456950553212,
+    "options market": 0.0409658170717744
+   },
+   "top_group": "options market",
+   "basis": "stored"
+  }
+ }
+}

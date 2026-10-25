@@ -178,8 +178,8 @@ class OutlookChecks(unittest.TestCase):
         # re-run offline only where they reproduce the stored rl_v8 score.
         self.assertEqual(rec["date"], "2026-09-17")
         self.assertIn("over 11–17 sep", body)
-        for label in ("news today", "price chart", "task 5 reading", "task 5 rules", "(pattern:",
-                      "today: news vs price", "last 5 days in context", "task 6 lean", "record vs simple rule",
+        for label in ("news today", "price chart", "news & signals reading", "rules behind the reading", "(pattern:",
+                      "today: news vs price", "last 5 days in context", "forecast lean", "record vs simple rule",
                       "champion", "why.", "backdrop.", "for you."):
             self.assertIn(label, body)
         # Task 6: the stored live forecast for the day is shown for every stock, with its record.
@@ -224,7 +224,8 @@ class OutlookChecks(unittest.TestCase):
         snap = json.loads((ROOT / "tests" / "fixtures" / "live_snapshot_2026-09-21.json").read_text())["D"]["rows"]
         top5 = sorted(snap, key=lambda t: -snap[t]["t6_probs"]["neutral"])[:5]
         self.assertEqual({t for t, o in rec["outlook"].items() if o["activity"] == "quieter than most"}, set(top5))
-        self.assertIn("sample rebuilt offline from the saved copy", body)
+        self.assertIn("rebuilt offline from the saved copy", body)
+        self.assertNotIn("sample rebuilt", body)
         self.assertNotIn("training period", body)
         # Task 5's AI summary in full, advice sentences removed; the political rule flagged once.
         self.assertIn("remains positive on the back of a strong rsi oversold signal", body)

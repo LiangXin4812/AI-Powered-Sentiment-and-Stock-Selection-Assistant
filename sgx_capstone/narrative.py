@@ -35,15 +35,18 @@ PROMPT = """You write two short parts of a daily report on 15 Singapore stocks f
 The report's tables already show every number. Your job is plain-English sentences.
 
 How the system works (use this framing):
-- Task 5 reads today's news and price-chart indicators and says what they add on top of the price itself
+- The news-and-signals reading (internally "Task 5") reads today's news and price-chart indicators and
+  says what they add on top of the price itself
   (a reading: positive, neutral or negative). It describes today; it is not a forecast.
-- Task 6 is the forecast for the next 3 trading days. It is weak overall; its record on each stock is shown
+- The forecast model (internally "Task 6") forecasts the next 3 trading days. It is weak overall; its
+  record on each stock is shown
   against a simple rule, and calls that trail the rule should be treated as weak.
 
 STRICT RULES
 1. Never write a digit (write "three", "five"; "Task 5" and "Task 6" are allowed). Every figure, percentage
-   or count from the data must be one of the placeholders listed below,
-   written exactly with braces, e.g. {{top_period_move}}. Do not invent placeholders.
+   or count from the data must be one of the placeholders listed below, written exactly with braces,
+   e.g. {{top_period_move}}. Do not invent placeholders, and never spell a figure out in words either
+   (no "a fifty-percent chance"): the only way to state a figure is its placeholder.
 2. No advice (buy, sell, hold, recommend, you should), no price targets, no certainty about future prices
    (never "will rise" / "will fall"). Do not use the words bullish or bearish.
 3. A card may use only its own placeholders (c1_ for card c1, and so on) plus the general ones.
@@ -57,12 +60,17 @@ STRICT RULES
    Write for a reader: never name the facts themselves (no "five-day context", "news explains", "task6_record").
 6. Use each "news_explains_the_move" fact exactly. If it is "no", "not clearly" or "not enough news",
    say plainly that the news does not explain the move. Never say the news or the reading explains,
-   drives or accounts for a move unless that fact is "same direction".
+   drives or accounts for a move unless that fact is "same direction". Use "today_news_vs_price" the
+   same way: never say the price has already moved or reflected the news when that fact says not yet,
+   nor the reverse.
 7. Do not compare today's move with the 5-day move (no "matching", "same as", "in line with").
    Write dates only as placeholders ({{c1_big_day}}) and the period as "over {{period}}".
    Put a figure straight after its verb: "fell {{c1_period_move}} over {{period}}".
 8. Task 6 deserves little weight on every stock, even where its record is about as good as a simple rule:
    never call its forecast moderate, strong, reliable or trustworthy.
+
+9. The reader does not know the internal names: write "the news-and-signals reading" and "the forecast
+   model", never "Task 5" or "Task 6".
 
 {draft_block}
 
@@ -159,15 +167,13 @@ def build_facts(D):
                     "five_day_context": _context(r, D)["conclusion"],
                     "news_explains_the_move": explain_verdict(r), "news_today": __import__("sgx_capstone.daily_report", fromlist=["tone_label"]).tone_label(r).lower(), "task5_reading": EVIDENCE_WORD[r["sentiment"]].lower(),
                     "task5_decided_by": _decisive(r) or "no single rule",
-                    "pattern": f"{PATTERN_NAME.get(r['archetype'], r['archetype'])}: "
-                               f"{PATTERN_WORD.get(r['archetype'], '')}",
                     "task6_forecast": FORECAST_WORD[r["t6_class"]].lower(),
-                    "task6_record": "trails a simple rule (treat as noise)" if r["withheld"]
-                                    else "about as good as a simple rule (still only a weak signal)"}
+                    "task6_record": "worse than a simple rule on this stock, so it deserves little weight" if r["withheld"]
+                                    else "about as good as a simple rule on this stock, still only a weak signal"}
     return f, context, cards
 
 
-MARKET_READ_LEADS = ("Today. ", "Why. ", "Backdrop. ", "New today (Task 5). ", "Next 3 days (Task 6). ",
+MARKET_READ_LEADS = ("Today. ", "Why. ", "Backdrop. ", "New today. ", "Next 3 days. ",
                      "For you. ")
 MARKET_READ_REFS = ("", " See section 2.", "", " See section 2.", " See section 3.", "")
 NUM_WORDS = ("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
@@ -262,11 +268,11 @@ def summary_draft(D, f):
     looks = sorted(D["outlook"].values(), key=lambda o: o["range"]["half_width_pct"])
     k = {c: [r for r in rows if r["t6_class"] == c] for c in ("neutral", "bullish", "bearish")}
     if len(k["neutral"]) == len(rows):
-        fc = "Task 6 expects no big move for all 15 stocks"
+        fc = "The forecast model expects no big move for any of the 15 stocks"
     else:
         who = lambda xs: (_names(_short(r["name"]) for r in xs) if len(xs) <= 3 else f"{NUM_WORDS[len(xs)]} stocks")
         bits = [f"{w} for {who(k[c])}" for c, w in (("bullish", "a rise"), ("bearish", "a fall")) if k[c]]
-        fc = "Task 6 leans towards " + "; ".join(bits) + " and no big move for the rest"
+        fc = "The forecast model leans towards " + "; ".join(bits) + " and no big move for the rest"
         ok = [r for r in k["bullish"] + k["bearish"] if not r["withheld"]]
         fc += (f" (only {who(ok)} with a ✓ record)" if ok else " (none with a ✓ record)")
     l5 = (fc + "; normal 3-day swings run from {swing_low} (" + _short(looks[0]["name"]) + ") to {swing_high} ("
@@ -299,6 +305,42 @@ def matches_layout(nar, D):
     summary_ok = not nar.get("summary") or len(nar["summary"]) == len(summary_draft(D, f))
     cards_ok = set(nar.get("cards") or {}) <= {r["ticker"] for r in pick_cards(D)}
     return summary_ok and cards_ok
+
+
+def revalidate(nar, D):
+    """Re-check saved AI text (numbers already filled in) with the content checks and drop any
+    block that fails, so a sample never reprints a line a newer check would reject."""
+    if not nar or nar.get("mode") != "llm":
+        return nar
+    from .daily_report import pick_cards, explain_verdict, evidence_vs_price
+    f, _, _ = build_facts(D)
+    keep = re.compile(r"^(N3 digit|N3 unknown|N4 |N5 )")        # placeholder checks: not applicable after fill
+
+    def content_flags(text, explains=None, price_fact=None):
+        return [x for x in check_block(text, f, explains=explains, price_fact=price_fact, max_words=95)
+                if not keep.match(x)]
+
+    out = dict(nar, flags=list(nar.get("flags") or []), cards=dict(nar.get("cards") or {}))
+    if out.get("summary"):
+        fl = [x for s in out["summary"] for x in content_flags(s)]
+        if fl:
+            out["summary"] = None
+            out["flags"] += ["saved summary: " + x for x in fl[:4]]
+    for r in pick_cards(D):
+        txt = out["cards"].get(r["ticker"])
+        if not txt:
+            continue
+        pf = PLAIN_PRICE.get(evidence_vs_price(r["sentiment"], r.get("same_day")), "no news signal today")
+        fl = content_flags(txt, explains=explain_verdict(r), price_fact=pf)
+        if fl:
+            del out["cards"][r["ticker"]]
+            out["flags"] += [f"saved card {r['ticker']}: " + x for x in fl[:3]]
+    if out.get("summary"):
+        out["summary"] = [plain_terms(s) for s in out["summary"]]
+    out["cards"] = {k: plain_terms(v) for k, v in out["cards"].items()}
+    if not out["summary"] and not out["cards"]:
+        out["mode"] = "template"
+    return out
 
 
 def market_read(D):
@@ -400,17 +442,32 @@ def _parse(raw):
 _MOVE_PH = r"\{(?:c\d+_period_move|c\d+_today_move|c\d+_big_day_move|top_period_move|top_today_move|top_period_day_move)\}"
 
 
+def plain_terms(text):
+    """The reader's names for the internal stages ('Task 5' -> the news-and-signals reading, 'Task 6' ->
+    the forecast model): a fixed vocabulary map applied by code to every AI text, like the hyphen fix."""
+    if not text:
+        return text
+    t = re.sub(r"\bTask 6 forecasts\b", "the forecast model predicts", text)
+    t = re.sub(r"\bTask 6's\b", "the forecast model's", t)
+    t = re.sub(r"\bTask 6\b", "the forecast model", t)
+    t = re.sub(r"\bTask 5(?:'s)? (reading|readings|rules?)\b", r"the news-and-signals \1", t)
+    t = re.sub(r"\bTask 5\b", "the news-and-signals reading", t)
+    return re.sub(r"(^|[.!?]\s+)the (forecast model|news-and-signals)", lambda m: m.group(1) + "The " + m.group(2), t)
+
+
 def tidy(text):
     """'fell over {c1_period_move}' reads as 'more than'; move 'over' after the figure."""
     text = re.sub("[\u2010\u2011\u2012]", "-", str(text or ""))       # non-breaking hyphens
+
+    text = plain_terms(text)
 
     def repl(m):
         return m.group(1) + ("" if "{period}" in text else " over {period}")
     return re.sub(rf"\bover\s+({_MOVE_PH})", repl, text)
 
 
-def check_block(text, facts, own=None, max_words=70, explains=None):
-    """Flags for one block of model text (empty list = passes N2-N9)."""
+def check_block(text, facts, own=None, max_words=70, explains=None, price_fact=None):
+    """Flags for one block of model text (empty list = passes N2-N13)."""
     import task7_generate as g
     from .daily_report import corporate_nouns
     flags, low = [], (text or "").lower()
@@ -448,6 +505,18 @@ def check_block(text, facts, own=None, max_words=70, explains=None):
             if not re.search(r"\b(not|no|cannot|without|nothing|little|hardly)\b|n't", low[max(0, m.start() - 30):m.start()]):
                 flags.append(f"N9 says the news '{m.group(0)}' the move (fact: {explains})")
                 break
+    if re.search(r"\bper\s?cents?\b|\bpercent\b", low):
+        flags.append("N13 a figure written out in words ('percent'); figures must be placeholders")
+    if price_fact:
+        claims = {"already": re.search(r"\bprice (?:has )?already\b|\balready (?:in the price|reflect|priced|"
+                                       r"followed)", low),
+                  "not yet": re.search(r"\bnot yet (?:in the price|reflected|followed|shown)\b|"
+                                       r"\bprice has(?: not|n't) (?:yet )?(?:reflected|followed|moved)", low),
+                  "other way": re.search(r"\b(?:opposite direction|other way|went against the news)\b", low)}
+        key = next((k for k in claims if k in price_fact), None)
+        for c, m in claims.items():
+            if m and c != key:
+                flags.append(f"N12 says '{m.group(0)}' but the price fact is '{price_fact}'")
     if len(text.split()) > max_words:
         flags.append(f"N7 {len(text.split())} words")
     return flags
@@ -511,8 +580,10 @@ def build(D, api_key=None, settings=None):
         return fl
 
     def card_flags(cards, k, r):
+        from .daily_report import evidence_vs_price
         c = f"c{k}"
-        return check_block(cards.get(c, ""), facts, own=c, explains=explain_verdict(r))
+        pf = PLAIN_PRICE.get(evidence_vs_price(r["sentiment"], r.get("same_day")), "no news signal today")
+        return check_block(cards.get(c, ""), facts, own=c, explains=explain_verdict(r), price_fact=pf)
 
     # summary: up to two attempts, the second told which checks failed
     msg, final = prompts["summary"], []

@@ -1,5 +1,5 @@
 {
- "saved_at": "2026-10-22T21:47+08:00",
+ "saved_at": "2026-10-24T12:15+08:00",
  "model": "RandomF",
  "D": {
   "date": "2026-09-21",
@@ -32,7 +32,18 @@
    "ge90_n": 117,
    "ge90_acc": 0.36752136752136755,
    "first": "2026-08-17",
-   "last": "2026-09-15"
+   "last": "2026-09-15",
+   "shown_dir": 0.21739130434782608,
+   "shown_dir_n": 46,
+   "hidden_dir": 0.16216216216216217,
+   "shown_neu": 0.5930232558139535,
+   "shown_neu_n": 86,
+   "r15": {
+    "flag": 1.1844144161139925,
+    "flag_n": 17,
+    "rest": 1.256466004741832,
+    "dates": 18
+   }
   },
   "names": {
    "D05.SI": "DBS Group",
@@ -2829,20 +2840,20 @@
   "mode": "llm",
   "model": "openai/gpt-oss-20b",
   "summary": [
-   "Today the 15 stocks moved -0.3% on average (5 up, 8 down); over 15\u201321 Sep they moved -1.2%. Weakest: Telecommunications (-2.9%), Financial Services (-2.6%) and Consumer Goods (-2.5%); held up best: REIT (-0.4%) and Banking (-0.5%).",
-   "Biggest movers over 15\u201321 Sep: ComfortDelGro (-3.1%), Singtel (-2.9%) and SGX Group (-2.6%). ComfortDelGro moved without a company news story; the move looks sector-wide. Singtel moved more than the market without a company news story. For SGX Group, the company news and the price disagree.",
-   "The market backdrop is calm (VIX 14.7), but Singapore ETF options lean defensive (put/call 1.43): more traders are buying protection against a fall.",
-   "Today's news added a positive signal for SGX Group (not yet in the price), UOB (already in the price) and Ascendas REIT (the price went the other way).",
-   "Task 6 expects no big move for all 15 stocks; normal 3-day swings run from \u00b11.0% (Mapletree Industrial) to \u00b12.6% (SGX Group), so a bigger move than a stock's own swing would be unusual.",
-   "No stock is flagged \u2691 today. The moves in ComfortDelGro and Singtel came without company news, so sector or market news is the place to check before reacting. If you prefer less day-to-day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move."
+   "Today the 15 stocks changed by an average of -0.3%, with 5 rising and 8 falling. Over 15\u201321 Sep the average change was -1.2%. The weakest sectors were Telecommunications (-2.9%), Financial Services (-2.6%) and Consumer Goods (-2.5%), while REIT (-0.4%) and Banking (-0.5%) performed best.",
+   "The biggest movers over 15\u201321 Sep were ComfortDelGro (-3.1%), Singtel (-2.9%) and SGX Group (-2.6%). ComfortDelGro\u2019s change happened without a company news story, suggesting a sector-wide move. Singtel also moved more than the market without a company news story. For SGX Group, the company news and the price do not match.",
+   "The market backdrop is calm with VIX at 14.7. Singapore ETF options are leaning defensive, with a put/call ratio of 1.43, meaning more traders are buying protection against a fall.",
+   "Today\u2019s news added a positive signal for SGX Group (not yet reflected in the price), UOB (already reflected), and Ascendas REIT (the price moved in the opposite direction).",
+   "Task 6 expects no big move for any of the 15 stocks. Typical 3-day swings range from \u00b11.0% at Mapletree Industrial to \u00b12.6% at SGX Group, so a move larger than a stock\u2019s own swing would be unusual.",
+   "No stock is flagged today. ComfortDelGro and Singtel moved without company news, so look at sector or market news before reacting. If you want less day-to-day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move."
   ],
   "cards": {
-   "S68.SI": "SGX Group fell 2.6% over 15\u201321 Sep while the price rose 0.5% today. The news was mostly positive but does not explain the move, and the model\u2019s reading is positive yet the pattern shows a dormant signal. Task 6 predicts no big move with a fifty percent chance, which is treated as noise.",
-   "U11.SI": "UOB fell 0.5% over 15\u201321 Sep and rose 0.8% today. The news is mixed and already in the price, and the model\u2019s reading is positive. The pattern indicates the move is complete, so no further change is expected. Task 6 forecasts no big move with a forty-three percent chance, considered weak.",
-   "A17U.SI": "Ascendas REIT fell 0.4% over 15\u201321 Sep and dropped 1.3% today. The price moved opposite to the news, which is mostly neutral, and the model\u2019s reading is positive. The pattern is noise, so no clear direction is seen. Task 6 expects no big move with a forty-seven percent chance, treated as noise."
+   "S68.SI": "SGX Group fell 2.6% over 15\u201321 Sep. The news is mostly positive but does not explain the move, and the price already reflects the news. The last five days show a small decline, and Task 6 predicts no big move with only a fifty-percent chance, so its guidance is weak.",
+   "U11.SI": "UOB fell 0.5% over 15\u201321 Sep. The news is mixed and already in the price, barely moving the stock. The last five days show a small decline, and Task 6 forecasts no big move with a forty-three-percent chance, giving it only a weak signal.",
+   "A17U.SI": "Ascendas REIT fell 0.4% over 15\u201321 Sep. The news is mostly neutral and the price moved in the opposite direction, barely moving the stock. The last five days show a small decline, and Task 6 expects no big move with a forty-seven-percent chance, so its guidance is weak."
   },
   "flags": [],
   "retried": [],
-  "raw": "summary try 1: {\"summary\":[\"Today the 15 stocks moved {avg_today} on average ({n_up} up, {n_down} down); over {period} they moved {avg_period}. Weakest: Telecommunications ({sw1}), Financial Services ({sw2}) and Consumer Goods ({sw3}); held up best: REIT ({ss1}) and Banking ({ss2}).\",\"Biggest movers over {period}: ComfortDelGro ({mv1}), Singtel ({mv2}) and SGX Group ({mv3}). ComfortDelGro moved without a company news story; the move looks sector\u2011wide. Singtel moved more than the market without a company news story. For SGX Group, the company news and the price disagree.\",\"The market backdrop is calm (VIX {vix}), but Singapore ETF options lean defensive (put/call {pc_ratio}): more traders are buying protection against a fall.\",\"Today's news added a positive signal for SGX Group (not yet in the price), UOB (already in the price) and Ascendas REIT (the price went the other way).\",\"Task 6 expects no big move for all 15 stocks; normal 3\u2011day swings run from {swing_low} (Mapletree Industrial) to {swing_high} (SGX Group), so a bigger move than a stock's own swing would be unusual.\",\"No stock is flagged \u2691 today. The moves in ComfortDelGro and Singtel came without company news, so sector or market news is the place to check before reacting. If you prefer less day\u2011to\u2011day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move.\"]}\n\ncards try 1: {\"cards\":{\"c1\":\"SGX Group fell {c1_period_move} over {period} while the price rose {c1_today_move} today. The news was mostly positive but does not explain the move, and the model\u2019s reading is positive yet the pattern shows a dormant signal. Task 6 predicts no big move with a fifty percent chance, which is treated as noise.\",\"c2\":\"UOB fell {c2_period_move} over {period} and rose {c2_today_move} today. The news is mixed and already in the price, and the model\u2019s reading is positive. The pattern indicates the move is complete, so no further change is expected. Task 6 forecasts no big move with a forty\u2011three percent chance, considered weak.\",\"c3\":\"Ascendas REIT fell {c3_period_move} over {period} and dropped {c3_today_move} today. The price moved opposite to the news, which is mostly neutral, and the model\u2019s reading is positive. The pattern is noise, so no clear direction is seen. Task 6 expects no big move with a forty\u2011seven percent chance, treated as noise.\"}}"
+  "raw": "summary try 1: {\"summary\":[\"Today the 15 stocks changed by an average of {avg_today}, with {n_up} rising and {n_down} falling. Over {period} the average change was {avg_period}. The weakest sectors were Telecommunications ({sw1}), Financial Services ({sw2}) and Consumer Goods ({sw3}), while REIT ({ss1}) and Banking ({ss2}) performed best.\",\"The biggest movers over {period} were ComfortDelGro ({mv1}), Singtel ({mv2}) and SGX Group ({mv3}). ComfortDelGro\u2019s change happened without a company news story, suggesting a sector\u2011wide move. Singtel also moved more than the market without a company news story. For SGX Group, the company news and the price do not match.\",\"The market backdrop is calm with VIX at {vix}. Singapore ETF options are leaning defensive, with a put/call ratio of {pc_ratio}, meaning more traders are buying protection against a fall.\",\"Today\u2019s news added a positive signal for SGX Group (not yet reflected in the price), UOB (already reflected), and Ascendas REIT (the price moved in the opposite direction).\",\"Task 6 expects no big move for any of the 15 stocks. Typical 3\u2011day swings range from {swing_low} at Mapletree Industrial to {swing_high} at SGX Group, so a move larger than a stock\u2019s own swing would be unusual.\",\"No stock is flagged today. ComfortDelGro and Singtel moved without company news, so look at sector or market news before reacting. If you want less day\u2011to\u2011day movement, Raffles Medical Group, Sembcorp Industries, Mapletree Pan Asia Comm. Trust, Keppel Corp and Mapletree Industrial have the highest chance of no big move.\"]}\n\ncards try 1: {\"cards\":{\"c1\":\"SGX Group fell {c1_period_move} over {period}. The news is mostly positive but does not explain the move, and the price already reflects the news. The last five days show a small decline, and Task 6 predicts no big move with only a fifty\u2011percent chance, so its guidance is weak.\",\"c2\":\"UOB fell {c2_period_move} over {period}. The news is mixed and already in the price, barely moving the stock. The last five days show a small decline, and Task 6 forecasts no big move with a forty\u2011three\u2011percent chance, giving it only a weak signal.\",\"c3\":\"Ascendas REIT fell {c3_period_move} over {period}. The news is mostly neutral and the price moved in the opposite direction, barely moving the stock. The last five days show a small decline, and Task 6 expects no big move with a forty\u2011seven\u2011percent chance, so its guidance is weak.\"}}"
  }
 }

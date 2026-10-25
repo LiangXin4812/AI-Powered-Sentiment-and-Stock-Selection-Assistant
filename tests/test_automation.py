@@ -56,6 +56,61 @@ class AutomationChecks(unittest.TestCase):
             for line in N.summary_draft(D, f):
                 self.assertNotRegex(N._ALLOWED.sub("", N._PH.sub("", line)), r"\d", line)
 
+    def test_what_followed_the_report_is_stated_honestly(self):
+        """R15 (23 Oct): flagged stocks did not move more, and the ✓ gain is in 'no big move' calls."""
+        from sgx_capstone.research.r15_report_followup import run
+        from sgx_capstone.daily_report import gather_sample, render, flag_reason
+        from sgx_capstone.automation import report_text
+        # on a copy of the frozen inputs: the test never rewrites the packaged R15 file, and a
+        # check-dates or republish run in progress (outputs/date_check) cannot change what it reads
+        import shutil
+        with tempfile.TemporaryDirectory() as tmp:
+            shutil.copytree(ROOT / "evidence" / "date_check_inputs", Path(tmp) / "evidence" / "date_check_inputs")
+            (Path(tmp) / "outputs" / "research").mkdir(parents=True)
+            for name in ("R11_predictions.csv", "R10_suppression_replay.csv"):
+                shutil.copy(ROOT / "outputs" / "research" / name, Path(tmp) / "outputs" / "research" / name)
+            g = run(Path(tmp)).set_index("group")
+        self.assertEqual(int(g.loc["routine", "dates"]), 18)
+        self.assertLess(g.loc["flagged (ELEVATED)", "value"], g.loc["routine", "value"])
+        self.assertAlmostEqual(g.loc["shown, rise/fall call", "value"], 10 / 46, places=3)
+        self.assertGreater(g.loc["shown, no-big-move call", "value"], g.loc["always 'no big move'", "value"])
+        D = gather_sample(ROOT, date="2026-09-21")
+        D["narrative"] = {"mode": "template", "summary": None, "cards": {}, "flags": []}
+        self.assertEqual(D["findings"]["shown_dir_n"], 46)
+        with tempfile.TemporaryDirectory() as tmp:
+            body = report_text(render(D, tmp))
+        self.assertIn("a ✓ never makes a direction likely", body)
+        self.assertIn("Does ⚑ mean a bigger move?", body)
+        self.assertNotIn("only ✓ calls carry information", body)
+        self.assertNotIn("firm view", flag_reason({"archetype": "model_only", "t6_class": "bearish"}))
+
+    def test_republish_rebuilds_every_stored_date_into_the_archive(self):
+        """republish = check-dates + publish: each stored date lands in reports/<date>/ in the
+        current format, and the index lists it (database mocked with the saved 21 Sep copy)."""
+        from unittest.mock import patch
+        from sgx_capstone.daily_report import gather_sample
+        from sgx_capstone.automation import check_dates
+
+        class Conn:
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+            def execute(self, *a, **k): return [("2026-09-21",)]
+
+        class Engine:
+            def connect(self): return Conn()
+
+        cfg, _ = load_config()
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch("sgx_capstone.daily_report.gather_live", lambda ns, c, d: gather_sample(ROOT, date=d)), \
+                patch("sgx_capstone.automation.to_pdf", lambda p: None):
+            summary = check_dates({"SUPABASE_ENGINE": Engine()}, cfg, "2026-09-21", "2026-09-21", Path(tmp),
+                                  publish_all=True)
+            day = Path(tmp) / "reports" / "2026-09-21"
+            self.assertTrue(any(day.glob("T7_Daily_Signal_Report_*.docx")))
+            self.assertTrue(any(day.glob("T7_reviewer_notes_*.md")))
+            self.assertIn("2026-09-21", (Path(tmp) / "reports" / "README.md").read_text())
+            self.assertIn("True", summary.read_text())
+
     def test_publish_writes_the_day_folder_and_the_index(self):
         from sgx_capstone.daily_report import gather_sample, render
         from sgx_capstone.automation import publish

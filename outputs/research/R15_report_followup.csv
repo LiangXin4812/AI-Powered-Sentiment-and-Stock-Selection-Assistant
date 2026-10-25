@@ -1,0 +1,12 @@
+question,group,n,measure,value,dates,first,last
+attention vs next 3-session move,flagged (ELEVATED),17,mean absolute 3-session return %,1.1844144161139925,18,2026-08-17,2026-09-18
+attention vs next 3-session move,notable,36,mean absolute 3-session return %,1.3366530761618352,18,2026-08-17,2026-09-18
+attention vs next 3-session move,flagged or notable,53,mean absolute 3-session return %,1.2878218078446022,18,2026-08-17,2026-09-18
+attention vs next 3-session move,routine,217,mean absolute 3-session return %,1.256466004741832,18,2026-08-17,2026-09-18
+forecast record split by call type,shown (record usable),135,share of calls right,0.45925925925925926,19,2026-08-17,2026-09-17
+forecast record split by call type,withheld,150,share of calls right,0.3466666666666667,19,2026-08-17,2026-09-17
+forecast record split by call type,"shown, rise/fall call",46,share of calls right,0.21739130434782608,19,2026-08-17,2026-09-17
+forecast record split by call type,"withheld, rise/fall call",80,share of calls right,0.1875,19,2026-08-17,2026-09-17
+forecast record split by call type,"shown, no-big-move call",89,share of calls right,0.5842696629213483,19,2026-08-17,2026-09-17
+forecast record split by call type,"withheld, no-big-move call",70,share of calls right,0.5285714285714286,19,2026-08-17,2026-09-17
+forecast record split by call type,always 'no big move',285,share of calls right,0.5298245614035088,19,2026-08-17,2026-09-17

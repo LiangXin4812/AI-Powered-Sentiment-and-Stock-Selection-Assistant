@@ -1458,7 +1458,7 @@ def build_doc(D, A, focus):
             f"with the lowest model chance of a move went on to move beyond the "
             f"label band {rf['quiet_move_rate']:.0%} of the time against "
             f"{rf['rest_move_rate']:.0%} for the other ten, and were the quieter "
-            f"group on {int(rf['dates_quiet_moved_less'])} of {int(rf['dates'])} dates; "
+            f"group on {int(rf['dates_quiet_strictly_lower'])} of {int(rf['dates'])} dates ({int(rf['dates_tied'])} tied); "
             f"a 20-day volatility range held {rng['range_coverage']:.0%} of the time. "
             f"Direction did not separate (AUC {rf['auc_direction_among_moves']:.2f}). "
             "The Investor Brief therefore states how much a stock may move and "

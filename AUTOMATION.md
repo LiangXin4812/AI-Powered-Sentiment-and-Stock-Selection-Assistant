@@ -15,7 +15,7 @@ python -m sgx_capstone run-all
    the champion forecast with calibrated probabilities. The run stops if any
    of the 15 stocks is missing, so a half-built report is never published.
 4. **Task 7** (`signal-report`): the Daily Signal Report, with the AI-written
-   market read and card lines checked by rules N1–N11 (template text if the AI
+   market read and card lines checked by rules N1–N13 (template text if the AI
    is unavailable).
 5. **Publish**: `reports/<date>/` gets the Word report, a PDF (when
    LibreOffice is installed) and `T7_reviewer_notes_<date>.md` (how the report
@@ -61,6 +61,19 @@ repository owner by GitHub and its log shows the step that stopped.
 No credential is stored in the code or the workflow file; they live only in
 the repository's encrypted secrets. Scheduled runs also keep the free
 database project active.
+
+## Rebuilding the archive after a change
+
+```bash
+python -m sgx_capstone republish --start 2026-08-17
+```
+
+rebuilds every stored date's report in the current format, with the AI
+writer (`--no-llm` for template text), checks each one like `check-dates`,
+and publishes it to `reports/<date>/` with a fresh `reports/README.md`. The
+daily schedule only ever writes today's report, so after a layout change
+this is what keeps the archive consistent. From Colab: notebook Step 7a,
+then Step 7b pushes the code and the rebuilt archive.
 
 ## Checking stability across dates
 

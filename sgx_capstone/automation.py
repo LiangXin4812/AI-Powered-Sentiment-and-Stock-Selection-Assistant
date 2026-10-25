@@ -7,6 +7,9 @@ run-all       after the SGX close: Tasks 1-4 for today -> Task 5 and Task 6 ->
 check-dates   builds the report for every stored date in a range from the live
               database and checks each one (no AI call unless --llm), so a
               reviewer can see the report is stable beyond the sample date.
+republish     the same, with the AI writer, and publishes every date to
+              reports/<date>/: after a layout change the whole archive is
+              rebuilt in the current format.
 
 Both read credentials from the environment only (SUPABASE_URL, GROQ_API_KEY,
 optional SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASSWORD / REPORT_TO).
@@ -155,8 +158,10 @@ def check_report(docx: Path, D: dict) -> list[str]:
     return issues
 
 
-def check_dates(ns, cfg, start: str, end: str, root: Path, api_key=None) -> Path:
-    """Build and check the report for every stored date in [start, end]."""
+def check_dates(ns, cfg, start: str, end: str, root: Path, api_key=None, publish_all=False) -> Path:
+    """Build and check the report for every stored date in [start, end]. With publish_all
+    (command republish) each built report is also published to reports/<date>/, so the
+    archive a reviewer browses is rebuilt in the current format after a layout change."""
     from sqlalchemy import text
     from .daily_report import gather_live, render, pick_cards, short
     from . import narrative as N
@@ -181,6 +186,8 @@ def check_dates(ns, cfg, start: str, end: str, root: Path, api_key=None) -> Path
             D["narrative"] = N.build(D, api_key, cfg.get("llm"))
             path = render(D, out_root / d)
             issues = check_report(path, D)
+            if publish_all:
+                publish(root, Path(path), d)
             row.update({"ok": not issues, "issues": "; ".join(issues),
                         "cards": ", ".join(short(r["name"]) for r in pick_cards(D)),
                         "positive": sum(r["sentiment"] == "bullish" for r in D["rows"].values()),
@@ -200,4 +207,7 @@ def check_dates(ns, cfg, start: str, end: str, root: Path, api_key=None) -> Path
         w.writerows(rows)
     ok = sum(r["ok"] for r in rows)
     print(f"Checked {len(rows)} stored dates from {start} to {end}: {ok} passed every check. Summary: {summary}")
+    if publish_all:
+        print(f"Published {sum(not r['error'] for r in rows)} reports to {Path(root) / 'reports'} "
+              f"(index: reports/README.md)")
     return summary
