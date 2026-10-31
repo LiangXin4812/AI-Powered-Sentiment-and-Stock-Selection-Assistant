@@ -26,6 +26,19 @@ from .data_access import latest_complete_date, load_settings, write_primary
 LEGACY = Path(__file__).parent / "legacy"
 
 
+CREDENTIALS = ("SUPABASE_URL", "GROQ_API_KEY", "HF_TOKEN", "SMTP_HOST", "SMTP_PORT",
+               "SMTP_USER", "SMTP_PASSWORD", "REPORT_TO")
+
+
+def clean_credentials(env=os.environ) -> None:
+    """Drop leading and trailing whitespace from credentials. A key saved with a
+    trailing line break makes an invalid HTTP header: run #8 (31 Oct) collected
+    Tasks 1-4 and then stopped at Task 5 with 'Invalid header value'."""
+    for name in CREDENTIALS:
+        if name in env and env[name] != env[name].strip():
+            env[name] = env[name].strip()
+
+
 def _execute(filename: str, ns: dict) -> None:
     path = LEGACY / f"{filename}.py"
     exec(compile(path.read_text(), str(path), "exec"), ns)
@@ -312,6 +325,7 @@ def main(argv=None):
     report_cmd = sub.add_parser("report")
     report_cmd.add_argument("--date")
     args = parser.parse_args(argv)
+    clean_credentials()
     cfg, sha = load_config()
     sys.path.insert(0, str(ROOT / "src"))
     if args.command == "research-report":
