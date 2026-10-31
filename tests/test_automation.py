@@ -169,6 +169,17 @@ class AutomationChecks(unittest.TestCase):
             (Path(tmp) / "reports" / "2026-10-30" / "T7_Daily_Signal_Report_2026-10-30.docx").write_bytes(b"x")
             self.assertTrue(already_published(Path(tmp), "2026-10-30"))
 
+    def test_a_key_saved_with_a_line_break_still_makes_a_valid_header(self):
+        """Run #8 (31 Oct) stopped at Task 5 with 'Invalid header value': the key secret ended in a line break."""
+        from sgx_capstone.__main__ import clean_credentials
+        env = {"GROQ_API_KEY": "gsk_example\n", "SUPABASE_URL": " postgresql://u@h/db \r\n",
+               "SMTP_PASSWORD": "abcd efgh ijkl mnop", "OTHER": " x "}
+        clean_credentials(env)
+        self.assertEqual(env["GROQ_API_KEY"], "gsk_example")
+        self.assertEqual(env["SUPABASE_URL"], "postgresql://u@h/db")
+        self.assertEqual(env["SMTP_PASSWORD"], "abcd efgh ijkl mnop")   # inner spaces kept
+        self.assertEqual(env["OTHER"], " x ")                           # only credentials are touched
+
 
 if __name__ == "__main__":
     unittest.main()
