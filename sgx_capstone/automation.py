@@ -1,6 +1,7 @@
 """Daily automation and the multi-date check (20 Oct 2026).
 
-run-all       after the SGX close: Tasks 1-4 for today -> Task 5 and Task 6 ->
+run-all       after the SGX close: Tasks 1-4 for the latest closed session
+              (skipped if its report is already published) -> Task 5 and Task 6 ->
               the Daily Signal Report -> reports/<date>/ (docx, PDF when
               LibreOffice is installed, reviewer notes) and reports/README.md,
               the index a reviewer opens in the browser; optional e-mail.
@@ -21,7 +22,7 @@ import os
 import re
 import shutil
 import subprocess
-from datetime import datetime
+from datetime import datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -43,6 +44,33 @@ def is_trading_day(date: str, probe: str = "D05.SI") -> bool:
         return False
     bars = yf.Ticker(probe).history(period="7d", interval="1d", auto_adjust=False)
     return any(ts.date() == d for ts in bars.index)
+
+
+SESSION_SETTLED = time(17, 30)   # SGX closes at 17:00; half an hour for the daily bar to settle
+
+
+def report_date(now: datetime | None = None, probe: str = "D05.SI") -> str | None:
+    """The session a run reports on: the latest SGX session that has closed, as
+    long as no later session has started (None while a session is open).
+
+    GitHub can start a scheduled run hours late, past midnight in Singapore, so
+    the calendar date at run time is the wrong default. Until the next session
+    opens, the live feeds still describe the market after that close: its prices
+    are final and any news since then is known before the next open."""
+    import yfinance as yf
+    now = now or datetime.now(SGT)
+    bars = yf.Ticker(probe).history(period="10d", interval="1d", auto_adjust=False)
+    days = sorted({ts.date() for ts in bars.index if ts.date() <= now.date()})
+    if not days:
+        return None
+    last = days[-1]
+    if last == now.date() and now.time() < SESSION_SETTLED:
+        return None
+    return last.isoformat()
+
+
+def already_published(root: Path, date: str) -> bool:
+    return any((Path(root) / "reports" / date).glob("*.docx"))
 
 
 # ── publishing ─────────────────────────────────────────────────────────────

@@ -115,11 +115,14 @@ def doctor(cfg, sha, online=False):
 
 
 def ingest(ns, date):
-    today = datetime.now(ZoneInfo("Asia/Singapore")).date()
-    if datetime.strptime(date, "%Y-%m-%d").date() != today:
-        raise ValueError("Live news, macro and options feeds cannot reconstruct "
-                         "a historical date. Ingest only today's Singapore date; "
-                         "use report --date to read stored historical evidence.")
+    today = datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat()
+    if date != today:
+        from .automation import report_date
+        if date != report_date():
+            raise ValueError("Live news, macro and options feeds cannot reconstruct "
+                             "a historical date. Ingest only today's Singapore date, or "
+                             "the latest closed SGX session before the next one opens; "
+                             "use report --date to read stored historical evidence.")
     for file in ("raw_storage", "task1_news", "task2_technical", "task3_macro", "task4_options"):
         _execute(file, ns)
     import nltk
@@ -214,14 +217,25 @@ def signal_report(ns, cfg, date=None, sessions=None, save_snapshot=False, use_ll
 
 
 def run_all(ns, cfg, date=None, use_llm=True, force=False):
-    """The whole trading day, unattended: Tasks 1-4 for today, then Tasks 5 and 6,
-    then the Daily Signal Report, published to reports/<date>/ with an index.
-    Exits quietly on a weekend or SGX holiday (no daily bar printed)."""
-    from .automation import is_trading_day, publish, email
-    date = date or datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat()
-    if not force and not is_trading_day(date):
-        print(f"{date}: no SGX trading session (weekend or public holiday); nothing to do.")
-        return None
+    """The whole trading day, unattended: Tasks 1-4 for the latest closed SGX
+    session, then Tasks 5 and 6, then the Daily Signal Report, published to
+    reports/<date>/ with an index. Exits quietly when that session's report is
+    already published (a weekend, an SGX holiday, or a second scheduled run)."""
+    from .automation import already_published, email, is_trading_day, publish, report_date
+    if date is None and not force:
+        date = report_date()
+        if date is None:
+            print("An SGX session is in progress; run after 17:30 Singapore time.")
+            return None
+        if already_published(ROOT, date):
+            print(f"{date}: the report for the latest closed SGX session is already published; nothing to do.")
+            return None
+        print(f"Report date: {date} (latest closed SGX session)")
+    else:
+        date = date or datetime.now(ZoneInfo("Asia/Singapore")).date().isoformat()
+        if not force and not is_trading_day(date):
+            print(f"{date}: no SGX trading session (weekend or public holiday); nothing to do.")
+            return None
     ingest(ns, date)
     daily(ns, cfg)
     out = signal_report(ns, cfg, date, use_llm=use_llm)
@@ -280,8 +294,8 @@ def main(argv=None):
     signal_cmd.add_argument("--save-snapshot", action="store_true",
                             help="also save the inputs to tests/fixtures so 'sample --date' rebuilds it offline")
     signal_cmd.add_argument("--no-llm", action="store_true", help="template text only, even with GROQ_API_KEY")
-    run_cmd = sub.add_parser("run-all", help="after the close: Tasks 1-7 for today and publish the report")
-    run_cmd.add_argument("--date", help="default: today in Singapore")
+    run_cmd = sub.add_parser("run-all", help="after the close: Tasks 1-7 for the latest closed session and publish the report")
+    run_cmd.add_argument("--date", help="default: the latest closed SGX session (skipped if already published)")
     run_cmd.add_argument("--no-llm", action="store_true")
     run_cmd.add_argument("--force", action="store_true", help="run even if no SGX bar is found for the date")
     check_cmd = sub.add_parser("check-dates", help="build and check the report for every stored date in a range")
