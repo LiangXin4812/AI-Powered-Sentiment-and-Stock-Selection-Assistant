@@ -7,8 +7,12 @@ publishes the investor report:
 python -m sgx_capstone run-all
 ```
 
-1. **Trading-day check.** If SGX printed no daily price bar for today (weekend
-   or public holiday), it stops and does nothing. No holiday table to maintain.
+1. **Report date.** The latest SGX session that has closed, read from the
+   daily price bar (weekends and public holidays have none, so no holiday
+   table to maintain). If that session's report is already in `reports/`, it
+   stops and does nothing. A run that starts late, even after midnight, still
+   reports on that session: until the next session opens its prices are final
+   and any news since the close is known before the next open.
 2. **Tasks 1–4** (`ingest`): news with FinBERT, technical indicators, macro
    backdrop, options positioning, written to the project database.
 3. **Tasks 5 and 6** (`daily`): evidence readings with the Task 5 AI summary;
@@ -41,9 +45,12 @@ Actions, which needs no machine of your own.
    | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `REPORT_TO` | e-mail delivery (for Gmail: smtp.gmail.com, 587, your address, an app password, the recipients) | optional |
 
 3. Repository → *Actions* → enable workflows. *Daily SGX signal report* now
-   runs at 18:30 Singapore time, Monday to Friday
-   (`.github/workflows/daily_report.yml`).
-4. To test at once: *Actions* → *Daily SGX signal report* → *Run workflow*.
+   runs at 18:30 Singapore time, Monday to Friday, with a backup run at 21:30
+   (`.github/workflows/daily_report.yml`). GitHub can start scheduled runs
+   hours late; that is harmless, because the run reports on the latest closed
+   session and the backup exits once the report is published.
+4. To test at once: *Actions* → *Daily SGX signal report* → *Run workflow*
+   (after 17:30 on a trading day, or any time before the next session opens).
    Tick *force* only to test on a non-trading day.
 
 Each run takes roughly 20–40 minutes (news collection and FinBERT dominate).

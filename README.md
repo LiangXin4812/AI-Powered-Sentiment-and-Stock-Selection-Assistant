@@ -83,18 +83,21 @@ docker compose run --rm capstone python -m sgx_capstone check-dates --start 2026
 docker compose run --rm capstone python -m sgx_capstone report --date 2026-09-21   # Research Report (Word)
 ```
 
-`ingest` refuses any date other than today in Singapore, because current
-feeds cannot reconstruct a past day. `signal-report --date` and
+`ingest` refuses any date other than today in Singapore or the latest closed
+SGX session before the next one opens, because current feeds cannot
+reconstruct a past day. `signal-report --date` and
 `report --date` rebuild a stored date; an outcome is used only if it had
 matured by that date.
 
 ## Daily automation
 
-`run-all` checks that SGX traded today, runs Tasks 1–4, Tasks 5 and 6 and the
-Daily Signal Report, and publishes it to `reports/<date>/` (Word, PDF,
-reviewer notes) with an index at `reports/README.md`; e-mail is optional.
+`run-all` takes the latest closed SGX session (and stops if its report is
+already published), runs Tasks 1–4, Tasks 5 and 6 and the Daily Signal
+Report, and publishes it to `reports/<date>/` (Word, PDF, reviewer notes)
+with an index at `reports/README.md`; e-mail is optional.
 `.github/workflows/daily_report.yml` runs it at 18:30 Singapore time on
-weekdays with the credentials stored as repository secrets. Setup and
+weekdays, with a backup at 21:30 because GitHub can start a scheduled run
+late, using the credentials stored as repository secrets. Setup and
 reviewer access: `AUTOMATION.md`.
 
 ## Google Colab
