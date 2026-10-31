@@ -130,10 +130,44 @@ class AutomationChecks(unittest.TestCase):
             self.skipTest("workflow file is not copied into the Docker image")
         wf = path.read_text()
         self.assertIn('cron: "30 10 * * 1-5"', wf)         # 18:30 Singapore time
+        self.assertIn('cron: "30 13 * * 1-5"', wf)         # backup, 21:30
         self.assertIn("python -m sgx_capstone run-all", wf)
         self.assertIn("secrets.SUPABASE_URL", wf)
         self.assertNotRegex(wf, r"postgres(ql)?://")
         self.assertNotRegex(wf, r"gsk_[A-Za-z0-9]")
+
+    def test_a_late_scheduled_run_reports_on_the_last_closed_session(self):
+        """Runs #3-#7 (27-31 Oct) started 5-7 hours late, after midnight in Singapore, took
+        the new calendar date, found no bar for it and published nothing. The report date is
+        now the latest closed session, unless a later session has already started."""
+        from datetime import datetime
+        from unittest import mock
+        import pandas as pd
+        from sgx_capstone.automation import SGT, already_published, report_date
+
+        def bars(*days):
+            idx = pd.DatetimeIndex([pd.Timestamp(d, tz="Asia/Singapore") for d in days])
+            return pd.DataFrame({"Close": range(len(days))}, index=idx)
+
+        week = bars("2026-10-26", "2026-10-27", "2026-10-28", "2026-10-29", "2026-10-30")
+        at = lambda s: datetime.strptime(s, "%Y-%m-%d %H:%M").replace(tzinfo=SGT)
+        cases = [
+            ("2026-10-27 00:53", week.iloc[:1], "2026-10-26"),   # run #3: Monday's session
+            ("2026-10-28 00:00", week.iloc[:2], "2026-10-27"),   # run #4
+            ("2026-10-31 00:47", week, "2026-10-30"),            # run #7: Saturday, Friday's session
+            ("2026-10-30 18:35", week, "2026-10-30"),            # on time
+            ("2026-10-30 12:00", week, None),                    # Friday's session still open
+            ("2026-11-02 08:00", week, "2026-10-30"),            # Monday before the open
+        ]
+        for now, frame, expected in cases:
+            with mock.patch("yfinance.Ticker") as ticker:
+                ticker.return_value.history.return_value = frame
+                self.assertEqual(report_date(at(now)), expected, now)
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertFalse(already_published(Path(tmp), "2026-10-30"))
+            (Path(tmp) / "reports" / "2026-10-30").mkdir(parents=True)
+            (Path(tmp) / "reports" / "2026-10-30" / "T7_Daily_Signal_Report_2026-10-30.docx").write_bytes(b"x")
+            self.assertTrue(already_published(Path(tmp), "2026-10-30"))
 
 
 if __name__ == "__main__":
