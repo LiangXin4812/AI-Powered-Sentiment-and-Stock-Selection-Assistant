@@ -4,6 +4,7 @@ Generated automatically after the SGX close on each trading day (Tasks 1-7). Gen
 
 | Date | Report | PDF | How it was produced |
 |---|---|---|---|
+| 2026-11-24 | [docx](2026-11-24/T7_Daily_Signal_Report_2026-11-24.docx) | [pdf](2026-11-24/T7_Daily_Signal_Report_2026-11-24.pdf) | [md](2026-11-24/T7_reviewer_notes_2026-11-24.md) |
 | 2026-11-19 | [docx](2026-11-19/T7_Daily_Signal_Report_2026-11-19.docx) | [pdf](2026-11-19/T7_Daily_Signal_Report_2026-11-19.pdf) | [md](2026-11-19/T7_reviewer_notes_2026-11-19.md) |
 | 2026-11-17 | [docx](2026-11-17/T7_Daily_Signal_Report_2026-11-17.docx) | [pdf](2026-11-17/T7_Daily_Signal_Report_2026-11-17.pdf) | [md](2026-11-17/T7_reviewer_notes_2026-11-17.md) |
 | 2026-11-16 | [docx](2026-11-16/T7_Daily_Signal_Report_2026-11-16.docx) | [pdf](2026-11-16/T7_Daily_Signal_Report_2026-11-16.pdf) | [md](2026-11-16/T7_reviewer_notes_2026-11-16.md) |
